@@ -24,14 +24,14 @@ public class MainSceneButtons : MonoBehaviour
     }
 
    
-    void OnVolumeButtonClicked()
+    public void OnVolumeButtonClicked()
     {
         
         volumeSlider.SetActive(!volumeSlider.activeSelf);
     }
 
      
-    void OnExitButtonClicked()
+   public void OnExitButtonClicked()
     {
         
         Application.Quit();

@@ -14,9 +14,39 @@ public class CharacterAnimation : MonoBehaviour
     
     void Start()
     {
-        // Get the animator component
+  
         animator = GetComponent<Animator>();
     }
+
+
+
+private bool IsAnswerCorrect()
+{
+    
+    Vector3 gazeDirection = Gaze.Instance.GazeNormal;
+
+    
+    RaycastHit hit;
+    bool answerIsCorrect = Physics.Raycast(transform.position, gazeDirection, out hit, Mathf.Infinity);
+
+    
+    if (answerIsCorrect)
+    {
+        if (hit.collider.tag == "CorrectAnswer")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        return false;
+    }
+}
+
 
     
     void Update()

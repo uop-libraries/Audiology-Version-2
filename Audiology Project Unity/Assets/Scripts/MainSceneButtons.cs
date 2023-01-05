@@ -13,6 +13,7 @@ public class MainSceneButtons : MonoBehaviour
 
    
     public GameObject volumeSlider;
+    
 
     void Start()
     {

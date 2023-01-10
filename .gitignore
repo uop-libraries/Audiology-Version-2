@@ -73,3 +73,12 @@ crashlytics-build.properties
 Audiology Project Unity/.idea/.idea.Audiology Project Unity/.idea/indexLayout.xml
 Audiology Project Unity/.idea/.idea.Audiology Project Unity/.idea/projectSettingsUpdater.xml
 Audiology Project Unity/.idea/.idea.Audiology Project Unity/.idea/workspace.xml
+Audiology Project Unity/.idea/.idea.Audiology Project Unity/.idea/vcs.xml
+Audiology Project Unity/.idea/.name
+Audiology Project Unity/.idea/vcs.xml
+
+# Test Folder
+Audiology Project Unity/[Tt]est\ Folder/*
+
+# Rider
+Audiology Project Unity/.idea/*

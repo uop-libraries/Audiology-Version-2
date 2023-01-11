@@ -24,8 +24,10 @@ using UnityEngine;
 /// </summary>
 public class CameraPointer : MonoBehaviour
 {
-    private const float _maxDistance = 10;
+    private const float _maxDistance = 40;
     private GameObject _gazedAtObject = null;
+     public GameObject reticle;
+ 
 
     /// <summary>
     /// Update is called once per frame.
@@ -40,23 +42,24 @@ public class CameraPointer : MonoBehaviour
             // GameObject detected in front of the camera.
             if (_gazedAtObject != hit.transform.gameObject)
             {
-                // New GameObject.
-                _gazedAtObject?.SendMessage("OnPointerExit");
-                _gazedAtObject = hit.transform.gameObject;
-                _gazedAtObject.SendMessage("OnPointerEnter");
+                  
+             _gazedAtObject = hit.transform.gameObject;
+             reticle.SetActive(true);
+          
+     
             }
         }
         else
         {
-            // No GameObject detected in front of the camera.
-            _gazedAtObject?.SendMessage("OnPointerExit");
+            
+            reticle.SetActive(false);
             _gazedAtObject = null;
         }
 
         // Checks for screen touches.
         if (Google.XR.Cardboard.Api.IsTriggerPressed)
         {
-            _gazedAtObject?.SendMessage("OnPointerClick");
+            
         }
     }
 }

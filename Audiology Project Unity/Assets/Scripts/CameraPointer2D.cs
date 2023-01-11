@@ -14,6 +14,7 @@ public class CameraPointer2D : MonoBehaviour
 
         reticle.transform.position = transform.position;
         reticle.transform.rotation = transform.rotation;
+
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward, maxDistance, layerMask);
 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.red);
         if (hit.collider != null)

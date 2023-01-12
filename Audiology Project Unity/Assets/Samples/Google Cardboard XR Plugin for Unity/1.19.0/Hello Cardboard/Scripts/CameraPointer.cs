@@ -24,9 +24,9 @@ using UnityEngine;
 /// </summary>
 public class CameraPointer : MonoBehaviour
 {
-    private const float _maxDistance = 40;
+    private const float _maxDistance = 1000;
     private GameObject _gazedAtObject = null;
-     public  GameObject reticle;
+    public  GameObject reticle;
 
     /// <summary>
     /// Update is called once per frame.

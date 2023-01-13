@@ -1,4 +1,6 @@
 //-----------------------------------------------------------------------
+// This Script is modified 
+
 // <copyright file="CameraPointer.cs" company="Google LLC">
 // Copyright 2020 Google LLC
 //
@@ -22,7 +24,7 @@ using UnityEngine;
 /// <summary>
 /// Sends messages to gazed GameObject.
 /// </summary>
-public class CameraPointer : MonoBehaviour
+public class CursorPointer : MonoBehaviour
 {
     private const float _maxDistance = 1000;
     private GameObject _gazedAtObject = null;

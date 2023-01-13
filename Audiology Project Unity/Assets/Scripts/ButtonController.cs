@@ -47,12 +47,12 @@ public class ButtonController : MonoBehaviour
         }
     }
 
-    public void OnPointerEnter()
+    public void OnPointerEnter1()
     {
         _gazedStatus = true;
     }
-    
-    public void OnPointerExit()
+
+    public void OnPointerExit1()
     {
         _playingHoverOnAnimation = false;
         _gazedStatus = false;

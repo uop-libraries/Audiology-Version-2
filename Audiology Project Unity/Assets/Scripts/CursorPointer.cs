@@ -28,7 +28,7 @@ public class CursorPointer : MonoBehaviour
 {
     private const float _maxDistance = 1000;
     private GameObject _gazedAtObject = null;
-    public GameObject reticle;
+    // public GameObject reticle;
 
     /// <summary>
     /// Update is called once per frame.
@@ -44,19 +44,19 @@ public class CursorPointer : MonoBehaviour
             if (_gazedAtObject != hit.transform.gameObject)
             {
                 // New GameObject.
-                _gazedAtObject?.SendMessage("OnPointerExit1");
+                _gazedAtObject?.SendMessage("OnPointerOff");
                 // _gazedAtObject?.SendMessage("OnPointerEnter");
                 _gazedAtObject = hit.transform.gameObject;
-                _gazedAtObject.SendMessage("OnPointerEnter1");
-                reticle.SetActive(false);
+                _gazedAtObject.SendMessage("OnPointerOn");
+                // reticle.SetActive(false);
             }
         }
         else
         {
             // No GameObject detected in front of the camera.
-            _gazedAtObject?.SendMessage("OnPointerExit1");
+            _gazedAtObject?.SendMessage("OnPointerOff");
             _gazedAtObject = null;
-            reticle.SetActive(true);
+            // reticle.SetActive(true);
         }
 
         // Checks for screen touches.

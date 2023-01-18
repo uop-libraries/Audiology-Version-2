@@ -27,6 +27,7 @@ using UnityEngine;
 public class CursorPointer : MonoBehaviour
 {
     private const float _maxDistance = 1000;
+
     private GameObject _gazedAtObject = null;
     // public GameObject reticle;
 

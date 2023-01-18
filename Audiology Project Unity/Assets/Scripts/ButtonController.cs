@@ -14,7 +14,10 @@ public class ButtonController : MonoBehaviour
     private const float TotalTime = 1f;
     bool gazedStatus;
     public float gazedTimer;
-    
+    public AudioSource source;
+    public AudioClip clickClip;
+
+
     void Start()
     {
         cursorTimer.value = 0;
@@ -33,6 +36,7 @@ public class ButtonController : MonoBehaviour
         
         if (gazedTimer > TotalTime)
         {
+            source.PlayOneShot(clickClip);
             GVRClick.Invoke();
         }
     }

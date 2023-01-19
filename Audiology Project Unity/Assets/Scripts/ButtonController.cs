@@ -8,14 +8,18 @@ using Slider = UnityEngine.UI.Slider;
 public class ButtonController : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject button;
-    public Slider cursorTimer;
-    [FormerlySerializedAs("GVRclick")] public UnityEvent GVRClick;
     private const float TotalTime = 1f;
     bool gazedStatus;
+    
+    public GameObject button;
+    public Slider cursorTimer;
+    public bool enableButtonSound = true;
+    public bool isInteractable = true;
     public float gazedTimer;
-    public AudioSource source;
+    public AudioSource soundSource;
     public AudioClip clickClip;
+    
+    public UnityEvent GVRClick;
 
 
     void Start()
@@ -26,6 +30,11 @@ public class ButtonController : MonoBehaviour
     
     void Update()
     {
+        if (isInteractable == false)
+        {
+            return;
+        }
+        
         if (gazedStatus)
         {
             button.GetComponent<Animator>().StopPlayback();
@@ -36,7 +45,10 @@ public class ButtonController : MonoBehaviour
         
         if (gazedTimer > TotalTime)
         {
-            source.PlayOneShot(clickClip);
+            if (enableButtonSound == true && soundSource != null)
+            {
+                soundSource.PlayOneShot(clickClip);
+            }
             GVRClick.Invoke();
         }
     }

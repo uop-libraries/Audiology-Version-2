@@ -204,7 +204,7 @@ MonoBehaviour:
   renderOnTop: 1
   centered: 0
   isPreset: 1
-  latestTabIndex: 0
+  latestTabIndex: 1
 --- !u!114 &3270199227624223222
 MonoBehaviour:
   m_ObjectHideFlags: 0

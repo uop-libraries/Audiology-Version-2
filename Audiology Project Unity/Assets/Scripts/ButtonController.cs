@@ -8,7 +8,7 @@ using Slider = UnityEngine.UI.Slider;
 public class ButtonController : MonoBehaviour
 {
     // Start is called before the first frame update
-    private const float TotalTime = 1f;
+    private const float TotalTime = 2f;
     bool gazedStatus;
     
     public GameObject button;
@@ -49,7 +49,10 @@ public class ButtonController : MonoBehaviour
             {
                 soundSource.PlayOneShot(clickClip);
             }
+            gazedTimer = 0;
+            cursorTimer.value = 0;
             GVRClick.Invoke();
+            gazedStatus = false;
         }
     }
     

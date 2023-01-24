@@ -5,23 +5,14 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Main Menu.unity
-    guid: 145a2a45d7bc746b19cb68410368bf96
   - enabled: 1
     path: Assets/Scenes/Title Screen.unity
     guid: 8e9fca6a60ad9eb4a986ba083a26d7da
-  - enabled: 0
-    path: Assets/Scenes/VrMode.unity
-    guid: 595cb1b8991c8304da925ba14b0531c7
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 67669e74be4bef5438779ac913999ddf
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
-    path: Assets/Scenes/Test Yusif Main Menu.unity
-    guid: fcbc8021ee6e646468d44fe8e54e61d4
-  - enabled: 0
-    path: Assets/Scenes/VrMode 1.unity
-    guid: ce34f1775fd37994cac6bd0032550b65
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 4a1d7450373e2ff4da59752e1341ac21, type: 2}

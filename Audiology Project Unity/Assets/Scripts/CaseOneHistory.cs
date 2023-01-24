@@ -12,12 +12,14 @@ public class CaseOneHistory : MonoBehaviour
     [SerializeField] private GameObject _feedbackInstruction;
     private GameObject _currentGameObject;
     private GameObject _DocImage;
+    private GameObject _background;
     void Start()
     {
         _currentCaseInstruction.SetActive(true);
         _nextCaseInstruction.SetActive(false);
         _feedbackInstruction.SetActive(false);
         _DocImage = GameObject.Find("DocImage");
+        _background = GameObject.Find("MainBackground");
 
     }
     
@@ -39,11 +41,20 @@ public class CaseOneHistory : MonoBehaviour
     {
         _currentGameObject.SetActive(false);
         _DocImage.SetActive(false);
+        _background.SetActive(false);
+    }
+
+    public void ReturnToGameFromFeedback()
+    {
+        _feedbackInstruction.SetActive(false);
+        _nextCaseInstruction.SetActive(true);
+        _currentGameObject = _nextCaseInstruction.GameObject();
     }
 
     public void ReturnToGame()
     {
         _currentGameObject.SetActive(true);
         _DocImage.SetActive(true);
+        _background.SetActive(true);
     }
 }

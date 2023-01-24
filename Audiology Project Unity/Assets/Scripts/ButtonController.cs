@@ -1,4 +1,5 @@
 using System.Collections;
+using Michsky.MUIP;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -15,6 +16,7 @@ public class ButtonController : MonoBehaviour
     public Slider cursorTimer;
     public bool enableButtonSound = true;
     public bool isInteractable = true;
+    private bool isClick;
     public float gazedTimer;
     public AudioSource soundSource;
     public AudioClip clickClip;
@@ -51,9 +53,21 @@ public class ButtonController : MonoBehaviour
             }
             gazedTimer = 0;
             cursorTimer.value = 0;
+            isClick = true;
             GVRClick.Invoke();
             gazedStatus = false;
         }
+
+        if (isClick)
+        {
+            changeColor();
+        }
+    }
+
+    private void changeColor()
+    {
+        button.GetComponent<Image>().color = Color.grey;
+        button.GetComponent<UIGradient>().enabled = false;
     }
     
     public void OnPointerOn()

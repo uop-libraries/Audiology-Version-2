@@ -76,8 +76,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 7130453406504258131}
   - component: {fileID: 7130453406504258143}
   - component: {fileID: 7130453406504258137}
+  - component: {fileID: 84558790505791074}
   m_Layer: 5
   m_Name: StartButtonTemplate
   m_TagString: Untagged
@@ -329,6 +330,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 7130453406504258129}
   cursorTimer: {fileID: 0}
+  enableButtonSound: 1
+  isInteractable: 1
+  gazedTimer: 0
+  soundSource: {fileID: 0}
+  clickClip: {fileID: 8300000, guid: 17a0534d87f12624f9654bff5f1ccf0e, type: 3}
   GVRClick:
     m_PersistentCalls:
       m_Calls:
@@ -344,9 +350,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  gazedTimer: 0
-  source: {fileID: 0}
-  clickClip: {fileID: 8300000, guid: 17a0534d87f12624f9654bff5f1ccf0e, type: 3}
 --- !u!114 &7130453406504258137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,3 +395,49 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &84558790505791074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7130453406504258129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d2f9067277ade4e9b47012ea4d9e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gradientType: 1
+  _blendMode: 2
+  _modifyVertices: 1
+  _offset: -0.05
+  _zoom: 0.93
+  _effectGradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 0.29411766, b: 0.1490196, a: 1}
+    key1: {r: 0.6981132, g: 0.17309655, b: 0.062566735, a: 1}
+    key2: {r: 1, g: 0.393531, b: 0.2688679, a: 1}
+    key3: {r: 1, g: 0.29411766, b: 0.1490196, a: 1}
+    key4: {r: 1, g: 0.29411766, b: 0.1490196, a: 0}
+    key5: {r: 1, g: 0.29411766, b: 0.14901961, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 32768
+    ctime2: 65535
+    ctime3: 65535
+    ctime4: 65535
+    ctime5: 38743
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 65535
+    atime3: 65535
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2

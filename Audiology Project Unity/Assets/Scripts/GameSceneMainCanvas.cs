@@ -18,11 +18,11 @@ public class GameSceneMainCanvas : MonoBehaviour
     private void Start()
     {   
         //Todo change this back after debug
-        // _case1History.SetActive(true);
-        // _case1HistoryFirstPanel.SetActive(true);
+        _case1History.SetActive(true);
+        _case1HistoryFirstPanel.SetActive(true);
         
         //Todo change this back after debug
-        ChangeClinicalCase();
+        // ChangeClinicalCase();
     }
 
     public void ChangeClinicalCase()

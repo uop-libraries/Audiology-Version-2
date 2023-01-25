@@ -330,6 +330,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 7130453406504258129}
   cursorTimer: {fileID: 0}
+  hoverColor: {r: 0.43805626, g: 0.8679245, b: 0.5705706, a: 0}
+  selectColor: {r: 0, g: 0, b: 0, a: 0}
   enableButtonSound: 1
   isInteractable: 1
   gazedTimer: 0

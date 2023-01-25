@@ -2858,6 +2858,34 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 901084144}
     - target: {fileID: 7130453406504258143, guid: ed6a63309c712c6488459ff852b7790a, type: 3}
+      propertyPath: hoverColor.a
+      value: 0.50980395
+      objectReference: {fileID: 0}
+    - target: {fileID: 7130453406504258143, guid: ed6a63309c712c6488459ff852b7790a, type: 3}
+      propertyPath: hoverColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7130453406504258143, guid: ed6a63309c712c6488459ff852b7790a, type: 3}
+      propertyPath: hoverColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7130453406504258143, guid: ed6a63309c712c6488459ff852b7790a, type: 3}
+      propertyPath: hoverColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7130453406504258143, guid: ed6a63309c712c6488459ff852b7790a, type: 3}
+      propertyPath: selectColor.b
+      value: 0.28831434
+      objectReference: {fileID: 0}
+    - target: {fileID: 7130453406504258143, guid: ed6a63309c712c6488459ff852b7790a, type: 3}
+      propertyPath: selectColor.g
+      value: 0.28831434
+      objectReference: {fileID: 0}
+    - target: {fileID: 7130453406504258143, guid: ed6a63309c712c6488459ff852b7790a, type: 3}
+      propertyPath: selectColor.r
+      value: 0.2924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 7130453406504258143, guid: ed6a63309c712c6488459ff852b7790a, type: 3}
       propertyPath: GVRClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}

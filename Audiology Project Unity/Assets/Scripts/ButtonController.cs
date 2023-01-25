@@ -1,5 +1,6 @@
 using System.Collections;
 using Michsky.MUIP;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -10,14 +11,21 @@ public class ButtonController : MonoBehaviour
 {
     // Start is called before the first frame update
     private const float TotalTime = 2f;
-    bool gazedStatus;
+    bool _gazedStatus;
     
     public GameObject button;
     public Slider cursorTimer;
+
+    private Image _image;
+    private UIGradient _uiGradient;
+    private Animator _animatorButton;
+    
     public bool enableButtonSound = true;
     public bool isInteractable = true;
-    private bool isClick;
+    private bool _isClick;
+    
     public float gazedTimer;
+    
     public AudioSource soundSource;
     public AudioClip clickClip;
     
@@ -27,7 +35,10 @@ public class ButtonController : MonoBehaviour
     void Start()
     {
         cursorTimer.value = 0;
-        gazedStatus = false;
+        _gazedStatus = false;
+        _animatorButton = button.GetComponent<Animator>();
+        _image = button.GetComponent<Image>();
+        _uiGradient = button.GetComponent<UIGradient>();
     }
     
     void Update()
@@ -37,14 +48,16 @@ public class ButtonController : MonoBehaviour
             return;
         }
         
-        if (gazedStatus)
+        // Hovering 
+        if (_gazedStatus)
         {
-            button.GetComponent<Animator>().StopPlayback();
+            _animatorButton.StopPlayback();
             gazedTimer += Time.deltaTime;
             cursorTimer.value = gazedTimer / TotalTime;
-            StartCoroutine(PlayHoverOn());
+            Hovering();
         }
         
+        // Selecting 
         if (gazedTimer > TotalTime)
         {
             if (enableButtonSound == true && soundSource != null)
@@ -53,41 +66,45 @@ public class ButtonController : MonoBehaviour
             }
             gazedTimer = 0;
             cursorTimer.value = 0;
-            isClick = true;
+            _isClick = true;
             GVRClick.Invoke();
-            gazedStatus = false;
+            _gazedStatus = false;
         }
-
-        if (isClick)
+        
+        // Already selected
+        if (_isClick)
         {
-            changeColor();
+            ChangeColor();
         }
     }
 
-    private void changeColor()
+    private void ChangeColor()
     {
-        button.GetComponent<Image>().color = Color.grey;
-        button.GetComponent<UIGradient>().enabled = false;
+        _image.color = Color.grey;
+        _uiGradient.enabled = false;
     }
     
     public void OnPointerOn()
     {
-        gazedStatus = true;
+        _gazedStatus = true;
     }
 
     public void OnPointerOff()
     {
-        gazedStatus = false;
+        _gazedStatus = false;
         gazedTimer = 0;
         cursorTimer.value = 0;
-        button.GetComponent<Animator>().Play("HoverOffAnimation");
+        _animatorButton.Play("HoverOffAnimation");
     }
 
     IEnumerator PlayHoverOn()
     {
-        button.GetComponent<Animator>().Play("HoverOnAnimation");
+        _animatorButton.Play("HoverOnAnimation");
         yield return null;
     }
-
-
+    
+    private void Hovering()
+    {
+        StartCoroutine(PlayHoverOn());
+    }
 }

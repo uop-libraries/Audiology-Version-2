@@ -129,10 +129,29 @@ public class CaseOneHistory : MonoBehaviour
         ReturnToBackgroundObjects();
     }
 
-    public void GoToFeedBack01()
+    // public void GoToFeedBack01()
+    // {
+    //     StateNameController.CurrentActivePanel.SetActive(false);
+    //     StateNameController.CurrentActivePanel = _Feedback01;
+    //     StateNameController.CurrentActivePanel.SetActive(true);
+    // }
+
+    public void GoToFeedBack(int value)
     {
         StateNameController.CurrentActivePanel.SetActive(false);
-        StateNameController.CurrentActivePanel = _Feedback01;
+        
+        StateNameController.CurrentActivePanel = value switch
+        {
+            1 => _Feedback01,
+            2 => _Feedback02,
+            3 => _Feedback03,
+            4 => _Feedback04,
+            5 => _Feedback05,
+            6 => _Feedback06,
+            7 => _Feedback07,
+            _ => StateNameController.CurrentActivePanel
+        };
+        
         StateNameController.CurrentActivePanel.SetActive(true);
     }
 

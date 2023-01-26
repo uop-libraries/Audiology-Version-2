@@ -23,6 +23,7 @@ public class ButtonController : MonoBehaviour
     public bool enableButtonSound = true;
     public bool isInteractable = true;
     private bool _isClick;
+    private GameObject _continueButton;
     
     public float gazedTimer;
     
@@ -34,6 +35,7 @@ public class ButtonController : MonoBehaviour
 
     void Start()
     {
+        _continueButton = GameObject.Find("ContinueButton");
         cursorTimer.value = 0;
         _gazedStatus = false;
         _animatorButton = button.GetComponent<Animator>();
@@ -71,8 +73,8 @@ public class ButtonController : MonoBehaviour
             _gazedStatus = false;
         }
         
-        // Already selected
-        if (_isClick)
+        // Already selected and is not continuous button
+        if (_isClick && !_continueButton)
         {
             ChangeColor();
         }

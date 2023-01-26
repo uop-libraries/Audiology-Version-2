@@ -6,5 +6,5 @@ using UnityEngine;
 public class StateNameController : MonoBehaviour
 {
     public static int clinicalCaseNumber;
-    public static string childCaseName;
+    public static GameObject CurrentActivePanel;
 }

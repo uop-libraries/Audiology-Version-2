@@ -55,7 +55,7 @@ public class CursorPointer : MonoBehaviour
         else
         {
             // No GameObject detected in front of the camera.
-            _gazedAtObject?.SendMessage("OnPointerOff");
+            _gazedAtObject?.SendMessage("OnPointerOff", SendMessageOptions.DontRequireReceiver);
             _gazedAtObject = null;
             // reticle.SetActive(true);
         }

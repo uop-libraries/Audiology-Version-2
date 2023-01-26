@@ -8,7 +8,7 @@ public class CaseOneHistory : MonoBehaviour
 {
     private GameObject _currentPanel;
     private GameObject _nextInstruction;
-    private GameObject _nextfeedback;
+    private GameObject _nextFeedback;
     
     [Header("Narrator Panel")]
     [SerializeField] private GameObject Narrator01;
@@ -39,28 +39,97 @@ public class CaseOneHistory : MonoBehaviour
     [SerializeField] private GameObject _Feedback06;
     [SerializeField] private GameObject _Feedback07;
     
+    [Header("Array")]
+    [SerializeField] List<GameObject> _instructionPanels = new List<GameObject>();
+    [SerializeField] List<GameObject> _feedbackPanels = new List<GameObject>();
+    
     // Environment
     private GameObject _currentGameObject;
     private GameObject _DocImage;
     private GameObject _background;
+    private GameObject _case1Object;
+
+    private int _counter = 0;
     void Start()
     {
         // _currentCaseInstruction.SetActive(true);
         // _nextCaseInstruction.SetActive(false);
         // _feedbackInstruction.SetActive(false);
+        
+        _instructionPanels.Clear();
+        _feedbackPanels.Clear();
+        
         _DocImage = GameObject.Find("DocImage");
         _background = GameObject.Find("MainBackground");
+        InitializeArrays();
+        
+    }
 
-    }
-    
-    public void CorrectAnswer()
+    private void InitializeArrays()
     {
-        // _currentCaseInstruction.SetActive(false);
-        // _nextCaseInstruction.SetActive(true);
-        // _currentGameObject = _nextCaseInstruction.GameObject();
+        _instructionPanels.Add(_Instruction01);
+        _instructionPanels.Add(_Instruction02);
+        _instructionPanels.Add(_Instruction03);
+        _instructionPanels.Add(_Instruction04);
+        _instructionPanels.Add(_Instruction05);
+        _instructionPanels.Add(_Instruction06);
+        _instructionPanels.Add(_Instruction07);
+        _instructionPanels.Add(_Instruction08);
+        _instructionPanels.Add(_Instruction09);
+        _instructionPanels.Add(_Instruction10);
+        _instructionPanels.Add(_Instruction11);
+        _instructionPanels.Add(_Instruction12);
+        _instructionPanels.Add(_Instruction13);
+        _instructionPanels.Add(_Instruction14);
+        _instructionPanels.Add(_Instruction15);
+        
+        _feedbackPanels.Add(_Feedback01);
+        _feedbackPanels.Add(_Feedback02);
+        _feedbackPanels.Add(_Feedback03);
+        _feedbackPanels.Add(_Feedback04);
+        _feedbackPanels.Add(_Feedback05);
+        _feedbackPanels.Add(_Feedback06);
+        _feedbackPanels.Add(_Feedback07);
+    }
+
+    public void FirstPanel()
+    {
+        Debug.Log("First Instruction Panel");
+        _nextInstruction = _Instruction01;
+        SwitchPanel( _nextInstruction, _nextFeedback);
+    }
+
+    private void SwitchPanel(GameObject next, GameObject feedback)
+    {
+        StateNameController.CurrentActivePanel.SetActive(false);
+        StateNameController.CurrentActivePanel = next;
+        StateNameController.CurrentActivePanel.SetActive(true);
+    }
+    public void GoToInstruction02()
+    {
+        _nextInstruction = _Instruction02;
+        _nextFeedback = _Feedback01;
+        GameObject child = _nextInstruction.transform.GetChild(1).gameObject;
+        GameObject option2 = child.transform.GetChild(1).gameObject;
+        GameObject next = child.transform.GetChild(2).gameObject;
+        
+        option2.SetActive(_counter != 0);
+        next.SetActive(_counter > 1);
+        
+        _counter++;
+        SwitchPanel(_nextInstruction, _nextFeedback);
+        ReturnToBackgroundObjects();
     }
     
-    public void WrongAnswer()
+    public void GoToInstruction03()
+    {
+        _nextInstruction = _Instruction03;
+        _nextFeedback = _Feedback02;
+        SwitchPanel(_nextInstruction, _nextFeedback);
+        ReturnToBackgroundObjects();
+    }
+
+    public void WrongChoice()
     {
         // _currentCaseInstruction.SetActive(false);
         // _feedbackInstruction.SetActive(true);
@@ -69,7 +138,7 @@ public class CaseOneHistory : MonoBehaviour
 
     public void VideoTransition()
     {
-        _currentGameObject.SetActive(false);
+        StateNameController.CurrentActivePanel.SetActive(false);
         _DocImage.SetActive(false);
         _background.SetActive(false);
     }
@@ -81,10 +150,9 @@ public class CaseOneHistory : MonoBehaviour
         // _currentGameObject = _nextCaseInstruction.GameObject();
     }
 
-    public void ReturnToGame()
+    public void ReturnToBackgroundObjects()
     {
-        _currentGameObject.SetActive(true);
-        _DocImage.SetActive(true);
-        _background.SetActive(true);
+        _DocImage?.SetActive(true);
+        _background?.SetActive(true);
     }
 }

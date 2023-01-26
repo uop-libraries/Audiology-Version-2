@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CaseOneHistory : MonoBehaviour
 {
@@ -45,17 +46,19 @@ public class CaseOneHistory : MonoBehaviour
     
     // Environment
     private GameObject _currentGameObject;
-    private GameObject _DocImage;
+    private GameObject _docImage;
     private GameObject _background;
     private GameObject _case1Object;
 
-    private int counter = 0;
+    private int _counter = 0;
+    private int _counter1 = 0;
+
     void Start()
     {
         _instructionPanels.Clear();
         _feedbackPanels.Clear();
         
-        _DocImage = GameObject.Find("DocImage");
+        _docImage = GameObject.Find("DocImage");
         _background = GameObject.Find("MainBackground");
         InitializeArrays();
     }
@@ -100,7 +103,7 @@ public class CaseOneHistory : MonoBehaviour
                 break;
             case 3:
                 _nextInstruction = _Instruction03;
-                counter = 0;
+                _counter = 0;
                 break;
             case 4:
                 GoToInstruction04();
@@ -109,7 +112,7 @@ public class CaseOneHistory : MonoBehaviour
                 _nextInstruction = _Instruction05;
                 break;
             case 6:
-                _nextInstruction = _Instruction06;
+                GoToInstruction06();
                 break;
             case 7:
                 _nextInstruction = _Instruction07;
@@ -175,10 +178,10 @@ public class CaseOneHistory : MonoBehaviour
         GameObject option2 = child.transform.GetChild(1).gameObject;
         GameObject next = child.transform.GetChild(2).gameObject;
         
-        option2.SetActive(counter != 0);
-        next.SetActive(counter > 1);
+        option2.SetActive(_counter != 0);
+        next.SetActive(_counter > 1);
         
-        counter++;
+        _counter++;
     }
     
     private void GoToInstruction04()
@@ -187,14 +190,46 @@ public class CaseOneHistory : MonoBehaviour
         GameObject child = _nextInstruction.transform.GetChild(1).gameObject;
         GameObject next = child.transform.GetChild(1).gameObject;
         
-        next.SetActive(counter > 0);
-        counter++;
+        next.SetActive(_counter > 0);
+        _counter++;
+    }
+    
+    private void GoToInstruction06()
+    {
+        _counter1 = 0;
+        _nextInstruction = _Instruction06;
+        GameObject child0 = _nextInstruction.transform.GetChild(1).gameObject;
+        
+        GameObject child2 = _nextInstruction.transform.GetChild(2).gameObject;
+        
+        //Todo Debug
+        // child2.SetActive(false);
+        //Todo Debug
+        
+        foreach (Transform child in child0.transform)
+        {
+            // Debug.Log(child);
+            if (child.gameObject.GetComponent<Image>().color == Color.grey)
+            {
+                _counter1++;
+                Debug.Log(child + " " + " counter:" + _counter1);
+            }
+            else
+            {
+                _counter = 0;
+            }
+        }
+
+        if (_counter1 == 6)
+        {
+            child2.SetActive(true);
+        }
     }
     
     public void VideoTransition()
     {
         StateNameController.CurrentActivePanel.SetActive(false);
-        _DocImage.SetActive(false);
+        _docImage.SetActive(false);
         _background.SetActive(false);
     }
 
@@ -216,7 +251,7 @@ public class CaseOneHistory : MonoBehaviour
 
     public void ReturnToBackgroundObjects()
     {
-        _DocImage?.SetActive(true);
+        _docImage?.SetActive(true);
         _background?.SetActive(true);
     }
 }

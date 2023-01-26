@@ -45,7 +45,7 @@ public class CursorPointer : MonoBehaviour
             if (_gazedAtObject != hit.transform.gameObject)
             {
                 // New GameObject.
-                _gazedAtObject?.SendMessage("OnPointerOff");
+                _gazedAtObject?.SendMessage("OnPointerOff", SendMessageOptions.DontRequireReceiver);
                 // _gazedAtObject?.SendMessage("OnPointerEnter");
                 _gazedAtObject = hit.transform.gameObject;
                 _gazedAtObject.SendMessage("OnPointerOn");

@@ -49,20 +49,15 @@ public class CaseOneHistory : MonoBehaviour
     private GameObject _background;
     private GameObject _case1Object;
 
-    private int _counter = 0;
+    private int counter = 0;
     void Start()
     {
-        // _currentCaseInstruction.SetActive(true);
-        // _nextCaseInstruction.SetActive(false);
-        // _feedbackInstruction.SetActive(false);
-        
         _instructionPanels.Clear();
         _feedbackPanels.Clear();
         
         _DocImage = GameObject.Find("DocImage");
         _background = GameObject.Find("MainBackground");
         InitializeArrays();
-        
     }
 
     private void InitializeArrays()
@@ -92,50 +87,61 @@ public class CaseOneHistory : MonoBehaviour
         _feedbackPanels.Add(_Feedback07);
     }
 
-    public void GoToInstruction01()
+    public void GoToInstruction(int index)
     {
-        Debug.Log("First Instruction Panel");
-        _nextInstruction = _Instruction01;
-        SwitchPanel( _nextInstruction, _nextFeedback);
-    }
-
-    private void SwitchPanel(GameObject next, GameObject feedback)
-    {
-        StateNameController.CurrentActivePanel.SetActive(false);
-        StateNameController.CurrentActivePanel = next;
-        StateNameController.CurrentActivePanel.SetActive(true);
-    }
-    public void GoToInstruction02()
-    {
-        _nextInstruction = _Instruction02;
-        _nextFeedback = _Feedback01;
-        GameObject child = _nextInstruction.transform.GetChild(1).gameObject;
-        GameObject option2 = child.transform.GetChild(1).gameObject;
-        GameObject next = child.transform.GetChild(2).gameObject;
-        
-        option2.SetActive(_counter != 0);
-        next.SetActive(_counter > 1);
-        
-        _counter++;
-        SwitchPanel(_nextInstruction, _nextFeedback);
+        Debug.Log("Instruction Panel: " + index);
+        switch(index)
+        {
+            case 1:
+                _nextInstruction = _Instruction01;
+                break;
+            case 2:
+                GoToInstruction02();
+                break;
+            case 3:
+                _nextInstruction = _Instruction03;
+                break;
+            case 4:
+                _nextInstruction = _Instruction04;
+                break;
+            case 5:
+                _nextInstruction = _Instruction05;
+                break;
+            case 6:
+                _nextInstruction = _Instruction06;
+                break;
+            case 7:
+                _nextInstruction = _Instruction07;
+                break;
+            case 8:
+                _nextInstruction = _Instruction08;
+                break;
+            case 9:
+                _nextInstruction = _Instruction09;
+                break;
+            case 10:
+                _nextInstruction = _Instruction10;
+                break;
+            case 11:
+                _nextInstruction = _Instruction11;
+                break;
+            case 12:
+                _nextInstruction = _Instruction12;
+                break;
+            case 13:
+                _nextInstruction = _Instruction13;
+                break;
+            case 14:
+                _nextInstruction = _Instruction14;
+                break;
+            case 15:
+                _nextInstruction = _Instruction15;
+                break;
+        }
+        SwitchPanel( _nextInstruction);
         ReturnToBackgroundObjects();
     }
     
-    public void GoToInstruction03()
-    {
-        _nextInstruction = _Instruction03;
-        _nextFeedback = _Feedback02;
-        SwitchPanel(_nextInstruction, _nextFeedback);
-        ReturnToBackgroundObjects();
-    }
-
-    // public void GoToFeedBack01()
-    // {
-    //     StateNameController.CurrentActivePanel.SetActive(false);
-    //     StateNameController.CurrentActivePanel = _Feedback01;
-    //     StateNameController.CurrentActivePanel.SetActive(true);
-    // }
-
     public void GoToFeedBack(int value)
     {
         StateNameController.CurrentActivePanel.SetActive(false);
@@ -155,6 +161,25 @@ public class CaseOneHistory : MonoBehaviour
         StateNameController.CurrentActivePanel.SetActive(true);
     }
 
+    private void SwitchPanel(GameObject next)
+    {
+        StateNameController.CurrentActivePanel.SetActive(false);
+        StateNameController.CurrentActivePanel = next;
+        StateNameController.CurrentActivePanel.SetActive(true);
+    }
+    private void GoToInstruction02()
+    {
+        _nextInstruction = _Instruction02;
+        GameObject child = _nextInstruction.transform.GetChild(1).gameObject;
+        GameObject option2 = child.transform.GetChild(1).gameObject;
+        GameObject next = child.transform.GetChild(2).gameObject;
+        
+        option2.SetActive(counter != 0);
+        next.SetActive(counter > 1);
+        
+        counter++;
+    }
+    
     public void VideoTransition()
     {
         StateNameController.CurrentActivePanel.SetActive(false);

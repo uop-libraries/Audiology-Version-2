@@ -100,9 +100,10 @@ public class CaseOneHistory : MonoBehaviour
                 break;
             case 3:
                 _nextInstruction = _Instruction03;
+                counter = 0;
                 break;
             case 4:
-                _nextInstruction = _Instruction04;
+                GoToInstruction04();
                 break;
             case 5:
                 _nextInstruction = _Instruction05;
@@ -180,6 +181,16 @@ public class CaseOneHistory : MonoBehaviour
         counter++;
     }
     
+    private void GoToInstruction04()
+    {
+        _nextInstruction = _Instruction04;
+        GameObject child = _nextInstruction.transform.GetChild(1).gameObject;
+        GameObject next = child.transform.GetChild(1).gameObject;
+        
+        next.SetActive(counter > 0);
+        counter++;
+    }
+    
     public void VideoTransition()
     {
         StateNameController.CurrentActivePanel.SetActive(false);
@@ -187,11 +198,16 @@ public class CaseOneHistory : MonoBehaviour
         _background.SetActive(false);
     }
 
-    public void ReturnToGameFromFeedback()
+    public void ReturnToFromVideo()
     {
-        // _feedbackInstruction.SetActive(false);
-        // _nextCaseInstruction.SetActive(true);
-        // _currentGameObject = _nextCaseInstruction.GameObject();
+        if (StateNameController.CurrentActivePanel == _Instruction02)
+        {
+            GoToInstruction(2);
+        }
+        else if (StateNameController.CurrentActivePanel == _Instruction04)
+        {
+            GoToInstruction(4);
+        }
     }
 
     public void ReturnToBackgroundObjects()

@@ -203,7 +203,7 @@ public class CaseOneHistory : MonoBehaviour
         GameObject child2 = _nextInstruction.transform.GetChild(2).gameObject;
         
         //Todo Debug
-        // child2.SetActive(false);
+        child2.SetActive(false);
         //Todo Debug
         
         foreach (Transform child in child0.transform)

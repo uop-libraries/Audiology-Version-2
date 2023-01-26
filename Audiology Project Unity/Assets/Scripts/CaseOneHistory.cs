@@ -92,7 +92,7 @@ public class CaseOneHistory : MonoBehaviour
         _feedbackPanels.Add(_Feedback07);
     }
 
-    public void FirstPanel()
+    public void GoToInstruction01()
     {
         Debug.Log("First Instruction Panel");
         _nextInstruction = _Instruction01;
@@ -129,11 +129,11 @@ public class CaseOneHistory : MonoBehaviour
         ReturnToBackgroundObjects();
     }
 
-    public void WrongChoice()
+    public void GoToFeedBack01()
     {
-        // _currentCaseInstruction.SetActive(false);
-        // _feedbackInstruction.SetActive(true);
-        // _currentGameObject = _feedbackInstruction.GameObject();
+        StateNameController.CurrentActivePanel.SetActive(false);
+        StateNameController.CurrentActivePanel = _Feedback01;
+        StateNameController.CurrentActivePanel.SetActive(true);
     }
 
     public void VideoTransition()

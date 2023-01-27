@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -52,6 +53,7 @@ public class CaseOneHistory : MonoBehaviour
 
     private int _counter = 0;
     private int _counter1 = 0;
+    private int _nextPanel = 0;
 
     void Start()
     {
@@ -90,6 +92,22 @@ public class CaseOneHistory : MonoBehaviour
         _feedbackPanels.Add(_Feedback07);
     }
 
+    private void Update()
+    {
+        // Todo Disable after testing
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            _nextPanel++;
+            GoToInstruction(_nextPanel);
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            _nextPanel--;
+            GoToInstruction(_nextPanel);
+        }
+    }
+
+
     public void GoToInstruction(int index)
     {
         Debug.Log("Instruction Panel: " + index);
@@ -118,7 +136,7 @@ public class CaseOneHistory : MonoBehaviour
                 _nextInstruction = _Instruction07;
                 break;
             case 8:
-                _nextInstruction = _Instruction08;
+                GoToInstruction08();
                 break;
             case 9:
                 _nextInstruction = _Instruction09;
@@ -203,7 +221,7 @@ public class CaseOneHistory : MonoBehaviour
         GameObject child2 = _nextInstruction.transform.GetChild(2).gameObject;
         
         //Todo Debug
-        // child2.SetActive(false);
+        child2.SetActive(false);
         //Todo Debug
         
         foreach (Transform child in child1.transform)
@@ -212,7 +230,7 @@ public class CaseOneHistory : MonoBehaviour
             if (child.gameObject.GetComponent<Image>().color == Color.grey)
             {
                 _counter1++;
-                Debug.Log(child + " " + " counter:" + _counter1);
+                print(child + " " + " counter:" + _counter1);
             }
             else
             {
@@ -241,18 +259,24 @@ public class CaseOneHistory : MonoBehaviour
         foreach (Transform child in child1.transform)
         {
             // Debug.Log(child);
-            child.gameObject.SetActive(false);
-            // if (child.gameObject.GetComponent<Image>().color == Color.grey)
+            if (child.gameObject.GetComponent<Image>().color == Color.grey)
+            {
+                Debug.Log(child);
+                child.gameObject.SetActive(false);
+                if (child.gameObject.activeSelf == false)
+                {
+                    _counter1++;
+                }
+            }
+            else
+            {
+                _counter1 = 0;
+            }
             
-            // if (child.gameObject.GetComponent<Image>().color == Color.grey)
-            // {
-            //     _counter1++;
-            //     Debug.Log(child + " " + " counter:" + _counter1);
-            // }
-            // else
-            // {
-            //     _counter = 0;
-            // }
+            if (_counter1 == 7)
+            {
+                child2.SetActive(true);
+            }
         }
 
         if (_counter1 == 6)

@@ -198,15 +198,15 @@ public class CaseOneHistory : MonoBehaviour
     {
         _counter1 = 0;
         _nextInstruction = _Instruction06;
-        GameObject child0 = _nextInstruction.transform.GetChild(1).gameObject;
+        GameObject child1 = _nextInstruction.transform.GetChild(1).gameObject;
         
         GameObject child2 = _nextInstruction.transform.GetChild(2).gameObject;
         
         //Todo Debug
-        child2.SetActive(false);
+        // child2.SetActive(false);
         //Todo Debug
         
-        foreach (Transform child in child0.transform)
+        foreach (Transform child in child1.transform)
         {
             // Debug.Log(child);
             if (child.gameObject.GetComponent<Image>().color == Color.grey)
@@ -218,6 +218,41 @@ public class CaseOneHistory : MonoBehaviour
             {
                 _counter = 0;
             }
+        }
+
+        if (_counter1 == 6)
+        {
+            child2.SetActive(true);
+        }
+    }
+    
+    private void GoToInstruction08()
+    {
+        _counter1 = 0;
+        _nextInstruction = _Instruction08;
+        GameObject child1 = _nextInstruction.transform.GetChild(1).gameObject;
+        
+        GameObject child2 = _nextInstruction.transform.GetChild(2).gameObject;
+        
+        //Todo Debug
+        child2.SetActive(false);
+        //Todo Debug
+        
+        foreach (Transform child in child1.transform)
+        {
+            // Debug.Log(child);
+            child.gameObject.SetActive(false);
+            // if (child.gameObject.GetComponent<Image>().color == Color.grey)
+            
+            // if (child.gameObject.GetComponent<Image>().color == Color.grey)
+            // {
+            //     _counter1++;
+            //     Debug.Log(child + " " + " counter:" + _counter1);
+            // }
+            // else
+            // {
+            //     _counter = 0;
+            // }
         }
 
         if (_counter1 == 6)

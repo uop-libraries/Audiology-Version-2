@@ -54,6 +54,7 @@ public class CaseOneHistory : MonoBehaviour
     private int _counter = 0;
     private int _counter1 = 0;
     private int _nextPanel = 0;
+    private bool _isFirstTime = true;
 
     void Start()
     {
@@ -192,9 +193,9 @@ public class CaseOneHistory : MonoBehaviour
     private void GoToInstruction02()
     {
         _nextInstruction = _Instruction02;
-        GameObject child = _nextInstruction.transform.GetChild(1).gameObject;
-        GameObject option2 = child.transform.GetChild(1).gameObject;
-        GameObject next = child.transform.GetChild(2).gameObject;
+        var child = _nextInstruction.transform.GetChild(1).gameObject;
+        var option2 = child.transform.GetChild(1).gameObject;
+        var next = child.transform.GetChild(2).gameObject;
         
         option2.SetActive(_counter != 0);
         next.SetActive(_counter > 1);
@@ -205,8 +206,8 @@ public class CaseOneHistory : MonoBehaviour
     private void GoToInstruction04()
     {
         _nextInstruction = _Instruction04;
-        GameObject child = _nextInstruction.transform.GetChild(1).gameObject;
-        GameObject next = child.transform.GetChild(1).gameObject;
+        var child = _nextInstruction.transform.GetChild(1).gameObject;
+        var next = child.transform.GetChild(1).gameObject;
         
         next.SetActive(_counter > 0);
         _counter++;
@@ -216,9 +217,9 @@ public class CaseOneHistory : MonoBehaviour
     {
         _counter1 = 0;
         _nextInstruction = _Instruction06;
-        GameObject child1 = _nextInstruction.transform.GetChild(1).gameObject;
+        var child1 = _nextInstruction.transform.GetChild(1).gameObject;
         
-        GameObject child2 = _nextInstruction.transform.GetChild(2).gameObject;
+        var child2 = _nextInstruction.transform.GetChild(2).gameObject;
         
         //Todo Debug
         child2.SetActive(false);
@@ -226,7 +227,6 @@ public class CaseOneHistory : MonoBehaviour
         
         foreach (Transform child in child1.transform)
         {
-            // Debug.Log(child);
             if (child.gameObject.GetComponent<Image>().color == Color.grey)
             {
                 _counter1++;
@@ -255,34 +255,81 @@ public class CaseOneHistory : MonoBehaviour
         //Todo Debug
         child2.SetActive(false);
         //Todo Debug
-        
+
+        if (_isFirstTime)
+        {
+            foreach (Transform child in child1.transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+
+        _isFirstTime = false;
+
         foreach (Transform child in child1.transform)
         {
-            // Debug.Log(child);
+            if (child.gameObject.name == "Option_A" ||
+                child.gameObject.name == "Option_B" ||
+                child.gameObject.name == "Option_C")
+            {
+                child.gameObject.SetActive(true);
+            }
+            
             if (child.gameObject.GetComponent<Image>().color == Color.grey)
             {
-                Debug.Log(child);
                 child.gameObject.SetActive(false);
                 if (child.gameObject.activeSelf == false)
                 {
                     _counter1++;
                 }
+                
             }
-            else
-            {
-                _counter1 = 0;
-            }
-            
-            if (_counter1 == 7)
-            {
-                child2.SetActive(true);
-            }
-        }
 
-        if (_counter1 == 6)
-        {
-            child2.SetActive(true);
+            switch (_counter1)
+            {
+                case 1:
+                {
+                    if (child.gameObject.name == "Option_D")
+                    {
+                        child.gameObject.SetActive(true);
+                    }
+
+                    break;
+                }
+                case 2:
+                {
+                    if (child.gameObject.name == "Option_E")
+                    {
+                        child.gameObject.SetActive(true);
+                    }
+
+                    break;
+                }
+                case 3:
+                {
+                    if (child.gameObject.name == "Option_F")
+                    {
+                        child.gameObject.SetActive(true);
+                    }
+
+                    break;
+                }
+                case 4:
+                {
+                    if (child.gameObject.name == "Option_G")
+                    {
+                        child.gameObject.SetActive(true);
+                    }
+
+                    break;
+                }
+                case 7:
+                    child2.SetActive(true);
+                    break;
+            }
         }
+        
+        _counter1 = 0;
     }
     
     public void VideoTransition()

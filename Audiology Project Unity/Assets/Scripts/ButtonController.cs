@@ -13,7 +13,7 @@ public class ButtonController : MonoBehaviour
     [SerializeField] public float TotalTime = 2f;
     bool _gazedStatus;
     
-    public GameObject button;
+    // public GameObject button;
     public Slider cursorTimer;
 
     private Image _image;
@@ -38,9 +38,12 @@ public class ButtonController : MonoBehaviour
         _continueButton = GameObject.Find("ContinueButton");
         cursorTimer.value = 0;
         _gazedStatus = false;
-        _animatorButton = button.GetComponent<Animator>();
-        _image = button.GetComponent<Image>();
-        _uiGradient = button.GetComponent<UIGradient>();
+        // _animatorButton = button.GetComponent<Animator>();
+        // _image = button.GetComponent<Image>();
+        // _uiGradient = button.GetComponent<UIGradient>();
+        _animatorButton = GetComponent<Animator>();
+        _image = GetComponent<Image>();
+        _uiGradient = GetComponent<UIGradient>();
     }
     
     void Update()

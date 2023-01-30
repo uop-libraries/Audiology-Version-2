@@ -353,6 +353,10 @@ public class CaseOneHistory : MonoBehaviour
         {
             GoToInstruction(6);
         }
+        else if (StateNameController.CurrentActivePanel == _Instruction08)
+        {
+            GoToInstruction(8);
+        }
     }
 
     public void ReturnToBackgroundObjects()

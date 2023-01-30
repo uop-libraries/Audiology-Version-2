@@ -10,7 +10,7 @@ using Slider = UnityEngine.UI.Slider;
 public class ButtonController : MonoBehaviour
 {
     // Start is called before the first frame update
-    private const float TotalTime = 2f;
+    [SerializeField] public float TotalTime = 2f;
     bool _gazedStatus;
     
     public GameObject button;

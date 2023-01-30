@@ -134,7 +134,7 @@ public class CaseOneHistory : MonoBehaviour
                 GoToInstruction06();
                 break;
             case 7:
-                _nextInstruction = _Instruction07;
+                GoToInstruction07();
                 break;
             case 8:
                 GoToInstruction08();
@@ -218,7 +218,6 @@ public class CaseOneHistory : MonoBehaviour
         _counter1 = 0;
         _nextInstruction = _Instruction06;
         var child1 = _nextInstruction.transform.GetChild(1).gameObject;
-        
         var child2 = _nextInstruction.transform.GetChild(2).gameObject;
         
         //Todo Debug
@@ -244,6 +243,36 @@ public class CaseOneHistory : MonoBehaviour
         }
     }
     
+    private void GoToInstruction07()
+    {
+        _counter1 = 0;
+        _nextInstruction = _Instruction07;
+        var child1 = _nextInstruction.transform.GetChild(1).gameObject;
+        var child2 = _nextInstruction.transform.GetChild(2).gameObject;
+        
+        //Todo Debug
+        child2.SetActive(false);
+        //Todo Debug
+        
+        foreach (Transform child in child1.transform)
+        {
+            if (child.gameObject.GetComponent<Image>().color == Color.grey)
+            {
+                child.gameObject.SetActive(false);
+                _counter1++;
+            }
+            else
+            {
+                _counter = 0;
+            }
+        }
+
+        if (_counter1 == 7)
+        {
+            child2.SetActive(true);
+        }
+    }
+    
     private void GoToInstruction08()
     {
         _counter1 = 0;
@@ -253,7 +282,7 @@ public class CaseOneHistory : MonoBehaviour
         GameObject child2 = _nextInstruction.transform.GetChild(2).gameObject;
         
         //Todo Debug
-        child2.SetActive(false);
+        // child2.SetActive(false);
         //Todo Debug
 
         if (_isFirstTime)

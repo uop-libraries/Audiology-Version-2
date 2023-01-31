@@ -140,7 +140,7 @@ public class CaseOneHistory : MonoBehaviour
                 GoToInstruction08();
                 break;
             case 9:
-                _nextInstruction = _Instruction09;
+                GoToInstruction09();
                 break;
             case 10:
                 _nextInstruction = _Instruction10;
@@ -273,13 +273,14 @@ public class CaseOneHistory : MonoBehaviour
         }
     }
     
+    // Instruction for hearing abilities option
     private void GoToInstruction08()
     {
         _counter1 = 0;
         _nextInstruction = _Instruction08;
-        GameObject child1 = _nextInstruction.transform.GetChild(1).gameObject;
+        var child1 = _nextInstruction.transform.GetChild(1).gameObject;
         
-        GameObject child2 = _nextInstruction.transform.GetChild(2).gameObject;
+        var child2 = _nextInstruction.transform.GetChild(2).gameObject;
         
         //Todo Debug
         // child2.SetActive(false);
@@ -297,9 +298,7 @@ public class CaseOneHistory : MonoBehaviour
 
         foreach (Transform child in child1.transform)
         {
-            if (child.gameObject.name == "Option_A" ||
-                child.gameObject.name == "Option_B" ||
-                child.gameObject.name == "Option_C")
+            if (child.gameObject.name is "Option_A" or "Option_B" or "Option_C")
             {
                 child.gameObject.SetActive(true);
             }
@@ -361,6 +360,98 @@ public class CaseOneHistory : MonoBehaviour
         _counter1 = 0;
     }
     
+    // Instruction for vertigo option
+     private void GoToInstruction09()
+    {
+        _counter1 = 0;
+        _nextInstruction = _Instruction09;
+        var child1 = _nextInstruction.transform.GetChild(1).gameObject;
+        var child2 = _nextInstruction.transform.GetChild(2).gameObject;
+        
+        //Todo Debug
+        child2.SetActive(false);
+        //Todo Debug
+
+        if (_isFirstTime)
+        {
+            foreach (Transform child in child1.transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+
+        _isFirstTime = false;
+
+        foreach (Transform child in child1.transform)
+        {
+            
+            switch (_counter1)
+            {
+                case 0:
+                {
+                    if (child.gameObject.name == "Option_A")
+                    {
+                        child.gameObject.SetActive(true);
+                    }
+                    break;
+                }
+                case 1:
+                {
+                    if (child.gameObject.name == "Option_B")
+                    {
+                        child.gameObject.SetActive(true);
+                    }
+
+                    break;
+                }
+                case 2:
+                {
+                    if (child.gameObject.name is "Option_C" or "Option_D" or "Option_E")
+                    {
+                        child.gameObject.SetActive(true);
+                    }
+
+                    break;
+                }
+                case 3:
+                {
+                    if (child.gameObject.name == "Option_F")
+                    {
+                        child.gameObject.SetActive(true);
+                    }
+
+                    break;
+                }
+                case 4:
+                {
+                    if (child.gameObject.name == "Option_G")
+                    {
+                        child.gameObject.SetActive(true);
+                    }
+
+                    break;
+                }
+                case 6:
+                    child2.SetActive(true);
+                    break;
+            }
+            
+            if (child.gameObject.GetComponent<Image>().color == Color.grey)
+            {
+                child.gameObject.SetActive(false);
+                if (child.gameObject.activeSelf == false)
+                {
+                    _counter1++;
+                }
+                
+            }
+
+            
+        }
+        
+        _counter1 = 0;
+    }
+    
     public void VideoTransition()
     {
         StateNameController.CurrentActivePanel.SetActive(false);
@@ -385,6 +476,10 @@ public class CaseOneHistory : MonoBehaviour
         else if (StateNameController.CurrentActivePanel == _Instruction08)
         {
             GoToInstruction(8);
+        }
+        else if (StateNameController.CurrentActivePanel == _Instruction09)
+        {
+            GoToInstruction(9);
         }
     }
 

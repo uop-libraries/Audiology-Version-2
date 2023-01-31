@@ -143,7 +143,7 @@ public class CaseOneHistory : MonoBehaviour
                 GoToInstruction09();
                 break;
             case 10:
-                _nextInstruction = _Instruction10;
+                GoToInstruction10();
                 break;
             case 11:
                 _nextInstruction = _Instruction11;
@@ -453,6 +453,36 @@ public class CaseOneHistory : MonoBehaviour
         
         _counter1 = 0;
     }
+     
+     private void GoToInstruction10()
+     {
+         _counter1 = 0;
+         _nextInstruction = _Instruction10;
+         var child1 = _nextInstruction.transform.GetChild(1).gameObject;
+         var child2 = _nextInstruction.transform.GetChild(2).gameObject;
+        
+         //Todo Debug
+         child2.SetActive(false);
+         //Todo Debug
+        
+         foreach (Transform child in child1.transform)
+         {
+             if (child.gameObject.GetComponent<Image>().color == Color.grey)
+             {
+                 child.gameObject.SetActive(false);
+                 _counter1++;
+             }
+             else
+             {
+                 _counter = 0;
+             }
+         }
+
+         if (_counter1 == 3)
+         {
+             child2.SetActive(true);
+         }
+     }
     
     public void VideoTransition()
     {
@@ -482,6 +512,10 @@ public class CaseOneHistory : MonoBehaviour
         else if (StateNameController.CurrentActivePanel == _Instruction09)
         {
             GoToInstruction(9);
+        }
+        else if (StateNameController.CurrentActivePanel == _Instruction10)
+        {
+            GoToInstruction(10);
         }
     }
 

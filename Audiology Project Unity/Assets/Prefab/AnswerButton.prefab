@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2536ac3844113640baa8179a897f492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 2354983211140924089}
+  TotalTime: 1
   cursorTimer: {fileID: 0}
   enableButtonSound: 1
   isInteractable: 1

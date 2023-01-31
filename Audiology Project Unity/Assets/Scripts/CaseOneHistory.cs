@@ -156,6 +156,7 @@ public class CaseOneHistory : MonoBehaviour
                 break;
             case 12:
                 _nextInstruction = _Instruction12;
+                GoToInstructionNumber(instructNumber);
                 break;
             case 13:
                 _nextInstruction = _Instruction13;
@@ -400,7 +401,8 @@ public class CaseOneHistory : MonoBehaviour
              _counter1 == 6 && instructionNumber == 6 ||
              _counter1 == 7 && instructionNumber == 7 ||
              _counter1 == 3 && instructionNumber == 10 ||
-             _counter1 == 2 && instructionNumber == 11)
+             _counter1 == 2 && instructionNumber == 11 || 
+             _counter1 == 1 && instructionNumber == 12)
          {
              child2.SetActive(true);
          }
@@ -442,6 +444,10 @@ public class CaseOneHistory : MonoBehaviour
         else if (StateNameController.CurrentActivePanel == _Instruction11)
         {
             GoToInstruction(11);
+        }
+        else if (StateNameController.CurrentActivePanel == _Instruction12)
+        {
+            GoToInstruction(12);
         }
     }
 

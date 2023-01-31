@@ -109,32 +109,36 @@ public class CaseOneHistory : MonoBehaviour
     }
 
 
-    public void GoToInstruction(int index)
+    public void GoToInstruction(int instructNumber)
     {
-        Debug.Log("Instruction Panel: " + index);
-        switch(index)
+        Debug.Log("Instruction Panel: " + instructNumber);
+        switch(instructNumber)
         {
             case 1:
                 _nextInstruction = _Instruction01;
                 break;
             case 2:
-                GoToInstruction02();
+                _nextInstruction = _Instruction02;
+                GoToInstructionNumber(instructNumber);
                 break;
             case 3:
                 _nextInstruction = _Instruction03;
                 _counter = 0;
                 break;
             case 4:
-                GoToInstruction04();
+                _nextInstruction = _Instruction04;
+                GoToInstructionNumber(instructNumber);
                 break;
             case 5:
                 _nextInstruction = _Instruction05;
                 break;
             case 6:
-                GoToInstruction06();
+                _nextInstruction = _Instruction06;
+                GoToInstructionNumber(instructNumber);
                 break;
             case 7:
-                GoToInstruction07();
+                _nextInstruction = _Instruction07;
+                GoToInstructionNumber(instructNumber);
                 break;
             case 8:
                 GoToInstruction08();
@@ -143,10 +147,12 @@ public class CaseOneHistory : MonoBehaviour
                 GoToInstruction09();
                 break;
             case 10:
-                GoToInstruction10();
+                _nextInstruction = _Instruction10;
+                GoToInstructionNumber(instructNumber);
                 break;
             case 11:
-                GoToInstructionNumber(index);
+                _nextInstruction = _Instruction11;
+                GoToInstructionNumber(instructNumber);
                 break;
             case 12:
                 _nextInstruction = _Instruction12;
@@ -161,7 +167,7 @@ public class CaseOneHistory : MonoBehaviour
                 _nextInstruction = _Instruction15;
                 break;
         }
-        SwitchPanel( _nextInstruction);
+        SwitchPanel(_nextInstruction);
         ReturnToBackgroundObjects();
     }
     
@@ -190,89 +196,7 @@ public class CaseOneHistory : MonoBehaviour
         StateNameController.CurrentActivePanel = next;
         StateNameController.CurrentActivePanel.SetActive(true);
     }
-    private void GoToInstruction02()
-    {
-        _nextInstruction = _Instruction02;
-        var child = _nextInstruction.transform.GetChild(1).gameObject;
-        var option2 = child.transform.GetChild(1).gameObject;
-        var next = child.transform.GetChild(2).gameObject;
-        
-        option2.SetActive(_counter != 0);
-        next.SetActive(_counter > 1);
-        
-        _counter++;
-    }
-    
-    private void GoToInstruction04()
-    {
-        _nextInstruction = _Instruction04;
-        var child = _nextInstruction.transform.GetChild(1).gameObject;
-        var next = child.transform.GetChild(1).gameObject;
-        
-        next.SetActive(_counter > 0);
-        _counter++;
-    }
-    
-    private void GoToInstruction06()
-    {
-        _counter1 = 0;
-        _nextInstruction = _Instruction06;
-        var child1 = _nextInstruction.transform.GetChild(1).gameObject;
-        var child2 = _nextInstruction.transform.GetChild(2).gameObject;
-        
-        //Todo Debug
-        child2.SetActive(false);
-        //Todo Debug
-        
-        foreach (Transform child in child1.transform)
-        {
-            if (child.gameObject.GetComponent<Image>().color == Color.grey)
-            {
-                _counter1++;
-                print(child + " " + " counter:" + _counter1);
-            }
-            else
-            {
-                _counter = 0;
-            }
-        }
 
-        if (_counter1 == 6)
-        {
-            child2.SetActive(true);
-        }
-    }
-    
-    private void GoToInstruction07()
-    {
-        _counter1 = 0;
-        _nextInstruction = _Instruction07;
-        var child1 = _nextInstruction.transform.GetChild(1).gameObject;
-        var child2 = _nextInstruction.transform.GetChild(2).gameObject;
-        
-        //Todo Debug
-        child2.SetActive(false);
-        //Todo Debug
-        
-        foreach (Transform child in child1.transform)
-        {
-            if (child.gameObject.GetComponent<Image>().color == Color.grey)
-            {
-                child.gameObject.SetActive(false);
-                _counter1++;
-            }
-            else
-            {
-                _counter = 0;
-            }
-        }
-
-        if (_counter1 == 7)
-        {
-            child2.SetActive(true);
-        }
-    }
-    
     // Instruction for hearing abilities option
     private void GoToInstruction08()
     {
@@ -310,7 +234,6 @@ public class CaseOneHistory : MonoBehaviour
                 {
                     _counter1++;
                 }
-                
             }
 
             switch (_counter1)
@@ -357,7 +280,6 @@ public class CaseOneHistory : MonoBehaviour
                     break;
             }
         }
-        
         _counter1 = 0;
     }
     
@@ -445,53 +367,14 @@ public class CaseOneHistory : MonoBehaviour
                 {
                     _counter1++;
                 }
-                
             }
-
-            
         }
-        
         _counter1 = 0;
     }
-     
-     private void GoToInstruction10()
-     {
-         _counter1 = 0;
-         _nextInstruction = _Instruction10;
-         var child1 = _nextInstruction.transform.GetChild(1).gameObject;
-         var child2 = _nextInstruction.transform.GetChild(2).gameObject;
-        
-         //Todo Debug
-         child2.SetActive(false);
-         //Todo Debug
-        
-         foreach (Transform child in child1.transform)
-         {
-             if (child.gameObject.GetComponent<Image>().color == Color.grey)
-             {
-                 child.gameObject.SetActive(false);
-                 _counter1++;
-             }
-             else
-             {
-                 _counter = 0;
-             }
-         }
 
-         if (_counter1 == 3)
-         {
-             child2.SetActive(true);
-         }
-     }
-     
      private void GoToInstructionNumber(int instructionNumber)
      {
          _counter1 = 0;
-         if (instructionNumber == 11)
-         {
-             _nextInstruction = _Instruction11;
-         }
-         
          var child1 = _nextInstruction.transform.GetChild(1).gameObject;
          var child2 = _nextInstruction.transform.GetChild(2).gameObject;
         
@@ -512,8 +395,12 @@ public class CaseOneHistory : MonoBehaviour
              }
          }
          
-         
-         if (_counter1 == 2 && instructionNumber == 11)
+         if (_counter1 == 2 && instructionNumber == 2 ||
+             _counter1 == 1 && instructionNumber == 4 ||
+             _counter1 == 6 && instructionNumber == 6 ||
+             _counter1 == 7 && instructionNumber == 7 ||
+             _counter1 == 3 && instructionNumber == 10 ||
+             _counter1 == 2 && instructionNumber == 11)
          {
              child2.SetActive(true);
          }

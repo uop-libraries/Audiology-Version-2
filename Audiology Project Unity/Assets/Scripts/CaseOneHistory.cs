@@ -283,7 +283,7 @@ public class CaseOneHistory : MonoBehaviour
         var child2 = _nextInstruction.transform.GetChild(2).gameObject;
         
         //Todo Debug
-        // child2.SetActive(false);
+        child2.SetActive(false);
         //Todo Debug
 
         if (_isFirstTime)
@@ -353,6 +353,7 @@ public class CaseOneHistory : MonoBehaviour
                 }
                 case 7:
                     child2.SetActive(true);
+                    _isFirstTime = true;
                     break;
             }
         }
@@ -433,6 +434,7 @@ public class CaseOneHistory : MonoBehaviour
                 }
                 case 6:
                     child2.SetActive(true);
+                    _isFirstTime = true;
                     break;
             }
             

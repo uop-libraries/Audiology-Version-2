@@ -55,6 +55,7 @@ public class CaseOneHistory : MonoBehaviour
     private int _counter1 = 0;
     private int _nextPanel = 0;
     private bool _isFirstTime = true;
+    private bool _isFirstTime1 = true;
 
     void Start()
     {
@@ -164,6 +165,7 @@ public class CaseOneHistory : MonoBehaviour
                 break;
             case 14:
                 _nextInstruction = _Instruction14;
+                GoToInstructionNumber(instructNumber);
                 break;
             case 15:
                 _nextInstruction = _Instruction15;
@@ -296,8 +298,8 @@ public class CaseOneHistory : MonoBehaviour
         //Todo Debug
         child2.SetActive(false);
         //Todo Debug
-
-        if (_isFirstTime)
+        Debug.Log("is First Time: " + _isFirstTime1);
+        if (_isFirstTime1)
         {
             foreach (Transform child in child1.transform)
             {
@@ -305,10 +307,18 @@ public class CaseOneHistory : MonoBehaviour
             }
         }
 
-        _isFirstTime = false;
+        _isFirstTime1 = false;
 
         foreach (Transform child in child1.transform)
         {
+            if (child.gameObject.GetComponent<Image>().color == Color.grey)
+            {
+                child.gameObject.SetActive(false);
+                if (child.gameObject.activeSelf == false)
+                {
+                    _counter1++;
+                }
+            }
             
             switch (_counter1)
             {
@@ -356,19 +366,10 @@ public class CaseOneHistory : MonoBehaviour
 
                     break;
                 }
-                case 6:
+                case 7:
                     child2.SetActive(true);
-                    _isFirstTime = true;
+                    _isFirstTime1 = true;
                     break;
-            }
-            
-            if (child.gameObject.GetComponent<Image>().color == Color.grey)
-            {
-                child.gameObject.SetActive(false);
-                if (child.gameObject.activeSelf == false)
-                {
-                    _counter1++;
-                }
             }
         }
         _counter1 = 0;
@@ -404,7 +405,8 @@ public class CaseOneHistory : MonoBehaviour
              _counter1 == 3 && instructionNumber == 10 ||
              _counter1 == 2 && instructionNumber == 11 || 
              _counter1 == 1 && instructionNumber == 12 ||
-             _counter1 == 1 && instructionNumber == 13)
+             _counter1 == 1 && instructionNumber == 13 ||
+             _counter1 == 1 && instructionNumber == 14)
          {
              child2.SetActive(true);
          }
@@ -454,6 +456,10 @@ public class CaseOneHistory : MonoBehaviour
         else if (StateNameController.CurrentActivePanel == _Instruction13)
         {
             GoToInstruction(13);
+        }
+        else if (StateNameController.CurrentActivePanel == _Instruction14)
+        {
+            GoToInstruction(14);
         }
     }
 

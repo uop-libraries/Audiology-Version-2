@@ -177,21 +177,19 @@ public class CaseOneHistory : MonoBehaviour
     
     public void GoToFeedBack(int value)
     {
-        StateNameController.CurrentActivePanel.SetActive(false);
-        
-        StateNameController.CurrentActivePanel = value switch
+        _nextFeedback = value switch
         {
             1 => _Feedback01,
             2 => _Feedback02,
             3 => _Feedback03,
             4 => _Feedback04,
-            5 => _Feedback05,
-            6 => _Feedback06,
-            7 => _Feedback07,
-            _ => StateNameController.CurrentActivePanel
+            5 => _Feedback04_1,
+            6 => _Feedback05,
+            7 => _Feedback06,
+            8 => _Feedback07,
+            _ => _nextFeedback
         };
-        
-        StateNameController.CurrentActivePanel.SetActive(true);
+        SwitchPanel(_nextFeedback);
     }
 
     private void SwitchPanel(GameObject next)

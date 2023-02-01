@@ -42,59 +42,25 @@ public class CaseOneHistory : MonoBehaviour
     [SerializeField] private GameObject _Feedback06;
     [SerializeField] private GameObject _Feedback07;
     
-    [Header("Array")]
-    [SerializeField] List<GameObject> _instructionPanels = new List<GameObject>();
-    [SerializeField] List<GameObject> _feedbackPanels = new List<GameObject>();
-    
     // Environment
     private GameObject _currentGameObject;
     private GameObject _docImage;
     private GameObject _background;
     private GameObject _case1Object;
     
-    private int _counter = 0;
-    private int _nextPanel = 0;
+    private int _counter;
+    private int _nextPanel;
     private bool _isFirstTime = true;
     private bool _isFirstTime1 = true;
 
     void Start()
     {
-        _instructionPanels.Clear();
-        _feedbackPanels.Clear();
-        
+        _counter = 0;
+        _nextPanel = 0;
         _docImage = GameObject.Find("DocImage");
         _background = GameObject.Find("MainBackground");
-        InitializeArrays();
     }
-
-    private void InitializeArrays()
-    {
-        _instructionPanels.Add(_Instruction01);
-        _instructionPanels.Add(_Instruction02);
-        _instructionPanels.Add(_Instruction03);
-        _instructionPanels.Add(_Instruction04);
-        _instructionPanels.Add(_Instruction05);
-        _instructionPanels.Add(_Instruction06);
-        _instructionPanels.Add(_Instruction07);
-        _instructionPanels.Add(_Instruction08);
-        _instructionPanels.Add(_Instruction09);
-        _instructionPanels.Add(_Instruction10);
-        _instructionPanels.Add(_Instruction11);
-        _instructionPanels.Add(_Instruction12);
-        _instructionPanels.Add(_Instruction13);
-        _instructionPanels.Add(_Instruction14);
-        _instructionPanels.Add(_Instruction15);
-        
-        _feedbackPanels.Add(_Feedback01);
-        _feedbackPanels.Add(_Feedback02);
-        _feedbackPanels.Add(_Feedback03);
-        _feedbackPanels.Add(_Feedback04);
-        _feedbackPanels.Add(_Feedback04_1);
-        _feedbackPanels.Add(_Feedback05);
-        _feedbackPanels.Add(_Feedback06);
-        _feedbackPanels.Add(_Feedback07);
-    }
-
+    
     private void Update()
     {
         // Todo Disable after testing
@@ -169,6 +135,7 @@ public class CaseOneHistory : MonoBehaviour
                 break;
             case 15:
                 _nextInstruction = _Instruction15;
+                GoToInstructionNumber(instructNumber);
                 break;
         }
         SwitchPanel(_nextInstruction);
@@ -198,6 +165,8 @@ public class CaseOneHistory : MonoBehaviour
         StateNameController.CurrentActivePanel = next;
         StateNameController.CurrentActivePanel.SetActive(true);
     }
+    
+    
 
     // Instruction for hearing abilities option
     private void GoToInstruction08()
@@ -205,7 +174,6 @@ public class CaseOneHistory : MonoBehaviour
         _counter = 0;
         _nextInstruction = _Instruction08;
         var child1 = _nextInstruction.transform.GetChild(1).gameObject;
-        
         var child2 = _nextInstruction.transform.GetChild(2).gameObject;
         
         //Todo Debug
@@ -296,7 +264,7 @@ public class CaseOneHistory : MonoBehaviour
         //Todo Debug
         child2.SetActive(false);
         //Todo Debug
-        Debug.Log("is First Time: " + _isFirstTime1);
+        
         if (_isFirstTime1)
         {
             foreach (Transform child in child1.transform)
@@ -457,6 +425,10 @@ public class CaseOneHistory : MonoBehaviour
         else if (StateNameController.CurrentActivePanel == _Instruction14)
         {
             GoToInstruction(14);
+        }
+        else if (StateNameController.CurrentActivePanel == _Instruction15)
+        {
+            GoToInstruction(15);
         }
     }
 

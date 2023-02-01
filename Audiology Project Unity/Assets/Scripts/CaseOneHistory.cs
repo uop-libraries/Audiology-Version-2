@@ -58,7 +58,7 @@ public class CaseOneHistory : MonoBehaviour
         _counter = 0;
         _nextPanel = 0;
         _docImage = GameObject.Find("DocImage");
-        _background = GameObject.Find("MainBackground");
+        _background = GameObject.Find("GradientBlue");
     }
     
     private void Update()
@@ -425,10 +425,6 @@ public class CaseOneHistory : MonoBehaviour
         else if (StateNameController.CurrentActivePanel == _Instruction14)
         {
             GoToInstruction(14);
-        }
-        else if (StateNameController.CurrentActivePanel == _Instruction15)
-        {
-            GoToInstruction(15);
         }
     }
 

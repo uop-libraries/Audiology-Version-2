@@ -37,6 +37,7 @@ public class CaseOneHistory : MonoBehaviour
     [SerializeField] private GameObject _Feedback02;
     [SerializeField] private GameObject _Feedback03;
     [SerializeField] private GameObject _Feedback04;
+    [SerializeField] private GameObject _Feedback04_1;
     [SerializeField] private GameObject _Feedback05;
     [SerializeField] private GameObject _Feedback06;
     [SerializeField] private GameObject _Feedback07;
@@ -50,9 +51,8 @@ public class CaseOneHistory : MonoBehaviour
     private GameObject _docImage;
     private GameObject _background;
     private GameObject _case1Object;
-
+    
     private int _counter = 0;
-    private int _counter1 = 0;
     private int _nextPanel = 0;
     private bool _isFirstTime = true;
     private bool _isFirstTime1 = true;
@@ -89,6 +89,7 @@ public class CaseOneHistory : MonoBehaviour
         _feedbackPanels.Add(_Feedback02);
         _feedbackPanels.Add(_Feedback03);
         _feedbackPanels.Add(_Feedback04);
+        _feedbackPanels.Add(_Feedback04_1);
         _feedbackPanels.Add(_Feedback05);
         _feedbackPanels.Add(_Feedback06);
         _feedbackPanels.Add(_Feedback07);
@@ -124,7 +125,6 @@ public class CaseOneHistory : MonoBehaviour
                 break;
             case 3:
                 _nextInstruction = _Instruction03;
-                _counter = 0;
                 break;
             case 4:
                 _nextInstruction = _Instruction04;
@@ -204,7 +204,7 @@ public class CaseOneHistory : MonoBehaviour
     // Instruction for hearing abilities option
     private void GoToInstruction08()
     {
-        _counter1 = 0;
+        _counter = 0;
         _nextInstruction = _Instruction08;
         var child1 = _nextInstruction.transform.GetChild(1).gameObject;
         
@@ -236,11 +236,11 @@ public class CaseOneHistory : MonoBehaviour
                 child.gameObject.SetActive(false);
                 if (child.gameObject.activeSelf == false)
                 {
-                    _counter1++;
+                    _counter++;
                 }
             }
 
-            switch (_counter1)
+            switch (_counter)
             {
                 case 1:
                 {
@@ -284,13 +284,13 @@ public class CaseOneHistory : MonoBehaviour
                     break;
             }
         }
-        _counter1 = 0;
+        _counter = 0;
     }
     
     // Instruction for vertigo option
      private void GoToInstruction09()
     {
-        _counter1 = 0;
+        _counter = 0;
         _nextInstruction = _Instruction09;
         var child1 = _nextInstruction.transform.GetChild(1).gameObject;
         var child2 = _nextInstruction.transform.GetChild(2).gameObject;
@@ -316,11 +316,11 @@ public class CaseOneHistory : MonoBehaviour
                 child.gameObject.SetActive(false);
                 if (child.gameObject.activeSelf == false)
                 {
-                    _counter1++;
+                    _counter++;
                 }
             }
             
-            switch (_counter1)
+            switch (_counter)
             {
                 case 0:
                 {
@@ -372,12 +372,12 @@ public class CaseOneHistory : MonoBehaviour
                     break;
             }
         }
-        _counter1 = 0;
+        _counter = 0;
     }
 
      private void GoToInstructionNumber(int instructionNumber)
      {
-         _counter1 = 0;
+         _counter = 0;
          var child1 = _nextInstruction.transform.GetChild(1).gameObject;
          var child2 = _nextInstruction.transform.GetChild(2).gameObject;
         
@@ -390,23 +390,22 @@ public class CaseOneHistory : MonoBehaviour
              if (child.gameObject.GetComponent<Image>().color == Color.grey)
              {
                  child.gameObject.SetActive(false);
-                 _counter1++;
-             }
-             else
-             {
-                 _counter = 0;
+                 if (child.gameObject.activeSelf == false)
+                 {
+                     _counter++;
+                 }
              }
          }
          
-         if (_counter1 == 2 && instructionNumber == 2 ||
-             _counter1 == 1 && instructionNumber == 4 ||
-             _counter1 == 6 && instructionNumber == 6 ||
-             _counter1 == 7 && instructionNumber == 7 ||
-             _counter1 == 3 && instructionNumber == 10 ||
-             _counter1 == 2 && instructionNumber == 11 || 
-             _counter1 == 1 && instructionNumber == 12 ||
-             _counter1 == 1 && instructionNumber == 13 ||
-             _counter1 == 1 && instructionNumber == 14)
+         if (_counter == 2 && instructionNumber == 2 ||
+             _counter == 1 && instructionNumber == 4 ||
+             _counter == 6 && instructionNumber == 6 ||
+             _counter == 7 && instructionNumber == 7 ||
+             _counter == 3 && instructionNumber == 10 ||
+             _counter == 2 && instructionNumber == 11 || 
+             _counter == 1 && instructionNumber == 12 ||
+             _counter == 1 && instructionNumber == 13 ||
+             _counter == 1 && instructionNumber == 14)
          {
              child2.SetActive(true);
          }

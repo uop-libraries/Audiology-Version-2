@@ -18,12 +18,11 @@ public class GameSceneMainCanvas : MonoBehaviour
     private void Start()
     {   
         //Todo change this back after debug
-        _case1History.SetActive(true);
-        _case1HistoryFirstPanel.SetActive(true);
-        StateNameController.CurrentActivePanel = _case1HistoryFirstPanel;
+        StateNameController.clinicalCaseNumber = 1;
+        
         
         //Todo change this back after debug
-        // ChangeClinicalCase();
+        ChangeClinicalCase();
     }
 
     public void ChangeClinicalCase()
@@ -35,7 +34,7 @@ public class GameSceneMainCanvas : MonoBehaviour
             _case2History.SetActive(false);
             _case2Counseling.SetActive(false);
             _case1HistoryFirstPanel.SetActive(true);
-            StateNameController.CurrentActivePanel = _case1HistoryFirstPanel;
+            StateNameController.currentActivePanel = _case1HistoryFirstPanel;
 
             // _case1History.GetComponentInChildren<GameObject>()
         }
@@ -46,7 +45,7 @@ public class GameSceneMainCanvas : MonoBehaviour
             _case2History.SetActive(true);
             _case2Counseling.SetActive(false);
             _case2HistoryFirstPanel.SetActive(true);
-            StateNameController.CurrentActivePanel = _case2HistoryFirstPanel;
+            StateNameController.currentActivePanel = _case2HistoryFirstPanel;
         }
     }
     

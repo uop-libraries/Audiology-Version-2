@@ -51,7 +51,7 @@ public class SkyBoxVideo : MonoBehaviour
         ChangeToMainSkyBox();
         skyboxCanvas.SetActive(false);
 
-        if (StateNameController.CurrentActivePanel.name == "Case1_h_Instruction_02_Demographic")
+        if (StateNameController.currentActivePanel.name == "Case1_h_Instruction_02_Demographic")
         {
             // CaseOneHistory.GoToInstruction02();
         }

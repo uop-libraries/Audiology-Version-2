@@ -41,6 +41,8 @@ public class CaseOneHistory : MonoBehaviour
     [SerializeField] private GameObject _Feedback05;
     [SerializeField] private GameObject _Feedback06;
     [SerializeField] private GameObject _Feedback07;
+
+    private List<GameObject> _docImages = new List<GameObject>();
     
     // Environment
     private GameObject _currentGameObject;
@@ -57,8 +59,36 @@ public class CaseOneHistory : MonoBehaviour
     {
         _counter = 0;
         _nextPanel = 0;
-        _docInstructionImage = GameObject.Find("DocImage1");
+        InitializeDocImage();
+        // _docInstructionImage = GameObject.Find("DocImage1");
         _background = GameObject.Find("Background");
+    }
+
+    private void InitializeDocImage()
+    {
+        var docImage1 = GameObject.Find("DocImage1");
+        var docImage2 = GameObject.Find("DocImage2");
+        var docImage3 = GameObject.Find("DocImage3");
+        var docImage4 = GameObject.Find("DocImage4");
+        
+        _docImages.Add(docImage1);
+        _docImages.Add(docImage2);
+        _docImages.Add(docImage3);
+        _docImages.Add(docImage4);
+        
+        RemoveDocImages();
+        
+        // Set Initial Doctor images
+        _docImages[3].gameObject.SetActive(true);
+    }
+
+    private void RemoveDocImages()
+    {
+        foreach (var images in _docImages)
+        {
+            images.gameObject.SetActive(false);
+        }
+
     }
     
     private void Update()
@@ -163,9 +193,9 @@ public class CaseOneHistory : MonoBehaviour
 
     private void SwitchPanel(GameObject next)
     {
-        StateNameController.CurrentActivePanel.SetActive(false);
-        StateNameController.CurrentActivePanel = next;
-        StateNameController.CurrentActivePanel.SetActive(true);
+        StateNameController.currentActivePanel.SetActive(false);
+        StateNameController.currentActivePanel = next;
+        StateNameController.currentActivePanel.SetActive(true);
     }
     
     
@@ -379,52 +409,46 @@ public class CaseOneHistory : MonoBehaviour
          }
      }
     
-    public void VideoTransition()
-    {
-        StateNameController.CurrentActivePanel.SetActive(false);
-        _docInstructionImage.SetActive(false);
-        _background.SetActive(false);
-    }
-
+    
     public void ReturnToFromVideo()
     {
-        if (StateNameController.CurrentActivePanel == _Instruction02)
+        if (StateNameController.currentActivePanel == _Instruction02)
         {
             GoToInstruction(2);
         }
-        else if (StateNameController.CurrentActivePanel == _Instruction04)
+        else if (StateNameController.currentActivePanel == _Instruction04)
         {
             GoToInstruction(4);
         }
-        else if (StateNameController.CurrentActivePanel == _Instruction06)
+        else if (StateNameController.currentActivePanel == _Instruction06)
         {
             GoToInstruction(6);
         }
-        else if (StateNameController.CurrentActivePanel == _Instruction08)
+        else if (StateNameController.currentActivePanel == _Instruction08)
         {
             GoToInstruction(8);
         }
-        else if (StateNameController.CurrentActivePanel == _Instruction09)
+        else if (StateNameController.currentActivePanel == _Instruction09)
         {
             GoToInstruction(9);
         }
-        else if (StateNameController.CurrentActivePanel == _Instruction10)
+        else if (StateNameController.currentActivePanel == _Instruction10)
         {
             GoToInstruction(10);
         }
-        else if (StateNameController.CurrentActivePanel == _Instruction11)
+        else if (StateNameController.currentActivePanel == _Instruction11)
         {
             GoToInstruction(11);
         }
-        else if (StateNameController.CurrentActivePanel == _Instruction12)
+        else if (StateNameController.currentActivePanel == _Instruction12)
         {
             GoToInstruction(12);
         }
-        else if (StateNameController.CurrentActivePanel == _Instruction13)
+        else if (StateNameController.currentActivePanel == _Instruction13)
         {
             GoToInstruction(13);
         }
-        else if (StateNameController.CurrentActivePanel == _Instruction14)
+        else if (StateNameController.currentActivePanel == _Instruction14)
         {
             GoToInstruction(14);
         }
@@ -435,6 +459,7 @@ public class CaseOneHistory : MonoBehaviour
         var child0 = _background.transform.GetChild(0).gameObject;
         var child1 = _background.transform.GetChild(1).gameObject;
         var child2 = _background.transform.GetChild(2).gameObject;
+        
         foreach (Transform child in _background.transform)
         {
             if (child.gameObject.activeSelf)
@@ -442,21 +467,26 @@ public class CaseOneHistory : MonoBehaviour
                 child.gameObject.SetActive(false);
             }
         }
+        
+        RemoveDocImages();
 
         if (isFeedback)
         {
             if (_nextFeedback != _Feedback04 && _nextFeedback != _Feedback04_1)
             {
                 child1.gameObject.SetActive(true);
+                _docImages[1].gameObject.SetActive(true);
             }
             else
             {
                 child2.gameObject.SetActive(true);
+                _docImages[2].gameObject.SetActive(true);
             }
         }
         else
         {
             child0.gameObject.SetActive(true);
+            _docImages[0].gameObject.SetActive(true);
         }
     }
     
@@ -464,5 +494,12 @@ public class CaseOneHistory : MonoBehaviour
     {
         _docInstructionImage?.SetActive(true);
         _background?.SetActive(true);
+    }
+    
+    public void VideoTransition()
+    {
+        StateNameController.currentActivePanel.SetActive(false);
+        RemoveDocImages();
+        _background.SetActive(false);
     }
 }

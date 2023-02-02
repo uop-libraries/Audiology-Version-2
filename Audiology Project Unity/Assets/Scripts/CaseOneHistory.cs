@@ -44,7 +44,7 @@ public class CaseOneHistory : MonoBehaviour
     
     // Environment
     private GameObject _currentGameObject;
-    private GameObject _docImage;
+    private GameObject _docInstructionImage;
     private GameObject _background;
     private GameObject _case1Object;
     
@@ -57,7 +57,7 @@ public class CaseOneHistory : MonoBehaviour
     {
         _counter = 0;
         _nextPanel = 0;
-        _docImage = GameObject.Find("DocImage");
+        _docInstructionImage = GameObject.Find("DocImage1");
         _background = GameObject.Find("Background");
     }
     
@@ -382,7 +382,7 @@ public class CaseOneHistory : MonoBehaviour
     public void VideoTransition()
     {
         StateNameController.CurrentActivePanel.SetActive(false);
-        _docImage.SetActive(false);
+        _docInstructionImage.SetActive(false);
         _background.SetActive(false);
     }
 
@@ -462,7 +462,7 @@ public class CaseOneHistory : MonoBehaviour
     
     public void ReturnToBackgroundObjects()
     {
-        _docImage?.SetActive(true);
+        _docInstructionImage?.SetActive(true);
         _background?.SetActive(true);
     }
 }

@@ -58,7 +58,7 @@ public class CaseOneHistory : MonoBehaviour
         _counter = 0;
         _nextPanel = 0;
         _docImage = GameObject.Find("DocImage");
-        _background = GameObject.Find("GradientBlue");
+        _background = GameObject.Find("Background");
     }
     
     private void Update()
@@ -140,6 +140,7 @@ public class CaseOneHistory : MonoBehaviour
         }
         SwitchPanel(_nextInstruction);
         ReturnToBackgroundObjects();
+        ChangeFeedbackBackground(false);
     }
     
     public void GoToFeedBack(int value)
@@ -156,6 +157,7 @@ public class CaseOneHistory : MonoBehaviour
             8 => _Feedback07,
             _ => _nextFeedback
         };
+        ChangeFeedbackBackground(true);
         SwitchPanel(_nextFeedback);
     }
 
@@ -428,6 +430,36 @@ public class CaseOneHistory : MonoBehaviour
         }
     }
 
+    public void ChangeFeedbackBackground(bool isFeedback)
+    {
+        var child0 = _background.transform.GetChild(0).gameObject;
+        var child1 = _background.transform.GetChild(1).gameObject;
+        var child2 = _background.transform.GetChild(2).gameObject;
+        foreach (Transform child in _background.transform)
+        {
+            if (child.gameObject.activeSelf)
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+
+        if (isFeedback)
+        {
+            if (_nextFeedback != _Feedback04 && _nextFeedback != _Feedback04_1)
+            {
+                child1.gameObject.SetActive(true);
+            }
+            else
+            {
+                child2.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            child0.gameObject.SetActive(true);
+        }
+    }
+    
     public void ReturnToBackgroundObjects()
     {
         _docImage?.SetActive(true);

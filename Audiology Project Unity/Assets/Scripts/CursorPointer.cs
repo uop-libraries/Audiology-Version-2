@@ -26,8 +26,8 @@ using UnityEngine;
 /// </summary>
 public class CursorPointer : MonoBehaviour
 {
+    [SerializeField] private GameObject _canvasCursor;
     private const float _maxDistance = 1000;
-
     private GameObject _gazedAtObject = null;
     private bool _isDelay;
     // public GameObject reticle;
@@ -51,6 +51,7 @@ public class CursorPointer : MonoBehaviour
         if (StateNameController.isClick)
         {
             StateNameController.isClick = false;
+            _canvasCursor.SetActive(false);
             _isDelay = true;
             // Debug.Log("Delay: " + _isDelay );
             StartCoroutine(TimeDelay());
@@ -63,13 +64,9 @@ public class CursorPointer : MonoBehaviour
                 // GameObject detected in front of the camera.
                 if (_gazedAtObject != hit.transform.gameObject)
                 {
-                    // New GameObject.
                     _gazedAtObject?.SendMessage("OnPointerOff", SendMessageOptions.DontRequireReceiver);
-                    // _gazedAtObject?.SendMessage("OnPointerEnter");
                     _gazedAtObject = hit.transform.gameObject;
                     _gazedAtObject.SendMessage("OnPointerOn");
-                    // reticle.SetActive(false);
-                    // 
                 }
             }
             else
@@ -77,7 +74,6 @@ public class CursorPointer : MonoBehaviour
                 // No GameObject detected in front of the camera.
                 _gazedAtObject?.SendMessage("OnPointerOff", SendMessageOptions.DontRequireReceiver);
                 _gazedAtObject = null;
-                // reticle.SetActive(true);
             }
 
             // Checks for screen touches.
@@ -91,8 +87,9 @@ public class CursorPointer : MonoBehaviour
     
     IEnumerator TimeDelay()
     {
-        yield return new WaitForSecondsRealtime(2);
+        yield return new WaitForSecondsRealtime(2.5f);
         _isDelay = false;
+        _canvasCursor.SetActive(true);
         // Debug.Log("Delay: " + _isDelay );
     }
 }

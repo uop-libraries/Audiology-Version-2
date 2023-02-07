@@ -89,7 +89,10 @@ public class CursorPointer : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(2.5f);
         _isDelay = false;
-        _canvasCursor.SetActive(true);
+        if (!StateNameController.isVideoPlaying)
+        {
+            _canvasCursor.SetActive(true);
+        }
         // Debug.Log("Delay: " + _isDelay );
     }
 }

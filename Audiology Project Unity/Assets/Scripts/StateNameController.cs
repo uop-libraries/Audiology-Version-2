@@ -8,4 +8,5 @@ public class StateNameController : MonoBehaviour
     public static int clinicalCaseNumber;
     public static GameObject currentActivePanel;
     public static bool isClick;
+    public static bool isVideoPlaying;
 }

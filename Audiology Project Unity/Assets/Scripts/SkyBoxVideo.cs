@@ -15,6 +15,7 @@ public class SkyBoxVideo : MonoBehaviour
     [SerializeField] public Material mainSkyBox;
     [SerializeField] public Material videoSkyBox;
     [SerializeField] public GameObject skyboxCanvas;
+    [SerializeField] private GameObject _canvasCursor;
     
     public void StartVideo()
     {
@@ -33,7 +34,9 @@ public class SkyBoxVideo : MonoBehaviour
     
     public void ChangeToVideoSkyBox(int index)
     {
+        StateNameController.isVideoPlaying = true;
         RenderSettings.skybox = videoSkyBox;
+        _canvasCursor.SetActive(false);
         if (_videoPlayer.isPlaying == false)
         {
             _videoPlayer.clip = Case1Clip[index];
@@ -43,7 +46,9 @@ public class SkyBoxVideo : MonoBehaviour
 
     void ContinueButtonEnable(VideoPlayer vp)
     {
+        StateNameController.isVideoPlaying = false;
         skyboxCanvas.SetActive(true);
+        _canvasCursor.SetActive(true);
     }
 
     public void ExitVideoSkybox()

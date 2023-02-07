@@ -29,41 +29,70 @@ public class CursorPointer : MonoBehaviour
     private const float _maxDistance = 1000;
 
     private GameObject _gazedAtObject = null;
+    private bool _isDelay;
     // public GameObject reticle;
 
     /// <summary>
     /// Update is called once per frame.
-    /// </summary>
+    ///  /// </summary>
+    void Start()
+    {
+        _isDelay = false;
+        Debug.Log("Delay: " + _isDelay );
+    }
+    
+   
     public void Update()
     {
         // Casts ray towards camera's forward direction, to detect if a GameObject is being gazed
         // at.
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, _maxDistance))
+        
+        if (StateNameController.isClick)
         {
-            // GameObject detected in front of the camera.
-            if (_gazedAtObject != hit.transform.gameObject)
+            StateNameController.isClick = false;
+            _isDelay = true;
+            // Debug.Log("Delay: " + _isDelay );
+            StartCoroutine(TimeDelay());
+        }
+        
+        if (!_isDelay)
+        {
+            if (Physics.Raycast(transform.position, transform.forward, out hit, _maxDistance))
             {
-                // New GameObject.
+                // GameObject detected in front of the camera.
+                if (_gazedAtObject != hit.transform.gameObject)
+                {
+                    // New GameObject.
+                    _gazedAtObject?.SendMessage("OnPointerOff", SendMessageOptions.DontRequireReceiver);
+                    // _gazedAtObject?.SendMessage("OnPointerEnter");
+                    _gazedAtObject = hit.transform.gameObject;
+                    _gazedAtObject.SendMessage("OnPointerOn");
+                    // reticle.SetActive(false);
+                    // 
+                }
+            }
+            else
+            {
+                // No GameObject detected in front of the camera.
                 _gazedAtObject?.SendMessage("OnPointerOff", SendMessageOptions.DontRequireReceiver);
-                // _gazedAtObject?.SendMessage("OnPointerEnter");
-                _gazedAtObject = hit.transform.gameObject;
-                _gazedAtObject.SendMessage("OnPointerOn");
-                // reticle.SetActive(false);
+                _gazedAtObject = null;
+                // reticle.SetActive(true);
+            }
+
+            // Checks for screen touches.
+            if (Google.XR.Cardboard.Api.IsTriggerPressed)
+            {
+                _gazedAtObject?.SendMessage("OnPointerClick");
             }
         }
-        else
-        {
-            // No GameObject detected in front of the camera.
-            _gazedAtObject?.SendMessage("OnPointerOff", SendMessageOptions.DontRequireReceiver);
-            _gazedAtObject = null;
-            // reticle.SetActive(true);
-        }
 
-        // Checks for screen touches.
-        if (Google.XR.Cardboard.Api.IsTriggerPressed)
-        {
-            _gazedAtObject?.SendMessage("OnPointerClick");
-        }
+    }
+    
+    IEnumerator TimeDelay()
+    {
+        yield return new WaitForSecondsRealtime(2);
+        _isDelay = false;
+        // Debug.Log("Delay: " + _isDelay );
     }
 }

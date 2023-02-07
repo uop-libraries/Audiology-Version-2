@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Threading.Tasks;
 using Michsky.MUIP;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -23,6 +25,7 @@ public class ButtonController : MonoBehaviour
     public bool enableButtonSound = true;
     public bool isInteractable = true;
     private bool _isClick;
+    
     private GameObject _continueButton;
     
     public float gazedTimer;
@@ -38,9 +41,6 @@ public class ButtonController : MonoBehaviour
         _continueButton = GameObject.Find("ContinueButton");
         cursorTimer.value = 0;
         _gazedStatus = false;
-        // _animatorButton = button.GetComponent<Animator>();
-        // _image = button.GetComponent<Image>();
-        // _uiGradient = button.GetComponent<UIGradient>();
         _animatorButton = GetComponent<Animator>();
         _image = GetComponent<Image>();
         _uiGradient = GetComponent<UIGradient>();
@@ -52,6 +52,7 @@ public class ButtonController : MonoBehaviour
         {
             return;
         }
+
         
         // Hovering 
         if (_gazedStatus)
@@ -72,8 +73,10 @@ public class ButtonController : MonoBehaviour
             gazedTimer = 0;
             cursorTimer.value = 0;
             _isClick = true;
+            StateNameController.isClick = true;
             GVRClick.Invoke();
             _gazedStatus = false;
+            
         }
         
         // Already selected and is not continuous button
@@ -88,6 +91,8 @@ public class ButtonController : MonoBehaviour
         _image.color = Color.grey;
         _uiGradient.enabled = false;
     }
+
+
     
     public void OnPointerOn()
     {

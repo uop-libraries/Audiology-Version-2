@@ -47,6 +47,7 @@ public class CaseOneHistory : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip clipCase1HistoryNarrator;
     [SerializeField] private AudioClip clipCase1HistoryInstruction1;
+    [SerializeField] private AudioClip clipCase1HistoryFeedback1;
     
     private List<GameObject> _docImages = new List<GameObject>();
     
@@ -120,19 +121,24 @@ public class CaseOneHistory : MonoBehaviour
         _nextInstruction = Narrator01;
         GameObject child2 = _nextInstruction.transform.GetChild(1).gameObject;
         
-        child2.gameObject.SetActive(false);
+        // child2.gameObject.SetActive(false);
         StartCoroutine(ActionAfterAudioStop(child2, clipCase1HistoryNarrator));
     }
      
-    private IEnumerator  ActionAfterAudioStop(GameObject obj, AudioClip currentClip)
+    private IEnumerator  ActionAfterAudioStop(GameObject button, AudioClip currentClip)
     {
+        if (button != null)
+        {
+            button.gameObject.SetActive(false);
+        }
+
         audioSource.clip = currentClip;
         audioSource.Play();
-
+        
         yield return new WaitForSeconds(audioSource.clip.length);
-        if (obj != null)
+        if (button != null)
         {
-            obj.gameObject.SetActive(true);
+            button.gameObject.SetActive(true);
         }
     }
     
@@ -219,6 +225,16 @@ public class CaseOneHistory : MonoBehaviour
         };
         ChangeFeedbackBackground(true);
         SwitchPanel(_nextFeedback);
+        
+        // play audio feedback clip
+        if (value != 4 && value != 5 )
+        {
+            GameObject child2 = _nextFeedback.transform.GetChild(1).gameObject;
+            if (value == 1)
+            {
+                StartCoroutine(ActionAfterAudioStop(child2, clipCase1HistoryFeedback1));
+            }
+        }
     }
 
     private void SwitchPanel(GameObject next)

@@ -91,8 +91,6 @@ public class ButtonController : MonoBehaviour
         _image.color = Color.grey;
         _uiGradient.enabled = false;
     }
-
-
     
     public void OnPointerOn()
     {

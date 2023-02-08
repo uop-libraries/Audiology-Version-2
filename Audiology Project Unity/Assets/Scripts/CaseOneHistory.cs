@@ -48,6 +48,7 @@ public class CaseOneHistory : MonoBehaviour
     [SerializeField] private AudioClip clipCase1HistoryNarrator;
     [SerializeField] private AudioClip clipCase1HistoryInstruction1;
     [SerializeField] private AudioClip clipCase1HistoryFeedback1;
+    [SerializeField] private AudioClip clipCase1HistoryFeedback2;
     
     private List<GameObject> _docImages = new List<GameObject>();
     
@@ -227,14 +228,16 @@ public class CaseOneHistory : MonoBehaviour
         SwitchPanel(_nextFeedback);
         
         // play audio feedback clip
-        if (value != 4 && value != 5 )
+        GameObject child2 = _nextFeedback.transform.GetChild(1).gameObject;
+        if (value == 1)
         {
-            GameObject child2 = _nextFeedback.transform.GetChild(1).gameObject;
-            if (value == 1)
-            {
-                StartCoroutine(ActionAfterAudioStop(child2, clipCase1HistoryFeedback1));
-            }
+            StartCoroutine(ActionAfterAudioStop(child2, clipCase1HistoryFeedback1));
         }
+        else if (value == 2)
+        {
+            StartCoroutine(ActionAfterAudioStop(child2, clipCase1HistoryFeedback2));
+        }
+        
     }
 
     private void SwitchPanel(GameObject next)

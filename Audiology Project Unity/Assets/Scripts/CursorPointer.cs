@@ -87,7 +87,7 @@ public class CursorPointer : MonoBehaviour
     
     IEnumerator TimeDelay()
     {
-        yield return new WaitForSecondsRealtime(2.5f);
+        yield return new WaitForSecondsRealtime(1.5f);
         _isDelay = false;
         if (!StateNameController.isVideoPlaying)
         {

@@ -51,6 +51,7 @@ public class CaseOneHistory : MonoBehaviour
     [SerializeField] private AudioClip clipCase1HistoryFeedback2;
     [SerializeField] private AudioClip clipCase1HistoryFeedback3;
     [SerializeField] private AudioClip clipCase1HistoryFeedback4;
+    [SerializeField] private AudioClip clipCase1HistoryFeedback4_1;
     [SerializeField] private AudioClip clipCase1HistoryFeedback5;
     [SerializeField] private AudioClip clipCase1HistoryFeedback6;
     [SerializeField] private AudioClip clipCase1HistoryFeedback7;
@@ -243,9 +244,10 @@ public class CaseOneHistory : MonoBehaviour
             2 => clipCase1HistoryFeedback2,
             3 => clipCase1HistoryFeedback3,
             4 => clipCase1HistoryFeedback4,
-            5 => clipCase1HistoryFeedback5,
-            6 => clipCase1HistoryFeedback6,
-            7 => clipCase1HistoryFeedback7,
+            5 => clipCase1HistoryFeedback4_1,
+            6 => clipCase1HistoryFeedback5,
+            7 => clipCase1HistoryFeedback6,
+            8 => clipCase1HistoryFeedback7,
             _ => nextAudioClip
         };
         

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class CaseOneHistory : MonoBehaviour
@@ -41,7 +42,12 @@ public class CaseOneHistory : MonoBehaviour
     [SerializeField] private GameObject _Feedback05;
     [SerializeField] private GameObject _Feedback06;
     [SerializeField] private GameObject _Feedback07;
-
+    
+    [Header("AudioSource")] 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip clipCase1HistoryNarrator;
+    [SerializeField] private AudioClip clipCase1HistoryInstruction1;
+    
     private List<GameObject> _docImages = new List<GameObject>();
     
     // Environment
@@ -54,6 +60,7 @@ public class CaseOneHistory : MonoBehaviour
     private int _nextPanel;
     private bool _isFirstTime = true;
     private bool _isFirstTime1 = true;
+    private bool _firstPanel = true;
 
     void Start()
     {
@@ -62,8 +69,11 @@ public class CaseOneHistory : MonoBehaviour
         InitializeDocImage();
         // _docInstructionImage = GameObject.Find("DocImage1");
         _background = GameObject.Find("Background");
-    }
 
+        if (!_firstPanel) return;
+        GoToNarrator();
+    }
+    
     private void InitializeDocImage()
     {
         var docImage1 = GameObject.Find("DocImage1");
@@ -88,7 +98,6 @@ public class CaseOneHistory : MonoBehaviour
         {
             images.gameObject.SetActive(false);
         }
-
     }
     
     private void Update()
@@ -105,8 +114,28 @@ public class CaseOneHistory : MonoBehaviour
             GoToInstruction(_nextPanel);
         }
     }
+    
+    private void GoToNarrator()
+    {
+        _nextInstruction = Narrator01;
+        GameObject child2 = _nextInstruction.transform.GetChild(1).gameObject;
+        
+        child2.gameObject.SetActive(false);
+        StartCoroutine(ActionAfterAudioStop(child2, clipCase1HistoryNarrator));
+    }
+     
+    private IEnumerator  ActionAfterAudioStop(GameObject obj, AudioClip currentClip)
+    {
+        audioSource.clip = currentClip;
+        audioSource.Play();
 
-
+        yield return new WaitForSeconds(audioSource.clip.length);
+        if (obj != null)
+        {
+            obj.gameObject.SetActive(true);
+        }
+    }
+    
     public void GoToInstruction(int instructNumber)
     {
         Debug.Log("Instruction Panel: " + instructNumber);
@@ -114,6 +143,7 @@ public class CaseOneHistory : MonoBehaviour
         {
             case 1:
                 _nextInstruction = _Instruction01;
+                StartCoroutine(ActionAfterAudioStop(null, clipCase1HistoryInstruction1));
                 break;
             case 2:
                 _nextInstruction = _Instruction02;
@@ -198,8 +228,6 @@ public class CaseOneHistory : MonoBehaviour
         StateNameController.currentActivePanel.SetActive(true);
     }
     
-    
-
     // Instruction for hearing abilities option
     private void GoToInstruction08()
     {
@@ -387,11 +415,16 @@ public class CaseOneHistory : MonoBehaviour
          {
              if (child.gameObject.GetComponent<Image>().color == Color.grey)
              {
-                 child.gameObject.SetActive(false);
-                 if (child.gameObject.activeSelf == false)
+                 if (instructionNumber == 7)
                  {
-                     _counter++;
+                     child.gameObject.SetActive(false);
                  }
+
+                 _counter++;
+                 // if (child.gameObject.activeSelf == false)
+                 // {
+                 //     _counter++;
+                 // }
              }
          }
          
@@ -408,8 +441,7 @@ public class CaseOneHistory : MonoBehaviour
              child2.SetActive(true);
          }
      }
-    
-    
+     
     public void ReturnToFromVideo()
     {
         if (StateNameController.currentActivePanel == _Instruction02)

@@ -10,6 +10,7 @@ public class MainMenuController : MonoBehaviour
     public void LoadScene(int scene)
     {
         SceneManager.LoadScene(scene);
+        // GoToNarrator(0);
     }
 
     // Case 1 and 2 button used this function in OnClick() event

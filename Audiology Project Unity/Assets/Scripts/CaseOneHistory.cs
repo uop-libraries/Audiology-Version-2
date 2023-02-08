@@ -49,6 +49,11 @@ public class CaseOneHistory : MonoBehaviour
     [SerializeField] private AudioClip clipCase1HistoryInstruction1;
     [SerializeField] private AudioClip clipCase1HistoryFeedback1;
     [SerializeField] private AudioClip clipCase1HistoryFeedback2;
+    [SerializeField] private AudioClip clipCase1HistoryFeedback3;
+    [SerializeField] private AudioClip clipCase1HistoryFeedback4;
+    [SerializeField] private AudioClip clipCase1HistoryFeedback5;
+    [SerializeField] private AudioClip clipCase1HistoryFeedback6;
+    [SerializeField] private AudioClip clipCase1HistoryFeedback7;
     
     private List<GameObject> _docImages = new List<GameObject>();
     
@@ -132,9 +137,11 @@ public class CaseOneHistory : MonoBehaviour
         {
             button.gameObject.SetActive(false);
         }
-
-        audioSource.clip = currentClip;
-        audioSource.Play();
+        if (currentClip != null)
+        {
+            audioSource.clip = currentClip;
+            audioSource.Play();
+        }
         
         yield return new WaitForSeconds(audioSource.clip.length);
         if (button != null)
@@ -212,6 +219,9 @@ public class CaseOneHistory : MonoBehaviour
     
     public void GoToFeedBack(int value)
     {
+        AudioClip nextAudioClip = null;
+
+        // Get current feedback panel
         _nextFeedback = value switch
         {
             1 => _Feedback01,
@@ -224,19 +234,26 @@ public class CaseOneHistory : MonoBehaviour
             8 => _Feedback07,
             _ => _nextFeedback
         };
+        var child2 = _nextFeedback.transform.GetChild(1).gameObject;
+        
+        // Get next audio feedback clip
+        nextAudioClip = value switch
+        {
+            1 => clipCase1HistoryFeedback1,
+            2 => clipCase1HistoryFeedback2,
+            3 => clipCase1HistoryFeedback3,
+            4 => clipCase1HistoryFeedback4,
+            5 => clipCase1HistoryFeedback5,
+            6 => clipCase1HistoryFeedback6,
+            7 => clipCase1HistoryFeedback7,
+            _ => nextAudioClip
+        };
+        
         ChangeFeedbackBackground(true);
         SwitchPanel(_nextFeedback);
         
-        // play audio feedback clip
-        GameObject child2 = _nextFeedback.transform.GetChild(1).gameObject;
-        if (value == 1)
-        {
-            StartCoroutine(ActionAfterAudioStop(child2, clipCase1HistoryFeedback1));
-        }
-        else if (value == 2)
-        {
-            StartCoroutine(ActionAfterAudioStop(child2, clipCase1HistoryFeedback2));
-        }
+        // Play audio and control the button activation
+        StartCoroutine(ActionAfterAudioStop(child2, nextAudioClip));
         
     }
 

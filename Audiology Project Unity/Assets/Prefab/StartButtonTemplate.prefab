@@ -69,15 +69,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Start
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e0259119941f6444fbf6812deb966e8b, type: 2}
+  m_sharedMaterial: {fileID: -2492524943440019234, guid: e0259119941f6444fbf6812deb966e8b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4292929000
+  m_fontColor: {r: 0.909804, g: 0.8980393, b: 0.87843144, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 23.91
 --- !u!114 &7130453406504258130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,10 +328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2536ac3844113640baa8179a897f492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 7130453406504258129}
+  TotalTime: 2
   cursorTimer: {fileID: 0}
-  hoverColor: {r: 0.43805626, g: 0.8679245, b: 0.5705706, a: 0}
-  selectColor: {r: 0, g: 0, b: 0, a: 0}
   enableButtonSound: 1
   isInteractable: 1
   gazedTimer: 0

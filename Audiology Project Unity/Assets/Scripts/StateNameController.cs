@@ -9,4 +9,6 @@ public class StateNameController : MonoBehaviour
     public static GameObject currentActivePanel;
     public static bool isClick;
     public static bool isVideoPlaying;
+    public static bool isCase1HistoryDone;
+    public static bool isCase2HistoryDone;
 }

@@ -15,12 +15,13 @@ public class ButtonController : MonoBehaviour
     [SerializeField] public float TotalTime = 2f;
     bool _gazedStatus;
     
-    // public GameObject button;
+    
     public Slider cursorTimer;
 
     private Image _image;
     private UIGradient _uiGradient;
     private Animator _animatorButton;
+    private Button _newButton;
     
     public bool enableButtonSound = true;
     public bool isInteractable = true;
@@ -44,6 +45,8 @@ public class ButtonController : MonoBehaviour
         _animatorButton = GetComponent<Animator>();
         _image = GetComponent<Image>();
         _uiGradient = GetComponent<UIGradient>();
+        _newButton = GetComponent<Button>();
+        InteractableButton();
     }
     
     void Update()
@@ -53,9 +56,10 @@ public class ButtonController : MonoBehaviour
             return;
         }
 
-        
+        //Todo 
+        // if (_gazedStatus)
         // Hovering 
-        if (_gazedStatus)
+        if (_gazedStatus && _newButton.interactable)
         {
             _animatorButton.StopPlayback();
             gazedTimer += Time.deltaTime;
@@ -82,7 +86,16 @@ public class ButtonController : MonoBehaviour
         // Already selected and is not continuous button
         if (_isClick && !_continueButton)
         {
+            // _newButton.interactable = false;
             ChangeColor();
+        }
+    }
+
+    private void InteractableButton()
+    {
+        if (!isInteractable)
+        {
+            _newButton.interactable = false;
         }
     }
 

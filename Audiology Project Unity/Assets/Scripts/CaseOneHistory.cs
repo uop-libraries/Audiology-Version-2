@@ -75,9 +75,10 @@ public class CaseOneHistory : MonoBehaviour
         _counter = 0;
         _nextPanel = 0;
         InitializeDocImage();
+        StateNameController.isCase1HistoryDone = false;
+        StateNameController.isCase2HistoryDone = false;
         // _docInstructionImage = GameObject.Find("DocImage1");
         _background = GameObject.Find("Background");
-
         if (!_firstPanel) return;
         GoToNarrator();
     }

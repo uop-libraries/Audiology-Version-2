@@ -3839,6 +3839,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 404121941136942172}
     - target: {fileID: 5387328240306368038, guid: 093df2cd86ec4ee4cad0789551dc81a9, type: 3}
+      propertyPath: soundSource
+      value: 
+      objectReference: {fileID: 1402100336}
+    - target: {fileID: 5387328240306368038, guid: 093df2cd86ec4ee4cad0789551dc81a9, type: 3}
       propertyPath: GVRClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 705198592}

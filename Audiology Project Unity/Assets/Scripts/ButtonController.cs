@@ -3,6 +3,7 @@ using System.Collections;
 using System.Threading.Tasks;
 using Michsky.MUIP;
 using Unity.VisualScripting;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -80,7 +81,6 @@ public class ButtonController : MonoBehaviour
             StateNameController.isClick = true;
             GVRClick.Invoke();
             _gazedStatus = false;
-            
         }
         
         // Already selected and is not continuous button
@@ -102,7 +102,10 @@ public class ButtonController : MonoBehaviour
     private void ChangeColor()
     {
         _image.color = Color.grey;
-        _uiGradient.enabled = false;
+        if (_uiGradient != null)
+        {
+            _uiGradient.enabled = false;
+        }
     }
     
     public void OnPointerOn()

@@ -68,19 +68,30 @@ public class CaseOneHistory : MonoBehaviour
     private int _nextPanel;
     private bool _isFirstTime = true;
     private bool _isFirstTime1 = true;
-    private bool _firstPanel = true;
+
 
     void Start()
     {
         _counter = 0;
         _nextPanel = 0;
         InitializeDocImage();
-        StateNameController.isCase1HistoryDone = false;
-        StateNameController.isCase2HistoryDone = false;
-        // _docInstructionImage = GameObject.Find("DocImage1");
         _background = GameObject.Find("Background");
-        if (!_firstPanel) return;
+    }
+
+    public void ActivateCase1HistoryPanel()
+    {
+        Debug.Log("Start Case One History");
+        InitializePanel();
         GoToNarrator();
+    }
+
+    private void InitializePanel()
+    {
+        var Parent = GameObject.Find("Case1_history");
+        foreach (Transform child in Parent.transform)
+        {
+            child.gameObject.SetActive(false);
+        }
     }
     
     private void InitializeDocImage()
@@ -127,7 +138,7 @@ public class CaseOneHistory : MonoBehaviour
     private void GoToNarrator()
     {
         _nextInstruction = Narrator01;
-        GameObject child2 = _nextInstruction.transform.GetChild(1).gameObject;
+        var child2 = _nextInstruction.transform.GetChild(1).gameObject;
         
         // child2.gameObject.SetActive(false);
         StartCoroutine(ActionAfterAudioStop(child2, clipCase1HistoryNarrator));

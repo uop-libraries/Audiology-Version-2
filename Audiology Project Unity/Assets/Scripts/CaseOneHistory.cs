@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -76,22 +77,75 @@ public class CaseOneHistory : MonoBehaviour
         _nextPanel = 0;
         InitializeDocImage();
         _background = GameObject.Find("Background");
+        StateNameController.currentActivePanel = Narrator01;
     }
-
-    public void ActivateCase1HistoryPanel()
+    
+    private void Update()
     {
-        Debug.Log("Start Case One History");
-        InitializePanel();
-        GoToNarrator();
-    }
-
-    private void InitializePanel()
-    {
-        var Parent = GameObject.Find("Case1_history");
-        foreach (Transform child in Parent.transform)
+        // isStart is initialize by GameSceneMainCanvas.cs
+        if (StateNameController.isStart)
         {
-            child.gameObject.SetActive(false);
+            StateNameController.isStart = false;
+            InitializePanel(StateNameController.clinicalCaseNumber);
         }
+
+        // Todo Disable after testing
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            _nextPanel++;
+            GoToInstruction(_nextPanel);
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            _nextPanel--;
+            GoToInstruction(_nextPanel);
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(1);
+        }
+        // Todo Disable after testing
+    }
+    
+    private void InitializePanel(int caseNumber)
+    {
+        var currentPanel = caseNumber switch
+        {
+            1 => "Case1_history",
+            2 => "Case2_history",
+            3 => "Case1_counseling",
+            4 => "Case2_counseling",
+            _ => ""
+        };
+
+        Debug.Log("Initialize Panel: " + currentPanel);
+        
+        var parent = GameObject.Find(currentPanel);
+        
+        Debug.Log("parent: " + parent);
+        // make all child object inactive
+        // foreach (Transform child in parent.transform)
+        // {
+        //     child.gameObject.SetActive(false);
+        // }
+
+        var child0 = parent.transform.GetChild(0).gameObject;
+        GoToFirstPanel(child0);
+
+    }
+    
+    private void GoToFirstPanel(GameObject firstPanel)
+    {
+        _nextInstruction = firstPanel;
+       // Debug.Log("active?" + _nextInstruction.activeSelf);
+     
+        _nextInstruction.SetActive(true);
+        
+        //Debug.Log("active?" + _nextInstruction.activeSelf);
+        var child2 = _nextInstruction.transform.GetChild(1).gameObject;
+        
+        //Todo add clip expression
+        StartCoroutine(ActionAfterAudioStop(child2, clipCase1HistoryNarrator));
     }
     
     private void InitializeDocImage()
@@ -120,30 +174,6 @@ public class CaseOneHistory : MonoBehaviour
         }
     }
     
-    private void Update()
-    {
-        // Todo Disable after testing
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            _nextPanel++;
-            GoToInstruction(_nextPanel);
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            _nextPanel--;
-            GoToInstruction(_nextPanel);
-        }
-    }
-    
-    private void GoToNarrator()
-    {
-        _nextInstruction = Narrator01;
-        var child2 = _nextInstruction.transform.GetChild(1).gameObject;
-        
-        // child2.gameObject.SetActive(false);
-        StartCoroutine(ActionAfterAudioStop(child2, clipCase1HistoryNarrator));
-    }
-     
     private IEnumerator  ActionAfterAudioStop(GameObject button, AudioClip currentClip)
     {
         if (button != null)

@@ -522,7 +522,6 @@ MonoBehaviour:
   TotalTime: 2
   cursorTimer: {fileID: 404121941136942172}
   enableButtonSound: 1
-  isInteractable: 1
   gazedTimer: 0
   soundSource: {fileID: 0}
   clickClip: {fileID: 8300000, guid: 17a0534d87f12624f9654bff5f1ccf0e, type: 3}
@@ -1155,7 +1154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7130453406504258129, guid: ed6a63309c712c6488459ff852b7790a, type: 3}
       propertyPath: m_Name
-      value: Case_1_Counseling
+      value: Case_1_Counseling_Button
       objectReference: {fileID: 0}
     - target: {fileID: 7130453406504258130, guid: ed6a63309c712c6488459ff852b7790a, type: 3}
       propertyPath: m_Interactable
@@ -3832,7 +3831,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7130453406504258129, guid: ed6a63309c712c6488459ff852b7790a, type: 3}
       propertyPath: m_Name
-      value: Case_2_Counseling
+      value: Case_2_Counseling_Button
       objectReference: {fileID: 0}
     - target: {fileID: 7130453406504258130, guid: ed6a63309c712c6488459ff852b7790a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

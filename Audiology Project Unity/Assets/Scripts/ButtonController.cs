@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Threading.Tasks;
 using Michsky.MUIP;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditorInternal;
 using UnityEngine;
@@ -25,7 +26,7 @@ public class ButtonController : MonoBehaviour
     private Button _newButton;
     
     public bool enableButtonSound = true;
-    public bool isInteractable = true;
+    // public bool isInteractable = true;
     private bool _isClick;
     
     private GameObject _continueButton;
@@ -37,6 +38,9 @@ public class ButtonController : MonoBehaviour
     
     public UnityEvent GVRClick;
 
+    private GameObject _case1CounselingButton;
+    private GameObject _case2CounselingButton;
+
 
     void Start()
     {
@@ -47,12 +51,19 @@ public class ButtonController : MonoBehaviour
         _image = GetComponent<Image>();
         _uiGradient = GetComponent<UIGradient>();
         _newButton = GetComponent<Button>();
-        InteractableButton();
+        _case1CounselingButton = GameObject.Find("Case_1_Counseling_Button");
+        _case2CounselingButton = GameObject.Find("Case_2_Counseling_Button");
+
+        // SetCounselingButton();
+        // Debug.Log("gameObject: " + gameObject);
+        
     }
     
     void Update()
     {
-        if (isInteractable == false)
+        SetCounselingButton();
+        
+        if (_newButton.interactable == false)
         {
             return;
         }
@@ -91,14 +102,43 @@ public class ButtonController : MonoBehaviour
         }
     }
 
-    private void InteractableButton()
+    private void SetCounselingButton()
     {
-        if (!isInteractable)
+        if (_case1CounselingButton == null && _case2CounselingButton == null ||
+            _case1CounselingButton.name != name && _case2CounselingButton.name != name)
         {
-            _newButton.interactable = false;
+            return;
+        }
+        
+        if (!StateNameController.isCase1HistoryDone)
+        {
+            SetButton(_case1CounselingButton, false);
+            _case1CounselingButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Case 1 Counseling (Lock)";
+        }
+        else if (StateNameController.isCase1HistoryDone)
+        {
+            SetButton(_case1CounselingButton, true);
+            _case1CounselingButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Case 1 Counseling";
+        }
+        
+        if (!StateNameController.isCase2HistoryDone)
+        {
+            SetButton(_case2CounselingButton, false);
+            _case2CounselingButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Case 2 Counseling (Lock)";
+        }
+        else if (StateNameController.isCase2HistoryDone)
+        {
+            SetButton(_case2CounselingButton, true);
+            _case2CounselingButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Case 2 Counseling";
         }
     }
 
+    private void SetButton(GameObject buttonObject, bool isEnable)
+    {
+        buttonObject.GetComponent<Button>().interactable = isEnable;
+        buttonObject.GetComponent<Animator>().enabled = isEnable;
+    }
+    
     private void ChangeColor()
     {
         _image.color = Color.grey;
@@ -120,15 +160,15 @@ public class ButtonController : MonoBehaviour
         cursorTimer.value = 0;
         _animatorButton.Play("HoverOffAnimation");
     }
-
-    IEnumerator PlayHoverOn()
-    {
-        _animatorButton.Play("HoverOnAnimation");
-        yield return null;
-    }
     
     private void Hovering()
     {
         StartCoroutine(PlayHoverOn());
+    }
+    
+    IEnumerator PlayHoverOn()
+    {
+        _animatorButton.Play("HoverOnAnimation");
+        yield return null;
     }
 }

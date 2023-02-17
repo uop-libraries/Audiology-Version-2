@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Michsky.MUIP;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -76,7 +75,7 @@ public class ButtonController : MonoBehaviour
             gazedTimer = 0;
             cursorTimer.value = 0;
             _isClick = true;
-            StateNameController.isClick = true;
+            StateNameController.SetIsClicked(true);
             GVRClick.Invoke();
             _gazedStatus = false;
         }

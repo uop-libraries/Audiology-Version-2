@@ -20,31 +20,44 @@ public class MainMenuController : MonoBehaviour
     private Button _case1CounselingButton;
     private Button _case2CounselingButton;
 
+    private bool _containsCounselingButton;
     // Start is called before the first frame update
     void Start()
     {
         _case1CounselingObject = GameObject.Find("Case_1_Counseling_Button");
         _case2CounselingObject = GameObject.Find("Case_2_Counseling_Button");
-        
-        _case1CounselingText = _case1CounselingObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
-        _case2CounselingText = _case1CounselingObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
 
-        _case1CounselingAnimator = _case1CounselingObject.GetComponent<Animator>();
-        _case2CounselingAnimator = _case2CounselingObject.GetComponent<Animator>();
+        if (_case1CounselingObject != null && _case2CounselingObject != null)
+        {
+            _case1CounselingText = _case1CounselingObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+            _case2CounselingText = _case2CounselingObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
 
-        _case1CounselingButton = _case1CounselingObject.GetComponent<Button>();
-        _case2CounselingButton = _case2CounselingObject.GetComponent<Button>();
+            _case1CounselingAnimator = _case1CounselingObject.GetComponent<Animator>();
+            _case2CounselingAnimator = _case2CounselingObject.GetComponent<Animator>();
+
+            _case1CounselingButton = _case1CounselingObject.GetComponent<Button>();
+            _case2CounselingButton = _case2CounselingObject.GetComponent<Button>();
+            
+            _containsCounselingButton = true;
+        }
+        else
+        {
+            _containsCounselingButton = false;
+        }
     }
     
     // Update is called once per frame
     void Update()
     {
-        SetCounselingButton();
+        if (_containsCounselingButton)
+        {
+            SetCounselingButton();
+        }
     }
     
     private void SetCounselingButton()
     {
-        if (!StateNameController.isCase1HistoryDone)
+        if (!StateNameController.GetIsCase1HistoryDone())
         {
             _case1CounselingAnimator.enabled = false;
             _case1CounselingButton.interactable = false;
@@ -57,7 +70,7 @@ public class MainMenuController : MonoBehaviour
             _case1CounselingText.text = "Case 1 Counseling";
         }
         
-        if (!StateNameController.isCase2HistoryDone)
+        if (!StateNameController.GetIsCase2HistoryDone())
         {
             _case2CounselingAnimator.enabled = false;
             _case2CounselingButton.interactable = false;
@@ -87,7 +100,7 @@ public class MainMenuController : MonoBehaviour
         // caseNumber 2 is Case 2 History
         // caseNumber 3 is Case 1 Counseling
         // caseNumber 4 is Case 2 Counseling
-        StateNameController.clinicalCaseNumber = caseNumber;
+        StateNameController.SetClinicalCaseNumber(caseNumber);
     }
     
     // OnClick() event for quit button

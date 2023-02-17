@@ -48,9 +48,9 @@ public class CursorPointer : MonoBehaviour
         // at.
         RaycastHit hit;
         
-        if (StateNameController.isClick)
+        if (StateNameController.GetIsClicked())
         {
-            StateNameController.isClick = false;
+            StateNameController.SetIsClicked(false);
             _canvasCursor.SetActive(false);
             _isDelay = true;
             // Debug.Log("Delay: " + _isDelay );
@@ -89,7 +89,7 @@ public class CursorPointer : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(1.5f);
         _isDelay = false;
-        if (!StateNameController.isVideoPlaying)
+        if (!StateNameController.GetIsVideoPlaying())
         {
             _canvasCursor.SetActive(true);
         }

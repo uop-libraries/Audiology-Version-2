@@ -17,8 +17,9 @@ public class GameSceneMainCanvas : MonoBehaviour
     private void Start()
     {   
         //Todo change this back after debug
-        // StateNameController.clinicalCaseNumber = 2;
-        StateNameController.isStart = false;
+        // StateNameController.SetClinicalCaseNumber(2);
+        
+        StateNameController.SetIsGameStarted(false);
         //Todo change this back after debug
         ChangeClinicalCase();
     }
@@ -30,24 +31,24 @@ public class GameSceneMainCanvas : MonoBehaviour
         _case2History.SetActive(false);
         _case2Counseling.SetActive(false);
 
-        if (StateNameController.clinicalCaseNumber == 1)
+        if (StateNameController.GetClinicalCaseNumber() == 1)
         {
             _case1History.SetActive(true);
         }
-        else if (StateNameController.clinicalCaseNumber == 2)
+        else if (StateNameController.GetClinicalCaseNumber() == 2)
         {
             _case2History.SetActive(true);
         }
-        else if (StateNameController.clinicalCaseNumber == 3)
+        else if (StateNameController.GetClinicalCaseNumber() == 3)
         {
             _case1Counseling.SetActive(true);
         }
-        else if (StateNameController.clinicalCaseNumber == 4)
+        else if (StateNameController.GetClinicalCaseNumber() == 4)
         {
             _case2Counseling.SetActive(true);
         }
-        Debug.Log("Current case Number: " + StateNameController.clinicalCaseNumber);
-        StateNameController.isStart = true;
+        Debug.Log("Current case Number: " + StateNameController.GetClinicalCaseNumber());
+        StateNameController.SetIsGameStarted(true); 
     }
     
     // OnClick() event for quit button
@@ -56,5 +57,11 @@ public class GameSceneMainCanvas : MonoBehaviour
         Application.Quit();
     }
     
-    
+    public void LoadScene(int scene)
+    {
+        // scene 0 is Title screen
+        // scene 1 is Main Menu
+        // scene 2 is Game scene
+        SceneManager.LoadScene(scene);
+    }
 }

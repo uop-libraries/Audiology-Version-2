@@ -77,16 +77,16 @@ public class CaseOneHistory : MonoBehaviour
         _nextPanel = 0;
         InitializeDocImage();
         _background = GameObject.Find("Background");
-        StateNameController.currentActivePanel = Narrator01;
+        StateNameController.SetCurrentActivePanel(Narrator01);
     }
     
     private void Update()
     {
         // isStart is initialize by GameSceneMainCanvas.cs
-        if (StateNameController.isStart)
+        if (StateNameController.GetIsGameStarted())
         {
-            StateNameController.isStart = false;
-            InitializePanel(StateNameController.clinicalCaseNumber);
+            StateNameController.SetIsGameStarted(false);
+            InitializePanel(StateNameController.GetClinicalCaseNumber());
         }
 
         // Todo Disable after testing
@@ -303,9 +303,9 @@ public class CaseOneHistory : MonoBehaviour
 
     private void SwitchPanel(GameObject next)
     {
-        StateNameController.currentActivePanel.SetActive(false);
-        StateNameController.currentActivePanel = next;
-        StateNameController.currentActivePanel.SetActive(true);
+        StateNameController.GetCurrentActivePanel().SetActive(false);
+        StateNameController.SetCurrentActivePanel(next);
+        StateNameController.GetCurrentActivePanel().SetActive(true);
     }
     
     // Instruction for hearing abilities option
@@ -524,43 +524,43 @@ public class CaseOneHistory : MonoBehaviour
      
     public void ReturnToFromVideo()
     {
-        if (StateNameController.currentActivePanel == _Instruction02)
+        if (StateNameController.GetCurrentActivePanel() == _Instruction02)
         {
             GoToInstruction(2);
         }
-        else if (StateNameController.currentActivePanel == _Instruction04)
+        else if (StateNameController.GetCurrentActivePanel() == _Instruction04)
         {
             GoToInstruction(4);
         }
-        else if (StateNameController.currentActivePanel == _Instruction06)
+        else if (StateNameController.GetCurrentActivePanel() == _Instruction06)
         {
             GoToInstruction(6);
         }
-        else if (StateNameController.currentActivePanel == _Instruction08)
+        else if (StateNameController.GetCurrentActivePanel() == _Instruction08)
         {
             GoToInstruction(8);
         }
-        else if (StateNameController.currentActivePanel == _Instruction09)
+        else if (StateNameController.GetCurrentActivePanel() == _Instruction09)
         {
             GoToInstruction(9);
         }
-        else if (StateNameController.currentActivePanel == _Instruction10)
+        else if (StateNameController.GetCurrentActivePanel() == _Instruction10)
         {
             GoToInstruction(10);
         }
-        else if (StateNameController.currentActivePanel == _Instruction11)
+        else if (StateNameController.GetCurrentActivePanel() == _Instruction11)
         {
             GoToInstruction(11);
         }
-        else if (StateNameController.currentActivePanel == _Instruction12)
+        else if (StateNameController.GetCurrentActivePanel() == _Instruction12)
         {
             GoToInstruction(12);
         }
-        else if (StateNameController.currentActivePanel == _Instruction13)
+        else if (StateNameController.GetCurrentActivePanel() == _Instruction13)
         {
             GoToInstruction(13);
         }
-        else if (StateNameController.currentActivePanel == _Instruction14)
+        else if (StateNameController.GetCurrentActivePanel() == _Instruction14)
         {
             GoToInstruction(14);
         }
@@ -610,7 +610,7 @@ public class CaseOneHistory : MonoBehaviour
     
     public void VideoTransition()
     {
-        StateNameController.currentActivePanel.SetActive(false);
+        StateNameController.GetCurrentActivePanel().SetActive(false);
         RemoveDocImages();
         _background.SetActive(false);
     }

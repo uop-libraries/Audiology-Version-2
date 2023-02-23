@@ -25,21 +25,27 @@ public class MainMenuController : MonoBehaviour
     {
         _case1CounselingObject = GameObject.Find("Case_1_Counseling_Button");
         _case2CounselingObject = GameObject.Find("Case_2_Counseling_Button");
-        
-        _case1CounselingText = _case1CounselingObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
-        _case2CounselingText = _case1CounselingObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
 
-        _case1CounselingAnimator = _case1CounselingObject.GetComponent<Animator>();
-        _case2CounselingAnimator = _case2CounselingObject.GetComponent<Animator>();
+        if (_case1CounselingObject != null && _case2CounselingObject != null)
+        {
+            _case1CounselingText = _case1CounselingObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+            _case2CounselingText = _case1CounselingObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
 
-        _case1CounselingButton = _case1CounselingObject.GetComponent<Button>();
-        _case2CounselingButton = _case2CounselingObject.GetComponent<Button>();
+            _case1CounselingAnimator = _case1CounselingObject.GetComponent<Animator>();
+            _case2CounselingAnimator = _case2CounselingObject.GetComponent<Animator>();
+
+            _case1CounselingButton = _case1CounselingObject.GetComponent<Button>();
+            _case2CounselingButton = _case2CounselingObject.GetComponent<Button>();
+        }
     }
     
     // Update is called once per frame
     void Update()
     {
-        SetCounselingButton();
+        if (_case1CounselingObject != null && _case2CounselingObject != null)
+        {
+            SetCounselingButton();
+        }
     }
     
     private void SetCounselingButton()

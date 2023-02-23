@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
+
     private GameObject _case1CounselingObject;
     private GameObject _case2CounselingObject;
 

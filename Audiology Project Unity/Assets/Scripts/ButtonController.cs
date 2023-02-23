@@ -17,6 +17,7 @@ public class ButtonController : MonoBehaviour
     [SerializeField] public float TotalTime = 2f;
     bool _gazedStatus;
     
+    
     public Slider cursorTimer;
 
     private Image _image;
@@ -36,7 +37,11 @@ public class ButtonController : MonoBehaviour
     public AudioClip clickClip;
     
     public UnityEvent GVRClick;
-    
+
+    private GameObject _case1CounselingButton;
+    private GameObject _case2CounselingButton;
+
+
     void Start()
     {
         _continueButton = GameObject.Find("ContinueButton");
@@ -46,10 +51,18 @@ public class ButtonController : MonoBehaviour
         _image = GetComponent<Image>();
         _uiGradient = GetComponent<UIGradient>();
         _newButton = GetComponent<Button>();
+        _case1CounselingButton = GameObject.Find("Case_1_Counseling_Button");
+        _case2CounselingButton = GameObject.Find("Case_2_Counseling_Button");
+
+        // SetCounselingButton();
+        // Debug.Log("gameObject: " + gameObject);
+        
     }
     
     void Update()
     {
+        SetCounselingButton();
+        
         if (_newButton.interactable == false)
         {
             return;
@@ -87,6 +100,43 @@ public class ButtonController : MonoBehaviour
             // _newButton.interactable = false;
             ChangeColor();
         }
+    }
+
+    private void SetCounselingButton()
+    {
+        if (_case1CounselingButton == null && _case2CounselingButton == null ||
+            _case1CounselingButton.name != name && _case2CounselingButton.name != name)
+        {
+            return;
+        }
+        
+        if (!StateNameController.isCase1HistoryDone)
+        {
+            SetButton(_case1CounselingButton, false);
+            _case1CounselingButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Case 1 Counseling (Lock)";
+        }
+        else if (StateNameController.isCase1HistoryDone)
+        {
+            SetButton(_case1CounselingButton, true);
+            _case1CounselingButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Case 1 Counseling";
+        }
+        
+        if (!StateNameController.isCase2HistoryDone)
+        {
+            SetButton(_case2CounselingButton, false);
+            _case2CounselingButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Case 2 Counseling (Lock)";
+        }
+        else if (StateNameController.isCase2HistoryDone)
+        {
+            SetButton(_case2CounselingButton, true);
+            _case2CounselingButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Case 2 Counseling";
+        }
+    }
+
+    private void SetButton(GameObject buttonObject, bool isEnable)
+    {
+        buttonObject.GetComponent<Button>().interactable = isEnable;
+        buttonObject.GetComponent<Animator>().enabled = isEnable;
     }
     
     private void ChangeColor()

@@ -26,7 +26,7 @@ public class MainMenuController : MonoBehaviour
     {
         _case1CounselingObject = GameObject.Find("Case_1_Counseling_Button");
         _case2CounselingObject = GameObject.Find("Case_2_Counseling_Button");
-
+        
         if (_case1CounselingObject != null && _case2CounselingObject != null)
         {
             _case1CounselingText = _case1CounselingObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();

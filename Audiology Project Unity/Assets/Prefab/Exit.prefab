@@ -206,7 +206,6 @@ MonoBehaviour:
   TotalTime: 2
   cursorTimer: {fileID: 0}
   enableButtonSound: 1
-  isInteractable: 1
   gazedTimer: 0
   soundSource: {fileID: 0}
   clickClip: {fileID: 8300000, guid: 17a0534d87f12624f9654bff5f1ccf0e, type: 3}

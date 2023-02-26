@@ -30,7 +30,7 @@ public class MainMenuController : MonoBehaviour
         if (_case1CounselingObject != null && _case2CounselingObject != null)
         {
             _case1CounselingText = _case1CounselingObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
-            _case2CounselingText = _case1CounselingObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+            _case2CounselingText = _case2CounselingObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
 
             _case1CounselingAnimator = _case1CounselingObject.GetComponent<Animator>();
             _case2CounselingAnimator = _case2CounselingObject.GetComponent<Animator>();

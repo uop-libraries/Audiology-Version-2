@@ -17,7 +17,7 @@ public class ButtonController : MonoBehaviour
     bool _gazedStatus;
     
     
-    public Slider cursorTimer;
+    // public Slider cursorTimer;
 
     private Image _image;
     private UIGradient _uiGradient;
@@ -44,7 +44,7 @@ public class ButtonController : MonoBehaviour
     void Start()
     {
         _continueButton = GameObject.Find("ContinueButton");
-        cursorTimer.value = 0;
+        // cursorTimer.value = 0;
         _gazedStatus = false;
         _animatorButton = GetComponent<Animator>();
         _image = GetComponent<Image>();
@@ -74,7 +74,7 @@ public class ButtonController : MonoBehaviour
         {
             _animatorButton.StopPlayback();
             gazedTimer += Time.deltaTime;
-            cursorTimer.value = gazedTimer / TotalTime;
+            // cursorTimer.value = gazedTimer / TotalTime;
             Hovering();
         }
         
@@ -86,7 +86,7 @@ public class ButtonController : MonoBehaviour
                 soundSource.PlayOneShot(clickClip);
             }
             gazedTimer = 0;
-            cursorTimer.value = 0;
+            // cursorTimer.value = 0;
             _isClick = true;
             StateNameController.isClick = true;
             GVRClick.Invoke();
@@ -156,7 +156,7 @@ public class ButtonController : MonoBehaviour
     {
         _gazedStatus = false;
         gazedTimer = 0;
-        cursorTimer.value = 0;
+        // cursorTimer.value = 0;
         _animatorButton.Play("HoverOffAnimation");
     }
     

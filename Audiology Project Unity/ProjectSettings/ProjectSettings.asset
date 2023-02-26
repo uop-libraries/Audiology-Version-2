@@ -803,6 +803,7 @@ PlayerSettings:
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
     Android: UNITY_CCU;CURVEDUI_TMP
+    Standalone: UNITY_CCU;CURVEDUI_TMP
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

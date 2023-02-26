@@ -7858,7 +7858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DoNotTesselate: 0
-  savedPos: {x: 837, y: 534.00006, z: 0}
+  savedPos: {x: 840.00006, y: 600, z: 0}
   savedUp: {x: 0, y: 1, z: 0}
   savedRectSize: {x: 30, y: 30}
   savedColor: {r: 1, g: 1, b: 1, a: 1}
@@ -10294,7 +10294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DoNotTesselate: 0
-  savedPos: {x: 837, y: 534.00006, z: 0}
+  savedPos: {x: 840.00006, y: 600, z: 0}
   savedUp: {x: 0, y: 1, z: 0}
   savedRectSize: {x: 40, y: 40}
   savedColor: {r: 0.9176471, g: 0.30980393, b: 0.10980393, a: 1}
@@ -13990,11 +13990,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5387328240306368034, guid: 093df2cd86ec4ee4cad0789551dc81a9, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 837
+      value: 840
       objectReference: {fileID: 0}
     - target: {fileID: 5387328240306368034, guid: 093df2cd86ec4ee4cad0789551dc81a9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 534
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 5387328240306368034, guid: 093df2cd86ec4ee4cad0789551dc81a9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

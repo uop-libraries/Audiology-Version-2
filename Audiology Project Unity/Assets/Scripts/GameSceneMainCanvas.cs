@@ -17,7 +17,7 @@ public class GameSceneMainCanvas : MonoBehaviour
     private void Start()
     {   
         //Todo change this back after debug
-        // StateNameController.clinicalCaseNumber = 2;
+        StateNameController.clinicalCaseNumber = 1;
         StateNameController.isStart = false;
         //Todo change this back after debug
         ChangeClinicalCase();

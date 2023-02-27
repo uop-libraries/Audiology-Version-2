@@ -20,6 +20,7 @@ public class MainMenuController : MonoBehaviour
 
     private Button _case1CounselingButton;
     private Button _case2CounselingButton;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +50,7 @@ public class MainMenuController : MonoBehaviour
         }
     }
     
+    // Keep counseling button lock until respective case history is complete
     private void SetCounselingButton()
     {
         if (!StateNameController.isCase1HistoryDone)

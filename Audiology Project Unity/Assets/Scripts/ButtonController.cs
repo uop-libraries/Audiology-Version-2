@@ -35,7 +35,7 @@ public class ButtonController : MonoBehaviour
     public AudioSource soundSource;
     public AudioClip clickClip;
     
-    public UnityEvent GVRClick;
+    // public UnityEvent GVRClick;
 
     // private GameObject _case1CounselingButton;
     // private GameObject _case2CounselingButton;
@@ -89,7 +89,7 @@ public class ButtonController : MonoBehaviour
             // cursorTimer.value = 0;
             _isClick = true;
             StateNameController.isClick = true;
-            GVRClick.Invoke();
+            // GVRClick.Invoke();
             _gazedStatus = false;
         }
         

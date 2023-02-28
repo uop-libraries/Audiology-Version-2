@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.25732923, g: 0.22062291, b: 0.19840802, a: 1}
+  m_IndirectSpecularColor: {r: 0.25666147, g: 0.22064222, b: 0.19799283, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -7461,7 +7461,7 @@ PrefabInstance:
     - target: {fileID: 7130453406504258143, guid: ed6a63309c712c6488459ff852b7790a, type: 3}
       propertyPath: cursorTimer
       value: 
-      objectReference: {fileID: 1272732220}
+      objectReference: {fileID: 0}
     - target: {fileID: 7130453406504258143, guid: ed6a63309c712c6488459ff852b7790a, type: 3}
       propertyPath: soundSource
       value: 
@@ -10811,17 +10811,6 @@ MonoBehaviour:
   worldSpaceMouseSensitivity: 1
   usedHand: 1
   pointerTransformOverride: {fileID: 1890696502}
---- !u!114 &1272732220 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7344608241523274417, guid: 92a6120fa3ddd214996b4b815790011b, type: 3}
-  m_PrefabInstance: {fileID: 304243620}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1285332047
 GameObject:
   m_ObjectHideFlags: 0
@@ -16865,7 +16854,7 @@ PrefabInstance:
     - target: {fileID: 7130453406504258143, guid: ed6a63309c712c6488459ff852b7790a, type: 3}
       propertyPath: cursorTimer
       value: 
-      objectReference: {fileID: 1272732220}
+      objectReference: {fileID: 0}
     - target: {fileID: 7130453406504258143, guid: ed6a63309c712c6488459ff852b7790a, type: 3}
       propertyPath: soundSource
       value: 

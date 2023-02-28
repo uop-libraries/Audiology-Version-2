@@ -37,6 +37,7 @@ namespace CurvedUI
                 CameraObject.localEulerAngles 
                     = new Vector3(mouse.y.Remap(0, Screen.height, rotationMargin, -rotationMargin),
                     mouse.x.Remap(0, Screen.width, -rotationMargin, rotationMargin), 0);
+                
             }
         }
         #endif

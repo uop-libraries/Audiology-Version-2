@@ -85,7 +85,7 @@ public class ButtonController : MonoBehaviour
             _delayTimer = 0;
             // cursorTimer.value = 0;
             _isClick = true;
-            StateNameController.isClick = true;
+            StateNameController.IsClick = true;
             // GVRClick.Invoke();
             _gazedStatus = false;
         }

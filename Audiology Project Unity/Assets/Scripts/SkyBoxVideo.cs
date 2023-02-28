@@ -34,7 +34,7 @@ public class SkyBoxVideo : MonoBehaviour
     
     public void ChangeToVideoSkyBox(int index)
     {
-        StateNameController.isVideoPlaying = true;
+        StateNameController.IsVideoPlaying = true;
         RenderSettings.skybox = videoSkyBox;
         _canvasCursor.SetActive(false);
         if (_videoPlayer.isPlaying == false)
@@ -46,7 +46,7 @@ public class SkyBoxVideo : MonoBehaviour
 
     void ContinueButtonEnable(VideoPlayer vp)
     {
-        StateNameController.isVideoPlaying = false;
+        StateNameController.IsVideoPlaying = false;
         continueButton.SetActive(true);
         _canvasCursor.SetActive(true);
     }
@@ -56,7 +56,7 @@ public class SkyBoxVideo : MonoBehaviour
         ChangeToMainSkyBox();
         continueButton.SetActive(false);
 
-        if (StateNameController.currentActivePanel.name == "Case1_h_Instruction_02_Demographic")
+        if (StateNameController.CurrentActivePanel.name == "Case1_h_Instruction_02_Demographic")
         {
             // CaseOneHistory.GoToInstruction02();
         }

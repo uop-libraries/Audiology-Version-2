@@ -53,7 +53,7 @@ public class MainMenuController : MonoBehaviour
     // Keep counseling button lock until respective case history is complete
     private void SetCounselingButton()
     {
-        if (!StateNameController.isCase1HistoryDone)
+        if (!StateNameController.IsCase1HistoryDone)
         {
             _case1CounselingAnimator.enabled = false;
             _case1CounselingButton.interactable = false;
@@ -66,7 +66,7 @@ public class MainMenuController : MonoBehaviour
             _case1CounselingText.text = "Case 1 Counseling";
         }
         
-        if (!StateNameController.isCase2HistoryDone)
+        if (!StateNameController.IsCase2HistoryDone)
         {
             _case2CounselingAnimator.enabled = false;
             _case2CounselingButton.interactable = false;
@@ -96,7 +96,7 @@ public class MainMenuController : MonoBehaviour
         // caseNumber 2 is Case 2 History
         // caseNumber 3 is Case 1 Counseling
         // caseNumber 4 is Case 2 Counseling
-        StateNameController.clinicalCaseNumber = caseNumber;
+        StateNameController.ClinicalCaseNumber = caseNumber;
     }
     
     // OnClick() event for quit button

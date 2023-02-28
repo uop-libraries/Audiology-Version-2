@@ -5,11 +5,18 @@ using UnityEngine;
 // Use this class as global variable holder
 public class StateNameController : MonoBehaviour
 {
-    public static int clinicalCaseNumber;
-    public static GameObject currentActivePanel;
-    public static bool isClick;
-    public static bool isVideoPlaying;
-    public static bool isStart;
-    public static bool isCase1HistoryDone;
-    public static bool isCase2HistoryDone;
+    public static int ClinicalCaseNumber { get; set; }
+    
+    public static GameObject CurrentActivePanel { get; set; }
+    
+    public static bool IsClick { get; set; }
+    
+    public static bool IsVideoPlaying { get; set; }
+    
+    public static bool IsStart { get; set; }
+    
+    public static bool IsCase1HistoryDone { get; set; }
+    
+    public static bool IsCase2HistoryDone { get; set; }
+    
 }

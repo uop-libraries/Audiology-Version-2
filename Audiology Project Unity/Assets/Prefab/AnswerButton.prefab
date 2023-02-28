@@ -170,9 +170,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2536ac3844113640baa8179a897f492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalTime: 1
+  gazeTime: 0.6
+  delayTime: 0.8
   enableButtonSound: 1
   gazedTimer: 0
+  delayTimer: 0
   soundSource: {fileID: 0}
   clickClip: {fileID: 8300000, guid: 17a0534d87f12624f9654bff5f1ccf0e, type: 3}
 --- !u!114 &2354983211140924081

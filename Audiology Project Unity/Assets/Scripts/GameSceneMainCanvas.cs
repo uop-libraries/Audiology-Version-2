@@ -54,6 +54,20 @@ public class GameSceneMainCanvas : MonoBehaviour
         Debug.Log("Current case Number: " + StateNameController.ClinicalCaseNumber);
         StateNameController.IsStart = true;
     }
+
+    public void Case1Done()
+    {
+        Debug.Log("Case1HistoryDone");
+        StateNameController.IsCase1HistoryDone = true;
+        SceneManager.LoadScene(1);
+    }
+    
+    public void Case2Done()
+    {
+        Debug.Log("Case2HistoryDone");
+        StateNameController.IsCase2HistoryDone = true;
+        SceneManager.LoadScene(1);
+    }
     
     // OnClick() event for quit button
     public void QuitApp()

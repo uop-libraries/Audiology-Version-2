@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/05 VRMenuGaze 1.unity
     guid: 929bcffdd8bb39740868f87583f22cc7
   - enabled: 1
-    path: Assets/Scenes/Title ScreenTest.unity
+    path: Assets/Scenes/Title Screen.unity
     guid: ea065001e7f125846924e1287dc6a071
   - enabled: 1
     path: Assets/Scenes/Main Menu.unity

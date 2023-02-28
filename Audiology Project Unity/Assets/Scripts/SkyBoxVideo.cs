@@ -14,7 +14,7 @@ public class SkyBoxVideo : MonoBehaviour
     
     [SerializeField] public Material mainSkyBox;
     [SerializeField] public Material videoSkyBox;
-    [SerializeField] public GameObject skyboxCanvas;
+    [SerializeField] public GameObject continueButton;
     [SerializeField] private GameObject _canvasCursor;
     
     public void StartVideo()
@@ -24,7 +24,7 @@ public class SkyBoxVideo : MonoBehaviour
     }
     public void Start()
     {
-        skyboxCanvas.SetActive(false);
+        continueButton.SetActive(false);
     }
 
     private void ChangeToMainSkyBox()
@@ -47,14 +47,14 @@ public class SkyBoxVideo : MonoBehaviour
     void ContinueButtonEnable(VideoPlayer vp)
     {
         StateNameController.isVideoPlaying = false;
-        skyboxCanvas.SetActive(true);
+        continueButton.SetActive(true);
         _canvasCursor.SetActive(true);
     }
 
     public void ExitVideoSkybox()
     {
         ChangeToMainSkyBox();
-        skyboxCanvas.SetActive(false);
+        continueButton.SetActive(false);
 
         if (StateNameController.currentActivePanel.name == "Case1_h_Instruction_02_Demographic")
         {

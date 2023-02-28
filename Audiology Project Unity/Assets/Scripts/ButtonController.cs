@@ -31,8 +31,8 @@ public class ButtonController : MonoBehaviour
     
     private GameObject _continueButton;
     
-    public float gazedTimer;
-    public float delayTimer;
+    private float _gazedTimer;
+    private float _delayTimer;
     
     public AudioSource soundSource;
     public AudioClip clickClip;
@@ -63,26 +63,26 @@ public class ButtonController : MonoBehaviour
         if (_gazedStatus && _newButton.interactable)
         {  
             _animatorButton.StopPlayback();
-            delayTimer += Time.deltaTime;
+            _delayTimer += Time.deltaTime;
             
             // cursorTimer.value = gazedTimer / TotalTime;
             Hovering();
         }
 
-        if (delayTimer > delayTime)
+        if (_delayTimer > delayTime)
         {
-            gazedTimer += Time.deltaTime;
+            _gazedTimer += Time.deltaTime;
         }
         
         // Selecting 
-        if (gazedTimer > gazeTime)
+        if (_gazedTimer > gazeTime)
         {
             if (enableButtonSound == true && soundSource != null)
             {
                 soundSource.PlayOneShot(clickClip);
             }
-            gazedTimer = 0;
-            delayTimer = 0;
+            _gazedTimer = 0;
+            _delayTimer = 0;
             // cursorTimer.value = 0;
             _isClick = true;
             StateNameController.isClick = true;
@@ -115,8 +115,8 @@ public class ButtonController : MonoBehaviour
     public void OnPointerOff()
     {
         _gazedStatus = false;
-        gazedTimer = 0;
-        delayTimer = 0;
+        _gazedTimer = 0;
+        _delayTimer = 0;
         // cursorTimer.value = 0;
         _animatorButton.Play("HoverOffAnimation");
     }

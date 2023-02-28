@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,7 +14,10 @@ public class GameSceneMainCanvas : MonoBehaviour
     [SerializeField] private GameObject _case1Counseling;
     [SerializeField] private GameObject _case2History;
     [SerializeField] private GameObject _case2Counseling;
+    [SerializeField] private GameObject _ModuleText;
     [SerializeField] private bool _testingMode;
+
+    private List<GameObject> ModuleTextList = new List<GameObject>();
 
     private GameObject _currentChildCaseScenario;
     private void Start()
@@ -25,33 +29,46 @@ public class GameSceneMainCanvas : MonoBehaviour
         }
         StateNameController.IsStart = false;
         //Todo change this back after debug
-        ChangeClinicalCase();
+        InitializeModuleText();
+        ChangeClinicalCase(StateNameController.ClinicalCaseNumber);
+        
     }
 
-    private void ChangeClinicalCase()
+    private void InitializeModuleText()
+    {
+        foreach (Transform child in _ModuleText.transform)
+        {
+            ModuleTextList.Add(child.GameObject());
+            child.GameObject().SetActive(false);
+            // Debug.Log(child.GameObject());
+        }
+    }
+
+    private void ChangeClinicalCase(int caseNumber)
     {
         _case1History.SetActive(false);
         _case1Counseling.SetActive(false);
         _case2History.SetActive(false);
         _case2Counseling.SetActive(false);
 
-        if (StateNameController.ClinicalCaseNumber == 1)
+        switch (caseNumber)
         {
-            _case1History.SetActive(true);
+            case 1:
+                _case1History.SetActive(true);
+                break;
+            case 2:
+                _case2History.SetActive(true);
+                break;
+            case 3:
+                _case1Counseling.SetActive(true);
+                break;
+            case 4:
+                _case2Counseling.SetActive(true);
+                break;
         }
-        else if (StateNameController.ClinicalCaseNumber == 2)
-        {
-            _case2History.SetActive(true);
-        }
-        else if (StateNameController.ClinicalCaseNumber == 3)
-        {
-            _case1Counseling.SetActive(true);
-        }
-        else if (StateNameController.ClinicalCaseNumber == 4)
-        {
-            _case2Counseling.SetActive(true);
-        }
-        Debug.Log("Current case Number: " + StateNameController.ClinicalCaseNumber);
+        
+        ModuleTextList[caseNumber - 1].GameObject().SetActive(true);
+        Debug.Log("Current case Number: " + caseNumber);
         StateNameController.IsStart = true;
     }
 

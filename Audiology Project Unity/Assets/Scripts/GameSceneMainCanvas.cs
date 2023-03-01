@@ -70,6 +70,7 @@ public class GameSceneMainCanvas : MonoBehaviour
             _moduleTextList[caseNumber - 1].GameObject().SetActive(true);
             Debug.Log("Current case Number: " + caseNumber);
             StateNameController.IsStart = true;
+            // CaseOneHistory.StartCase1History(caseNumber);
         }
         catch (Exception e)
         {

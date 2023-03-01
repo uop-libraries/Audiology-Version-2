@@ -17,7 +17,8 @@ public class GameSceneMainCanvas : MonoBehaviour
     [SerializeField] private GameObject _ModuleText;
     [SerializeField] private bool _testingMode;
 
-    private List<GameObject> ModuleTextList = new List<GameObject>();
+    private List<GameObject> _moduleTextList = new List<GameObject>();
+    private List<GameObject> _ModulePanelList = new List<GameObject>();
 
     private GameObject _currentChildCaseScenario;
     private void Start()
@@ -30,6 +31,7 @@ public class GameSceneMainCanvas : MonoBehaviour
         StateNameController.IsStart = false;
         //Todo change this back after debug
         InitializeModuleText();
+        InitializeClinicalCase();
         ChangeClinicalCase(StateNameController.ClinicalCaseNumber);
         
     }
@@ -38,36 +40,50 @@ public class GameSceneMainCanvas : MonoBehaviour
     {
         foreach (Transform child in _ModuleText.transform)
         {
-            ModuleTextList.Add(child.GameObject());
+            _moduleTextList.Add(child.GameObject());
             child.GameObject().SetActive(false);
             // Debug.Log(child.GameObject());
         }
     }
+    
+    private void InitializeClinicalCase()
+    {
+        _ModulePanelList.Add(_case1History);
+        _ModulePanelList.Add(_case2History);
+        _ModulePanelList.Add(_case1Counseling);
+        _ModulePanelList.Add(_case2Counseling);
+    }
 
     private void ChangeClinicalCase(int caseNumber)
     {
-        _case1History.SetActive(false);
-        _case1Counseling.SetActive(false);
-        _case2History.SetActive(false);
-        _case2Counseling.SetActive(false);
-
-        switch (caseNumber)
+        foreach (GameObject child in _ModulePanelList)
         {
-            case 1:
-                _case1History.SetActive(true);
-                break;
-            case 2:
-                _case2History.SetActive(true);
-                break;
-            case 3:
-                _case1Counseling.SetActive(true);
-                break;
-            case 4:
-                _case2Counseling.SetActive(true);
-                break;
+            child.GameObject().SetActive(false);
+            Debug.Log(child.GameObject());
         }
+        // _case1History.SetActive(false);
+        // _case1Counseling.SetActive(false);
+        // _case2History.SetActive(false);
+        // _case2Counseling.SetActive(false);
+        //
+        // switch (caseNumber)
+        // {
+        //     case 1:
+        //         _case1History.SetActive(true);
+        //         break;
+        //     case 2:
+        //         _case2History.SetActive(true);
+        //         break;
+        //     case 3:
+        //         _case1Counseling.SetActive(true);
+        //         break;
+        //     case 4:
+        //         _case2Counseling.SetActive(true);
+        //         break;
+        // }
         
-        ModuleTextList[caseNumber - 1].GameObject().SetActive(true);
+        _ModulePanelList[caseNumber - 1].GameObject().SetActive(true);
+        _moduleTextList[caseNumber - 1].GameObject().SetActive(true);
         Debug.Log("Current case Number: " + caseNumber);
         StateNameController.IsStart = true;
     }

@@ -16,6 +16,7 @@ public class GameSceneMainCanvas : MonoBehaviour
     [SerializeField] private GameObject _case2Counseling;
     [SerializeField] private GameObject _ModuleText;
     [SerializeField] private bool _testingMode;
+    [SerializeField] private int _testingCaseNumber;
 
     private List<GameObject> _moduleTextList = new List<GameObject>();
     private List<GameObject> _ModulePanelList = new List<GameObject>();
@@ -23,13 +24,15 @@ public class GameSceneMainCanvas : MonoBehaviour
     private GameObject _currentChildCaseScenario;
     private void Start()
     {   
-        //Todo change this back after debug
+        // Todo change this back after debug ----------------------------( START )
         if (_testingMode)
         {
-            StateNameController.ClinicalCaseNumber = 1;
-        }
+            StateNameController.ClinicalCaseNumber = _testingCaseNumber;
+            Debug.LogWarningFormat("Testing Mode is Enable");
+        } 
+        // Todo change this back after debug -----------------------------( END )
+        
         StateNameController.IsStart = false;
-        //Todo change this back after debug
         InitializeModuleText();
         InitializeClinicalCase();
         ChangeClinicalCase(StateNameController.ClinicalCaseNumber);
@@ -59,33 +62,23 @@ public class GameSceneMainCanvas : MonoBehaviour
         foreach (GameObject child in _ModulePanelList)
         {
             child.GameObject().SetActive(false);
-            Debug.Log(child.GameObject());
+            // Debug.Log(child.GameObject());
         }
-        // _case1History.SetActive(false);
-        // _case1Counseling.SetActive(false);
-        // _case2History.SetActive(false);
-        // _case2Counseling.SetActive(false);
-        //
-        // switch (caseNumber)
-        // {
-        //     case 1:
-        //         _case1History.SetActive(true);
-        //         break;
-        //     case 2:
-        //         _case2History.SetActive(true);
-        //         break;
-        //     case 3:
-        //         _case1Counseling.SetActive(true);
-        //         break;
-        //     case 4:
-        //         _case2Counseling.SetActive(true);
-        //         break;
-        // }
-        
-        _ModulePanelList[caseNumber - 1].GameObject().SetActive(true);
-        _moduleTextList[caseNumber - 1].GameObject().SetActive(true);
-        Debug.Log("Current case Number: " + caseNumber);
-        StateNameController.IsStart = true;
+        try
+        {
+            _ModulePanelList[caseNumber - 1].GameObject().SetActive(true);
+            _moduleTextList[caseNumber - 1].GameObject().SetActive(true);
+            Debug.Log("Current case Number: " + caseNumber);
+            StateNameController.IsStart = true;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            Debug.LogErrorFormat("ERROR: Need to go to GameManager and enable Testing Mode including specific case # or " +
+                                 "Play in Main Menu Scene");
+            throw;
+        }
+  
     }
 
     public void Case1Done()

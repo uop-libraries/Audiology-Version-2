@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.83921576, g: 0.33333334, b: 0.27058825, a: 1}
+  m_Color: {r: 0.6901961, g: 0.25882354, b: 0.14509805, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -328,28 +328,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2536ac3844113640baa8179a897f492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalTime: 2
-  cursorTimer: {fileID: 0}
+  gazeTime: 0.6
+  delayTime: 0.8
   enableButtonSound: 1
-  isInteractable: 1
-  gazedTimer: 0
   soundSource: {fileID: 0}
   clickClip: {fileID: 8300000, guid: 17a0534d87f12624f9654bff5f1ccf0e, type: 3}
-  GVRClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneManagerBehavior, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &7130453406504258137
 MonoBehaviour:
   m_ObjectHideFlags: 0

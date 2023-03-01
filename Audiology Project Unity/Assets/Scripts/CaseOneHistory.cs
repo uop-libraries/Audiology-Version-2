@@ -77,19 +77,21 @@ public class CaseOneHistory : MonoBehaviour
         _nextPanel = 0;
         InitializeDocImage();
         _background = GameObject.Find("Background");
-        StateNameController.CurrentActivePanel = Narrator01;
     }
-    
-    private void Update()
+
+    public void StartCase1History()
     {
+        StateNameController.CurrentActivePanel = Narrator01;
         // isStart is initialize by GameSceneMainCanvas.cs
         if (StateNameController.IsStart)
         {
             StateNameController.IsStart = false;
             InitializePanel(StateNameController.ClinicalCaseNumber);
         }
-
-        // Todo Disable after testing
+    }
+    private void Update()
+    {
+        // Todo Disable after testing ----------------------( START )
         if (Input.GetKeyDown(KeyCode.N))
         {
             _nextPanel++;
@@ -104,7 +106,7 @@ public class CaseOneHistory : MonoBehaviour
         {
             SceneManager.LoadScene(1);
         }
-        // Todo Disable after testing
+        // Todo Disable after testing --------------------------( END )
     }
     
     private void InitializePanel(int caseNumber)
@@ -131,7 +133,6 @@ public class CaseOneHistory : MonoBehaviour
 
         var child0 = parent.transform.GetChild(0).gameObject;
         GoToFirstPanel(child0);
-
     }
     
     private void GoToFirstPanel(GameObject firstPanel)

@@ -20,7 +20,9 @@ public class GameSceneMainCanvas : MonoBehaviour
 
     private List<GameObject> _moduleTextList = new List<GameObject>();
     private List<GameObject> _ModulePanelList = new List<GameObject>();
-    public CaseOneHistory caseOneHistoryScript;
+    
+    [SerializeField] private CaseOneHistory caseOneHistoryScript;
+    [SerializeField] private CaseOneCounseling caseOneCounselingScript;
 
     private GameObject _currentChildCaseScenario;
     private void Start()
@@ -77,6 +79,11 @@ public class GameSceneMainCanvas : MonoBehaviour
             {
                 caseOneHistoryScript.StartCase1History();
             }
+            if (caseNumber == 3)
+            {
+                caseOneCounselingScript.StartCase1Counseling();
+            }
+            // TODO Add script start here ================================
         }
         catch (Exception e)
         {

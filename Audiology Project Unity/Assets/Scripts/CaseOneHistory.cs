@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 public class CaseOneHistory : MonoBehaviour
 {
-    private GameObject _currentPanel;
+    // private GameObject _currentPanel;
     private GameObject _nextInstruction;
     private GameObject _nextFeedback;
     
@@ -60,10 +60,10 @@ public class CaseOneHistory : MonoBehaviour
     private List<GameObject> _docImages = new List<GameObject>();
     
     // Environment
-    private GameObject _currentGameObject;
+    // private GameObject _currentGameObject;
     private GameObject _docInstructionImage;
     private GameObject _background;
-    private GameObject _case1Object;
+    // private GameObject _case1Object;
     
     private int _counter;
     private int _nextPanel;

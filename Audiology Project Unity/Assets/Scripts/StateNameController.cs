@@ -12,9 +12,7 @@ public class StateNameController : MonoBehaviour
     public static bool IsClick { get; set; }
 
     public static bool IsVideoPlaying { get; set; }
-
-    public static bool IsStart { get; set; }
-
+    
     public static bool IsCase1HistoryDone { get; set; }
 
     public static bool IsCase2HistoryDone { get; set; }

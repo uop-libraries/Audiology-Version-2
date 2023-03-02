@@ -33,7 +33,6 @@ public class GameSceneMainCanvas : MonoBehaviour
         } 
         // Todo change this back after debug -----------------------------( END )
         
-        StateNameController.IsStart = false;
         InitializeModuleText();
         InitializeClinicalCase();
         ChangeClinicalCase(StateNameController.ClinicalCaseNumber);
@@ -68,10 +67,10 @@ public class GameSceneMainCanvas : MonoBehaviour
         }
         try
         {
+            Debug.Log("Current case Number: " + caseNumber);
             _ModulePanelList[caseNumber - 1].GameObject().SetActive(true);
             _moduleTextList[caseNumber - 1].GameObject().SetActive(true);
-            Debug.Log("Current case Number: " + caseNumber);
-            StateNameController.IsStart = true;
+            
             caseOneHistoryScript.StartCase1History(caseNumber);
             
         }
@@ -82,7 +81,6 @@ public class GameSceneMainCanvas : MonoBehaviour
                                  "Play in Main Menu Scene");
             throw;
         }
-  
     }
 
     public void Case1Done()

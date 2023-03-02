@@ -88,13 +88,9 @@ public class CaseOneHistory : MonoBehaviour
         InitializeDocImage();
         _background = GameObject.Find("Background");
         StateNameController.CurrentActivePanel = Narrator01;
-        // isStart is initialize by GameSceneMainCanvas.cs
         
-        if (StateNameController.IsStart)
-        {
-            StateNameController.IsStart = false;
-            InitializePanel(caseNumber);
-        }
+        InitializePanel(caseNumber);
+        
     }
     private void Update()
     {

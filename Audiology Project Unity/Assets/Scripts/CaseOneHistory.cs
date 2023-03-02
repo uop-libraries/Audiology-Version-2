@@ -46,6 +46,8 @@ public class CaseOneHistory : MonoBehaviour
     
     [Header("AudioSource")] 
     [SerializeField] private AudioSource audioSource;
+
+    [SerializeField] private GameObject audioSourceObject;
     [SerializeField] private AudioClip clipCase1HistoryNarrator;
     [SerializeField] private AudioClip clipCase1HistoryInstruction1;
     [SerializeField] private AudioClip clipCase1HistoryFeedback1;
@@ -75,12 +77,16 @@ public class CaseOneHistory : MonoBehaviour
     {
         _counter = 0;
         _nextPanel = 0;
-        InitializeDocImage();
-        _background = GameObject.Find("Background");
+        // InitializeDocImage();
+        // _background = GameObject.Find("Background");
     }
-
+    
     public void StartCase1History(int caseNumber)
     {
+        _counter = 0;
+        _nextPanel = 0;
+        InitializeDocImage();
+        _background = GameObject.Find("Background");
         StateNameController.CurrentActivePanel = Narrator01;
         // isStart is initialize by GameSceneMainCanvas.cs
         if (StateNameController.IsStart)
@@ -146,6 +152,7 @@ public class CaseOneHistory : MonoBehaviour
         var child2 = _nextInstruction.transform.GetChild(1).gameObject;
         
         //Todo add clip expression
+        Debug.Log(child2);
         StartCoroutine(ActionAfterAudioStop(child2, clipCase1HistoryNarrator));
     }
     

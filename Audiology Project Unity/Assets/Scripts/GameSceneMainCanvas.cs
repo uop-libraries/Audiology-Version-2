@@ -20,6 +20,7 @@ public class GameSceneMainCanvas : MonoBehaviour
 
     private List<GameObject> _moduleTextList = new List<GameObject>();
     private List<GameObject> _ModulePanelList = new List<GameObject>();
+    public CaseOneHistory caseOneHistoryScript;
 
     private GameObject _currentChildCaseScenario;
     private void Start()
@@ -59,6 +60,7 @@ public class GameSceneMainCanvas : MonoBehaviour
 
     private void ChangeClinicalCase(int caseNumber)
     {
+        // var caseOneHistory = gameObject.AddComponent<CaseOneHistory>();
         foreach (GameObject child in _ModulePanelList)
         {
             child.GameObject().SetActive(false);
@@ -70,7 +72,8 @@ public class GameSceneMainCanvas : MonoBehaviour
             _moduleTextList[caseNumber - 1].GameObject().SetActive(true);
             Debug.Log("Current case Number: " + caseNumber);
             StateNameController.IsStart = true;
-            // CaseOneHistory.StartCase1History(caseNumber);
+            caseOneHistoryScript.StartCase1History(caseNumber);
+            
         }
         catch (Exception e)
         {

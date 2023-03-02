@@ -57,11 +57,12 @@ public class CaseOneCounseling : MonoBehaviour
     [SerializeField] private GameObject _C1C_Explanation_02_1;
     [SerializeField] private GameObject _C1C_Explanation_02_2;
     [SerializeField] private GameObject _C1C_Explanation_02_3;
-
     
 
     public void StartCase1Counseling()
     {
-        
+        // InitializeDocImage();
     }
+    
+
 }

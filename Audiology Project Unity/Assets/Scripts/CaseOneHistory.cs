@@ -14,6 +14,9 @@ public class CaseOneHistory : MonoBehaviour
     private GameObject _nextInstruction;
     private GameObject _nextFeedback;
     
+    [Header("Dependencies Script")] 
+    [SerializeField] private BackgroundScript backgroundScript;
+    
     [Header("Narrator Panel")]
     [SerializeField] private GameObject Narrator01;
     
@@ -57,13 +60,8 @@ public class CaseOneHistory : MonoBehaviour
     [SerializeField] private AudioClip clipCase1HistoryFeedback6;
     [SerializeField] private AudioClip clipCase1HistoryFeedback7;
     
-    private List<GameObject> _docImages = new List<GameObject>();
-    
     // Environment
-    // private GameObject _currentGameObject;
-    private GameObject _docInstructionImage;
     private GameObject _background;
-    // private GameObject _case1Object;
     
     private int _counter;
     private int _nextPanel;
@@ -74,7 +72,6 @@ public class CaseOneHistory : MonoBehaviour
     {
         _counter = 0;
         _nextPanel = 0;
-        InitializeDocImage();
         _background = GameObject.Find("Background");
         StateNameController.CurrentActivePanel = Narrator01;
         
@@ -133,31 +130,6 @@ public class CaseOneHistory : MonoBehaviour
         StartCoroutine(ActionAfterAudioStop(child2, clipCase1HistoryNarrator));
     }
     
-    private void InitializeDocImage()
-    {
-        var docImage1 = GameObject.Find("DocImage1");
-        var docImage2 = GameObject.Find("DocImage2");
-        var docImage3 = GameObject.Find("DocImage3");
-        var docImage4 = GameObject.Find("DocImage4");
-        
-        _docImages.Add(docImage1);
-        _docImages.Add(docImage2);
-        _docImages.Add(docImage3);
-        _docImages.Add(docImage4);
-        
-        RemoveDocImages();
-        
-        // Set Initial Doctor images
-        _docImages[3].gameObject.SetActive(true);
-    }
-
-    private void RemoveDocImages()
-    {
-        foreach (var images in _docImages)
-        {
-            images.gameObject.SetActive(false);
-        }
-    }
     
     private IEnumerator  ActionAfterAudioStop(GameObject button, AudioClip currentClip)
     {
@@ -285,13 +257,6 @@ public class CaseOneHistory : MonoBehaviour
         StartCoroutine(ActionAfterAudioStop(child2, nextAudioClip));
         
     }
-
-    // private void SwitchPanel(GameObject next)
-    // {
-    //     StateNameController.CurrentActivePanel.SetActive(false);
-    //     StateNameController.CurrentActivePanel = next;
-    //     StateNameController.CurrentActivePanel.SetActive(true);
-    // }
     
     // Instruction for hearing abilities option
     private void GoToInstruction08()
@@ -565,38 +530,37 @@ public class CaseOneHistory : MonoBehaviour
             }
         }
         
-        RemoveDocImages();
+        backgroundScript.RemoveDocImages();
 
         if (isFeedback)
         {
             if (_nextFeedback != _Feedback04 && _nextFeedback != _Feedback04_1)
             {
                 child1.gameObject.SetActive(true);
-                _docImages[1].gameObject.SetActive(true);
+                backgroundScript.GetDocImages()[1].gameObject.SetActive(true);
             }
             else
             {
                 child2.gameObject.SetActive(true);
-                _docImages[2].gameObject.SetActive(true);
+                backgroundScript.GetDocImages()[2].gameObject.SetActive(true);
             }
         }
         else
         {
             child0.gameObject.SetActive(true);
-            _docImages[0].gameObject.SetActive(true);
+            backgroundScript.GetDocImages()[0].gameObject.SetActive(true);
         }
     }
     
     public void ReturnToBackgroundObjects()
     {
-        _docInstructionImage?.SetActive(true);
         _background?.SetActive(true);
     }
     
     public void VideoTransition()
     {
         StateNameController.CurrentActivePanel.SetActive(false);
-        RemoveDocImages();
+        backgroundScript.RemoveDocImages();
         _background.SetActive(false);
     }
 }

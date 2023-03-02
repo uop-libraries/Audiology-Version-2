@@ -16,5 +16,12 @@ public class StateNameController : MonoBehaviour
     public static bool IsCase1HistoryDone { get; set; }
 
     public static bool IsCase2HistoryDone { get; set; }
+
+    public static void SwitchPanel(GameObject next)
+    {
+        CurrentActivePanel.SetActive(false);
+        CurrentActivePanel = next;
+        CurrentActivePanel.SetActive(true);
+    }
 }
 

@@ -46,8 +46,6 @@ public class CaseOneHistory : MonoBehaviour
     
     [Header("AudioSource")] 
     [SerializeField] private AudioSource audioSource;
-
-    [SerializeField] private GameObject audioSourceObject;
     [SerializeField] private AudioClip clipCase1HistoryNarrator;
     [SerializeField] private AudioClip clipCase1HistoryInstruction1;
     [SerializeField] private AudioClip clipCase1HistoryFeedback1;
@@ -71,17 +69,8 @@ public class CaseOneHistory : MonoBehaviour
     private int _nextPanel;
     private bool _isFirstTime = true;
     private bool _isFirstTime1 = true;
-
-
-    void Start()
-    {
-        _counter = 0;
-        _nextPanel = 0;
-        // InitializeDocImage();
-        // _background = GameObject.Find("Background");
-    }
     
-    public void StartCase1History(int caseNumber)
+    public void StartCase1History()
     {
         _counter = 0;
         _nextPanel = 0;
@@ -89,7 +78,7 @@ public class CaseOneHistory : MonoBehaviour
         _background = GameObject.Find("Background");
         StateNameController.CurrentActivePanel = Narrator01;
         
-        InitializePanel(caseNumber);
+        InitializePanel();
         
     }
     private void Update()
@@ -112,27 +101,18 @@ public class CaseOneHistory : MonoBehaviour
         // Todo Disable after testing --------------------------( END )
     }
     
-    private void InitializePanel(int caseNumber)
+    private void InitializePanel()
     {
-        var currentPanel = caseNumber switch
-        {
-            1 => "Case1_history",
-            2 => "Case2_history",
-            3 => "Case1_counseling",
-            4 => "Case2_counseling",
-            _ => ""
-        };
-
-        Debug.Log("Initialize Panel: " + currentPanel);
-        
+        var currentPanel = "Case1_history";
         var parent = GameObject.Find(currentPanel);
         
         Debug.Log("parent: " + parent);
+        
         // make all child object inactive
-        // foreach (Transform child in parent.transform)
-        // {
-        //     child.gameObject.SetActive(false);
-        // }
+        foreach (Transform child in parent.transform)
+        {
+            child.gameObject.SetActive(false);
+        }
 
         var child0 = parent.transform.GetChild(0).gameObject;
         GoToFirstPanel(child0);
@@ -260,7 +240,7 @@ public class CaseOneHistory : MonoBehaviour
                 GoToInstructionNumber(instructNumber);
                 break;
         }
-        SwitchPanel(_nextInstruction);
+        StateNameController.SwitchPanel(_nextInstruction);
         ReturnToBackgroundObjects();
         ChangeFeedbackBackground(false);
     }
@@ -299,19 +279,19 @@ public class CaseOneHistory : MonoBehaviour
         };
         
         ChangeFeedbackBackground(true);
-        SwitchPanel(_nextFeedback);
+        StateNameController.SwitchPanel(_nextFeedback);
         
         // Play audio and control the button activation
         StartCoroutine(ActionAfterAudioStop(child2, nextAudioClip));
         
     }
 
-    private void SwitchPanel(GameObject next)
-    {
-        StateNameController.CurrentActivePanel.SetActive(false);
-        StateNameController.CurrentActivePanel = next;
-        StateNameController.CurrentActivePanel.SetActive(true);
-    }
+    // private void SwitchPanel(GameObject next)
+    // {
+    //     StateNameController.CurrentActivePanel.SetActive(false);
+    //     StateNameController.CurrentActivePanel = next;
+    //     StateNameController.CurrentActivePanel.SetActive(true);
+    // }
     
     // Instruction for hearing abilities option
     private void GoToInstruction08()

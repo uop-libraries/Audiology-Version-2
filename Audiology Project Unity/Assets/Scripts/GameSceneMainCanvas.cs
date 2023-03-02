@@ -34,45 +34,49 @@ public class GameSceneMainCanvas : MonoBehaviour
         // Todo change this back after debug -----------------------------( END )
         
         InitializeModuleText();
-        InitializeClinicalCase();
-        ChangeClinicalCase(StateNameController.ClinicalCaseNumber);
+        InitializeClinicalCasePanel();
+        GoToClinicalCase(StateNameController.ClinicalCaseNumber);
         
     }
 
     private void InitializeModuleText()
     {
+        // Put each text module into a list
         foreach (Transform child in _ModuleText.transform)
         {
             _moduleTextList.Add(child.GameObject());
             child.GameObject().SetActive(false);
-            // Debug.Log(child.GameObject());
         }
     }
     
-    private void InitializeClinicalCase()
+    private void InitializeClinicalCasePanel()
     {
+        // Put each Panel into a list
         _ModulePanelList.Add(_case1History);
         _ModulePanelList.Add(_case2History);
         _ModulePanelList.Add(_case1Counseling);
         _ModulePanelList.Add(_case2Counseling);
     }
 
-    private void ChangeClinicalCase(int caseNumber)
-    {
-        // var caseOneHistory = gameObject.AddComponent<CaseOneHistory>();
+    private void GoToClinicalCase(int caseNumber)
+    {   
+        // Make all panels inactive
         foreach (GameObject child in _ModulePanelList)
         {
             child.GameObject().SetActive(false);
-            // Debug.Log(child.GameObject());
         }
+        
+        // Set the corresponding case number/panel active
         try
         {
             Debug.Log("Current case Number: " + caseNumber);
             _ModulePanelList[caseNumber - 1].GameObject().SetActive(true);
             _moduleTextList[caseNumber - 1].GameObject().SetActive(true);
-            
-            caseOneHistoryScript.StartCase1History(caseNumber);
-            
+
+            if (caseNumber == 1)
+            {
+                caseOneHistoryScript.StartCase1History();
+            }
         }
         catch (Exception e)
         {

@@ -60,9 +60,6 @@ public class CaseOneHistory : MonoBehaviour
     [SerializeField] private AudioClip clipCase1HistoryFeedback6;
     [SerializeField] private AudioClip clipCase1HistoryFeedback7;
     
-    // Environment
-    private GameObject _background;
-    
     private int _counter;
     private int _nextPanel;
     private bool _isFirstTime = true;
@@ -72,7 +69,6 @@ public class CaseOneHistory : MonoBehaviour
     {
         _counter = 0;
         _nextPanel = 0;
-        _background = GameObject.Find("Background");
         StateNameController.CurrentActivePanel = Narrator01;
         
         InitializePanel();
@@ -118,15 +114,8 @@ public class CaseOneHistory : MonoBehaviour
     private void GoToFirstPanel(GameObject firstPanel)
     {
         _nextInstruction = firstPanel;
-       // Debug.Log("active?" + _nextInstruction.activeSelf);
-     
         _nextInstruction.SetActive(true);
-        
-        //Debug.Log("active?" + _nextInstruction.activeSelf);
         var child2 = _nextInstruction.transform.GetChild(1).gameObject;
-        
-        //Todo add clip expression
-        Debug.Log(child2);
         StartCoroutine(ActionAfterAudioStop(child2, clipCase1HistoryNarrator));
     }
     
@@ -213,7 +202,7 @@ public class CaseOneHistory : MonoBehaviour
                 break;
         }
         StateNameController.SwitchPanel(_nextInstruction);
-        ReturnToBackgroundObjects();
+        BackgroundScript.ActivateBackground(true);
         ChangeFeedbackBackground(false);
     }
     
@@ -266,9 +255,7 @@ public class CaseOneHistory : MonoBehaviour
         var child1 = _nextInstruction.transform.GetChild(1).gameObject;
         var child2 = _nextInstruction.transform.GetChild(2).gameObject;
         
-        //Todo Debug
         child2.SetActive(false);
-        //Todo Debug
 
         if (_isFirstTime)
         {
@@ -351,10 +338,8 @@ public class CaseOneHistory : MonoBehaviour
         var child1 = _nextInstruction.transform.GetChild(1).gameObject;
         var child2 = _nextInstruction.transform.GetChild(2).gameObject;
         
-        //Todo Debug
         child2.SetActive(false);
-        //Todo Debug
-        
+
         if (_isFirstTime1)
         {
             foreach (Transform child in child1.transform)
@@ -451,10 +436,6 @@ public class CaseOneHistory : MonoBehaviour
                  }
 
                  _counter++;
-                 // if (child.gameObject.activeSelf == false)
-                 // {
-                 //     _counter++;
-                 // }
              }
          }
          
@@ -518,49 +499,33 @@ public class CaseOneHistory : MonoBehaviour
 
     public void ChangeFeedbackBackground(bool isFeedback)
     {
-        var child0 = _background.transform.GetChild(0).gameObject;
-        var child1 = _background.transform.GetChild(1).gameObject;
-        var child2 = _background.transform.GetChild(2).gameObject;
-        
-        foreach (Transform child in _background.transform)
-        {
-            if (child.gameObject.activeSelf)
-            {
-                child.gameObject.SetActive(false);
-            }
-        }
-        
+        BackgroundScript.DeactivateBackground();
         BackgroundScript.DeactivateDocImages();
 
         if (isFeedback)
         {
             if (_nextFeedback != _Feedback04 && _nextFeedback != _Feedback04_1)
             {
-                child1.gameObject.SetActive(true);
+                BackgroundScript.GetBackground()[1].gameObject.SetActive(true);
                 BackgroundScript.GetDocImages()[1].gameObject.SetActive(true);
             }
             else
             {
-                child2.gameObject.SetActive(true);
+                BackgroundScript.GetBackground()[2].gameObject.SetActive(true);
                 BackgroundScript.GetDocImages()[2].gameObject.SetActive(true);
             }
         }
         else
         {
-            child0.gameObject.SetActive(true);
+            BackgroundScript.GetBackground()[0].gameObject.SetActive(true);
             BackgroundScript.GetDocImages()[0].gameObject.SetActive(true);
         }
-    }
-    
-    public void ReturnToBackgroundObjects()
-    {
-        _background?.SetActive(true);
     }
     
     public void VideoTransition()
     {
         StateNameController.CurrentActivePanel.SetActive(false);
         BackgroundScript.DeactivateDocImages();
-        _background.SetActive(false);
+        BackgroundScript.ActivateBackground(false);
     }
 }

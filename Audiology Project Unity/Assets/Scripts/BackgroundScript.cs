@@ -9,6 +9,12 @@ public class BackgroundScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Set Initial Doctor images
+        InitializeDocImages();
+    }
+
+    private static void InitializeDocImages()
+    {
         var docImage1 = GameObject.Find("DocImage1");
         var docImage2 = GameObject.Find("DocImage2");
         var docImage3 = GameObject.Find("DocImage3");
@@ -19,13 +25,12 @@ public class BackgroundScript : MonoBehaviour
         _docImages.Add(docImage3);
         _docImages.Add(docImage4);
         
-        RemoveDocImages();
+        DeactivateDocImages();
         
-        // Set Initial Doctor images
         _docImages[3].gameObject.SetActive(true);
     }
     
-    public void RemoveDocImages()
+    public static void DeactivateDocImages()
     {
         foreach (var images in _docImages)
         {
@@ -33,7 +38,7 @@ public class BackgroundScript : MonoBehaviour
         }
     }
 
-    public List<GameObject> GetDocImages()
+    public static List<GameObject> GetDocImages()
     {
         return _docImages;
     }

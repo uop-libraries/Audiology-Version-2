@@ -530,25 +530,25 @@ public class CaseOneHistory : MonoBehaviour
             }
         }
         
-        backgroundScript.RemoveDocImages();
+        BackgroundScript.DeactivateDocImages();
 
         if (isFeedback)
         {
             if (_nextFeedback != _Feedback04 && _nextFeedback != _Feedback04_1)
             {
                 child1.gameObject.SetActive(true);
-                backgroundScript.GetDocImages()[1].gameObject.SetActive(true);
+                BackgroundScript.GetDocImages()[1].gameObject.SetActive(true);
             }
             else
             {
                 child2.gameObject.SetActive(true);
-                backgroundScript.GetDocImages()[2].gameObject.SetActive(true);
+                BackgroundScript.GetDocImages()[2].gameObject.SetActive(true);
             }
         }
         else
         {
             child0.gameObject.SetActive(true);
-            backgroundScript.GetDocImages()[0].gameObject.SetActive(true);
+            BackgroundScript.GetDocImages()[0].gameObject.SetActive(true);
         }
     }
     
@@ -560,7 +560,7 @@ public class CaseOneHistory : MonoBehaviour
     public void VideoTransition()
     {
         StateNameController.CurrentActivePanel.SetActive(false);
-        backgroundScript.RemoveDocImages();
+        BackgroundScript.DeactivateDocImages();
         _background.SetActive(false);
     }
 }

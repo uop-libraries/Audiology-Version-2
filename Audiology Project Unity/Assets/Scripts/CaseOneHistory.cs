@@ -69,11 +69,9 @@ public class CaseOneHistory : MonoBehaviour
     {
         _counter = 0;
         _nextPanel = 0;
-        StateNameController.CurrentActivePanel = Narrator01;
-        
         InitializePanel();
-        
     }
+    
     private void Update()
     {
         // Todo Disable after testing ----------------------( START )
@@ -106,15 +104,16 @@ public class CaseOneHistory : MonoBehaviour
         {
             child.gameObject.SetActive(false);
         }
-
-        var child0 = parent.transform.GetChild(0).gameObject;
-        GoToFirstPanel(child0);
+        
+        GoToFirstPanel();
     }
     
-    private void GoToFirstPanel(GameObject firstPanel)
+    private void GoToFirstPanel()
     {
-        _nextInstruction = firstPanel;
-        _nextInstruction.SetActive(true);
+        StateNameController.CurrentActivePanel = Narrator01;
+        _nextInstruction = Narrator01;
+        StateNameController.SwitchPanel(_nextInstruction);
+        
         var child2 = _nextInstruction.transform.GetChild(1).gameObject;
         StartCoroutine(ActionAfterAudioStop(child2, clipCase1HistoryNarrator));
     }

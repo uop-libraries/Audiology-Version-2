@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class CaseOneCounseling : MonoBehaviour
@@ -58,11 +59,84 @@ public class CaseOneCounseling : MonoBehaviour
     [SerializeField] private GameObject _C1C_Explanation_02_2;
     [SerializeField] private GameObject _C1C_Explanation_02_3;
     
+    [Header("AudioSource")] 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip clipC1CNarration01;
+    [SerializeField] private AudioClip clipC1CNarration02;
+    [SerializeField] private AudioClip clipC1CNarration03;
 
     public void StartCase1Counseling()
     {
-        // InitializeDocImage();
+        InitializePanel();
     }
+    
+    private void InitializePanel()
+    {
+        // Initial first panel so it is not null
+        StateNameController.CurrentActivePanel = _C1C_Narrator_01;
+        
+        var currentPanel = "Case1_counseling";
+        var parent = GameObject.Find(currentPanel);
+        
+        Debug.Log("parent: " + parent);
+        
+        Debug.Log("parent: " + parent);
+        
+        // make all child object inactive
+        foreach (Transform child in parent.transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+        
+        GoToNarratorPanel(1);
+    }
+    
+    public void GoToNarratorPanel(int panelNum)
+    {
+        AudioClip _nextClip = null;
+        
+        if (panelNum == 1)
+        {
+            _nextInstruction = _C1C_Narrator_01;
+            _nextClip = clipC1CNarration01;
+        }
+        else if (panelNum == 2)
+        {
+            _nextInstruction = _C1C_Narrator_02;
+            _nextClip = clipC1CNarration02;
+        }
+        else if (panelNum == 3)
+        {
+            _nextInstruction = _C1C_Narrator_03;
+            _nextClip = clipC1CNarration03;
+        }
+        
+        StateNameController.SwitchPanel(_nextInstruction);
+        
+        var child2 = _nextInstruction.transform.GetChild(1).gameObject;
+        StartCoroutine(ActionAfterAudioStop(child2, _nextClip));
+    }
+    
+    private IEnumerator  ActionAfterAudioStop(GameObject button, AudioClip currentClip)
+    {
+        if (button != null)
+        {
+            button.gameObject.SetActive(false);
+        }
+        if (currentClip != null)
+        {
+            audioSource.clip = currentClip;
+            audioSource.Play();
+        }
+        
+        yield return new WaitForSeconds(audioSource.clip.length);
+        if (button != null)
+        {
+            button.gameObject.SetActive(true);
+        }
+    }
+
+
     
 
 }

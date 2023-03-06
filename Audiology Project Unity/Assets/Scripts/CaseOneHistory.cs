@@ -48,8 +48,14 @@ public class CaseOneHistory : MonoBehaviour  {
 
     [Header("AudioSource")]
     [SerializeField] private AudioSource audioSource;
+    
+    [Header("AudioClip")]
     [SerializeField] private AudioClip clipCase1HistoryNarrator;
+    
+    // Instruction audio clip
     [SerializeField] private AudioClip clipCase1HistoryInstruction1;
+    
+    // Feedback audio clip
     [SerializeField] private AudioClip clipCase1HistoryFeedback1;
     [SerializeField] private AudioClip clipCase1HistoryFeedback2;
     [SerializeField] private AudioClip clipCase1HistoryFeedback3;

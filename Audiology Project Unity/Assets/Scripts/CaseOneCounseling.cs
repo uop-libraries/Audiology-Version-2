@@ -62,11 +62,13 @@ public class CaseOneCounseling : MonoBehaviour {
 
     [Header("AudioSource")]
     [SerializeField] private AudioSource audioSource;
+
+    [Header("AudioClip")]
     // Narration audio clip
     [SerializeField] private AudioClip clipC1CNarration01;
     [SerializeField] private AudioClip clipC1CNarration02;
     [SerializeField] private AudioClip clipC1CNarration03;
-    
+
     // Feedback audio clip
     [SerializeField] private AudioClip clipC1CFeedback01;
     [SerializeField] private AudioClip clipC1CFeedback02;
@@ -76,10 +78,10 @@ public class CaseOneCounseling : MonoBehaviour {
     [SerializeField] private AudioClip clipC1CFeedback06;
     [SerializeField] private AudioClip clipC1CFeedback07;
     [SerializeField] private AudioClip clipC1CFeedback08;
-    
+
     // Instruction audio clip
     [SerializeField] private AudioClip clipC1CInstruction01;
-    
+
     private int _counter;
 
     public void StartCase1Counseling() {
@@ -144,7 +146,7 @@ public class CaseOneCounseling : MonoBehaviour {
     }
 
     public void GoToInstruction(int panelNumber) {
-              Debug.Log("Instruction Panel: " + panelNumber);
+        Debug.Log("Instruction Panel: " + panelNumber);
         switch (panelNumber) {
             case 1:
                 _nextInstruction = _C1C_Instruction_01;
@@ -152,7 +154,6 @@ public class CaseOneCounseling : MonoBehaviour {
                 break;
             case 2:
                 _nextInstruction = _C1C_Instruction_02;
-                GoToInstructionNumber(panelNumber);
                 break;
             case 3:
                 _nextInstruction = _C1C_Instruction_03;
@@ -190,7 +191,7 @@ public class CaseOneCounseling : MonoBehaviour {
                 _nextInstruction = _C1C_Instruction_12;
                 GoToInstructionNumber(panelNumber);
                 break;
-       
+
         }
         StateNameController.SwitchPanel(_nextInstruction);
         BackgroundScript.ActivateBackground(true);
@@ -228,16 +229,16 @@ public class CaseOneCounseling : MonoBehaviour {
             child2.SetActive(true);
         }
     }
-    
+
     // Control the doctor images behavior
     public void ChangeFeedbackBackground(bool isFeedback) {
         BackgroundScript.DeactivateBackground();
         BackgroundScript.DeactivateDocImages();
-        
+
         if (isFeedback) {
             BackgroundScript.GetBackground()[1].gameObject.SetActive(true);
             BackgroundScript.GetDocImages()[1].gameObject.SetActive(true);
-            
+
             // if (_nextFeedback != _Feedback04 && _nextFeedback != _Feedback04_1) {
             //     BackgroundScript.GetBackground()[1].gameObject.SetActive(true);
             //     BackgroundScript.GetDocImages()[1].gameObject.SetActive(true);
@@ -252,7 +253,7 @@ public class CaseOneCounseling : MonoBehaviour {
             BackgroundScript.GetDocImages()[0].gameObject.SetActive(true);
         }
     }
-    
+
     public void GoToFeedBack(int value) {
         AudioClip nextAudioClip = null;
 
@@ -288,7 +289,6 @@ public class CaseOneCounseling : MonoBehaviour {
 
         // Play audio and control the button activation
         StartCoroutine(ActionAfterAudioStop(child2, nextAudioClip));
-
     }
 
 

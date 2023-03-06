@@ -53,11 +53,11 @@ public class GameSceneMainCanvas : MonoBehaviour {
                 if (_nextPanel < 4) {
                     caseOneCounselingScript.GoToNarratorPanel(_nextPanel);
                 }
-                else if (_nextPanel >= 5) {
-                    caseOneCounselingScript.GoToInstruction(_nextPanel);
+                else if (_nextPanel >= 4) {
+                    caseOneCounselingScript.GoToInstruction(_nextPanel - 3);
                 }
             }
-            Debug.Log("Panel number: " + _nextPanel);
+            Debug.Log("_nextPanel: " + _nextPanel);
         }
         if (Input.GetKeyDown(KeyCode.B)) {
             _nextPanel--;
@@ -68,11 +68,11 @@ public class GameSceneMainCanvas : MonoBehaviour {
                 if (_nextPanel < 4) {
                     caseOneCounselingScript.GoToNarratorPanel(_nextPanel);
                 }
-                else if (_nextPanel >= 5) {
-                    caseOneCounselingScript.GoToInstruction(_nextPanel);
+                else if (_nextPanel >= 4) {
+                    caseOneCounselingScript.GoToInstruction(_nextPanel - 3);
                 }
             }
-            Debug.Log("Panel number: " + _nextPanel);
+            Debug.Log("_nextPanel: " + _nextPanel);
         }
         if (Input.GetKeyDown(KeyCode.R)) {
             SceneManager.LoadScene(1);

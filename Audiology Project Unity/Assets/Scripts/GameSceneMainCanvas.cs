@@ -7,8 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
-public class GameSceneMainCanvas : MonoBehaviour
-{
+public class GameSceneMainCanvas : MonoBehaviour {
     // GameObject
     [SerializeField] private GameObject _case1History;
     [SerializeField] private GameObject _case1Counseling;
@@ -20,85 +19,70 @@ public class GameSceneMainCanvas : MonoBehaviour
 
     private List<GameObject> _moduleTextList = new List<GameObject>();
     private List<GameObject> _ModulePanelList = new List<GameObject>();
-    
+
     [SerializeField] private CaseOneHistory caseOneHistoryScript;
     [SerializeField] private CaseOneCounseling caseOneCounselingScript;
 
     private GameObject _currentChildCaseScenario;
     private int _nextPanel;
-    
-    private void Start()
-    {   
+
+    private void Start() {
         // Todo change this back after debug ----------------------------( START )
-        if (_testingMode)
-        {
+        if (_testingMode) {
             StateNameController.ClinicalCaseNumber = _testingCaseNumber;
             Debug.LogWarningFormat("Testing Mode is Enable");
-        } 
+        }
         // Todo change this back after debug -----------------------------( END )
 
         _nextPanel = 1;
         InitializeModuleText();
         InitializeClinicalCasePanel();
         GoToClinicalCase(StateNameController.ClinicalCaseNumber);
-        
+
     }
-    
-    private void Update()
-    {
+
+    private void Update() {
         // Todo Disable after testing ----------------------( START )
-        
-        if (Input.GetKeyDown(KeyCode.N))
-        {
+
+        if (Input.GetKeyDown(KeyCode.N)) {
             _nextPanel++;
-            if (StateNameController.ClinicalCaseNumber == 1)
-            {
+            if (StateNameController.ClinicalCaseNumber == 1) {
                 caseOneHistoryScript.GoToInstruction(_nextPanel);
             }
-            else if (StateNameController.ClinicalCaseNumber == 3)
-            {
-                if (_nextPanel < 4)
-                {
+            else if (StateNameController.ClinicalCaseNumber == 3) {
+                if (_nextPanel < 4) {
                     caseOneCounselingScript.GoToNarratorPanel(_nextPanel);
                 }
             }
             Debug.Log("Panel number: " + _nextPanel);
         }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
+        if (Input.GetKeyDown(KeyCode.B)) {
             _nextPanel--;
-            if (StateNameController.ClinicalCaseNumber == 1)
-            {
+            if (StateNameController.ClinicalCaseNumber == 1) {
                 caseOneHistoryScript.GoToInstruction(_nextPanel);
             }
-            else if (StateNameController.ClinicalCaseNumber == 3)
-            {
-                if (_nextPanel < 4)
-                {
+            else if (StateNameController.ClinicalCaseNumber == 3) {
+                if (_nextPanel < 4) {
                     caseOneCounselingScript.GoToNarratorPanel(_nextPanel);
                 }
             }
             Debug.Log("Panel number: " + _nextPanel);
         }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
+        if (Input.GetKeyDown(KeyCode.R)) {
             SceneManager.LoadScene(1);
         }
         // Todo Disable after testing --------------------------( END )
     }
 
-    private void InitializeModuleText()
-    {
+    private void InitializeModuleText() {
         // Put each text module into a list
-        foreach (Transform child in _ModuleText.transform)
-        {
+        foreach (Transform child in _ModuleText.transform) {
             _moduleTextList.Add(child.GameObject());
             child.GameObject().SetActive(false);
         }
     }
-    
-    private void InitializeClinicalCasePanel()
-    {
+
+    private void InitializeClinicalCasePanel() {
         // Put each Panel into a list
         _ModulePanelList.Add(_case1History);
         _ModulePanelList.Add(_case2History);
@@ -106,59 +90,50 @@ public class GameSceneMainCanvas : MonoBehaviour
         _ModulePanelList.Add(_case2Counseling);
     }
 
-    private void GoToClinicalCase(int caseNumber)
-    {   
+    private void GoToClinicalCase(int caseNumber) {
         // Make all panels inactive
-        foreach (GameObject child in _ModulePanelList)
-        {
+        foreach (GameObject child in _ModulePanelList) {
             child.GameObject().SetActive(false);
         }
-        
+
         // Set the corresponding case number/panel active
-        try
-        {
+        try {
             Debug.Log("Current case Number: " + caseNumber);
             _ModulePanelList[caseNumber - 1].GameObject().SetActive(true);
             _moduleTextList[caseNumber - 1].GameObject().SetActive(true);
 
-            if (caseNumber == 1)
-            {
+            if (caseNumber == 1) {
                 caseOneHistoryScript.StartCase1History();
             }
-            if (caseNumber == 3)
-            {
+            if (caseNumber == 3) {
                 caseOneCounselingScript.StartCase1Counseling();
             }
             // TODO Add script start here ================================
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             Console.WriteLine(e);
             Debug.LogErrorFormat("ERROR: Need to go to GameManager and enable Testing Mode including specific case # or " +
-                                 "Play in Main Menu Scene");
+                "Play in Main Menu Scene");
             throw;
         }
     }
 
-    public void Case1Done()
-    {
+    public void Case1Done() {
         Debug.Log("Case1HistoryDone");
         StateNameController.IsCase1HistoryDone = true;
         SceneManager.LoadScene(1);
     }
-    
-    public void Case2Done()
-    {
+
+    public void Case2Done() {
         Debug.Log("Case2HistoryDone");
         StateNameController.IsCase2HistoryDone = true;
         SceneManager.LoadScene(1);
     }
-    
+
     // OnClick() event for quit button
-    public void QuitApp()
-    {
+    public void QuitApp() {
         Application.Quit();
     }
-    
-    
+
+
 }

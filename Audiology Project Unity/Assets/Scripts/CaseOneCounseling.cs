@@ -62,9 +62,23 @@ public class CaseOneCounseling : MonoBehaviour {
 
     [Header("AudioSource")]
     [SerializeField] private AudioSource audioSource;
+    // Narration audio clip
     [SerializeField] private AudioClip clipC1CNarration01;
     [SerializeField] private AudioClip clipC1CNarration02;
     [SerializeField] private AudioClip clipC1CNarration03;
+    
+    // Feedback audio clip
+    [SerializeField] private AudioClip clipC1CFeedback01;
+    [SerializeField] private AudioClip clipC1CFeedback02;
+    [SerializeField] private AudioClip clipC1CFeedback03;
+    [SerializeField] private AudioClip clipC1CFeedback04;
+    [SerializeField] private AudioClip clipC1CFeedback05;
+    [SerializeField] private AudioClip clipC1CFeedback06;
+    [SerializeField] private AudioClip clipC1CFeedback07;
+    [SerializeField] private AudioClip clipC1CFeedback08;
+    
+    // Instruction audio clip
+    [SerializeField] private AudioClip clipC1CInstruction01;
     
     private int _counter;
 
@@ -134,7 +148,7 @@ public class CaseOneCounseling : MonoBehaviour {
         switch (panelNumber) {
             case 1:
                 _nextInstruction = _C1C_Instruction_01;
-                // StartCoroutine(ActionAfterAudioStop(null, clipCase1HistoryInstruction1));
+                StartCoroutine(ActionAfterAudioStop(null, clipC1CInstruction01));
                 break;
             case 2:
                 _nextInstruction = _C1C_Instruction_02;
@@ -233,6 +247,44 @@ public class CaseOneCounseling : MonoBehaviour {
         //     BackgroundScript.GetBackground()[0].gameObject.SetActive(true);
         //     BackgroundScript.GetDocImages()[0].gameObject.SetActive(true);
         // }
+    }
+    
+    public void GoToFeedBack(int value) {
+        AudioClip nextAudioClip = null;
+
+        // Get current feedback panel
+        _nextFeedback = value switch {
+            1 => _C1C_Feedback_01,
+            2 => _C1C_Feedback_02,
+            3 => _C1C_Feedback_03,
+            4 => _C1C_Feedback_04,
+            5 => _C1C_Feedback_05,
+            6 => _C1C_Feedback_06,
+            7 => _C1C_Feedback_07,
+            8 => _C1C_Feedback_08,
+            _ => _nextFeedback,
+        };
+        var child2 = _nextFeedback.transform.GetChild(1).gameObject;
+
+        // Get next audio feedback clip
+        nextAudioClip = value switch {
+            1 => clipC1CFeedback01,
+            2 => clipC1CFeedback02,
+            3 => clipC1CFeedback03,
+            4 => clipC1CFeedback04,
+            5 => clipC1CFeedback05,
+            6 => clipC1CFeedback06,
+            7 => clipC1CFeedback07,
+            8 => clipC1CFeedback08,
+            _ => nextAudioClip
+        };
+
+        ChangeFeedbackBackground(true);
+        StateNameController.SwitchPanel(_nextFeedback);
+
+        // Play audio and control the button activation
+        StartCoroutine(ActionAfterAudioStop(child2, nextAudioClip));
+
     }
 
 

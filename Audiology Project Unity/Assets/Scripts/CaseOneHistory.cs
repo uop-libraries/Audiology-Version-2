@@ -411,7 +411,7 @@ public class CaseOneHistory : MonoBehaviour  {
         }
     }
 
-    public void ChangeFeedbackBackground(bool isFeedback) {
+    void ChangeFeedbackBackground(bool isFeedback) {
         BackgroundScript.DeactivateBackground();
         BackgroundScript.DeactivateDocImages();
 
@@ -430,10 +430,4 @@ public class CaseOneHistory : MonoBehaviour  {
             BackgroundScript.GetDocImages()[0].gameObject.SetActive(true);
         }
     }
-
-    // public void VideoTransition() {
-    //     StateNameController.CurrentActivePanel.SetActive(false);
-    //     BackgroundScript.DeactivateDocImages();
-    //     BackgroundScript.ActivateBackground(false);
-    // }
 }

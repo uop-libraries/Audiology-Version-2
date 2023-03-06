@@ -25,6 +25,8 @@ public class GameSceneMainCanvas : MonoBehaviour
     [SerializeField] private CaseOneCounseling caseOneCounselingScript;
 
     private GameObject _currentChildCaseScenario;
+    private int _nextPanel;
+    
     private void Start()
     {   
         // Todo change this back after debug ----------------------------( START )
@@ -34,11 +36,55 @@ public class GameSceneMainCanvas : MonoBehaviour
             Debug.LogWarningFormat("Testing Mode is Enable");
         } 
         // Todo change this back after debug -----------------------------( END )
-        
+
+        _nextPanel = 1;
         InitializeModuleText();
         InitializeClinicalCasePanel();
         GoToClinicalCase(StateNameController.ClinicalCaseNumber);
         
+    }
+    
+    private void Update()
+    {
+        // Todo Disable after testing ----------------------( START )
+        
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            _nextPanel++;
+            if (StateNameController.ClinicalCaseNumber == 1)
+            {
+                caseOneHistoryScript.GoToInstruction(_nextPanel);
+            }
+            else if (StateNameController.ClinicalCaseNumber == 3)
+            {
+                if (_nextPanel < 4)
+                {
+                    caseOneCounselingScript.GoToNarratorPanel(_nextPanel);
+                }
+            }
+            Debug.Log("Panel number: " + _nextPanel);
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            _nextPanel--;
+            if (StateNameController.ClinicalCaseNumber == 1)
+            {
+                caseOneHistoryScript.GoToInstruction(_nextPanel);
+            }
+            else if (StateNameController.ClinicalCaseNumber == 3)
+            {
+                if (_nextPanel < 4)
+                {
+                    caseOneCounselingScript.GoToNarratorPanel(_nextPanel);
+                }
+            }
+            Debug.Log("Panel number: " + _nextPanel);
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(1);
+        }
+        // Todo Disable after testing --------------------------( END )
     }
 
     private void InitializeModuleText()

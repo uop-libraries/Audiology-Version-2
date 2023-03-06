@@ -79,9 +79,7 @@ public class CaseOneCounseling : MonoBehaviour
         var parent = GameObject.Find(currentPanel);
         
         Debug.Log("parent: " + parent);
-        
-        Debug.Log("parent: " + parent);
-        
+       
         // make all child object inactive
         foreach (Transform child in parent.transform)
         {
@@ -95,20 +93,20 @@ public class CaseOneCounseling : MonoBehaviour
     {
         AudioClip _nextClip = null;
         
-        if (panelNum == 1)
+        switch (panelNum)
         {
-            _nextInstruction = _C1C_Narrator_01;
-            _nextClip = clipC1CNarration01;
-        }
-        else if (panelNum == 2)
-        {
-            _nextInstruction = _C1C_Narrator_02;
-            _nextClip = clipC1CNarration02;
-        }
-        else if (panelNum == 3)
-        {
-            _nextInstruction = _C1C_Narrator_03;
-            _nextClip = clipC1CNarration03;
+            case 1:
+                _nextInstruction = _C1C_Narrator_01;
+                _nextClip = clipC1CNarration01;
+                break;
+            case 2:
+                _nextInstruction = _C1C_Narrator_02;
+                _nextClip = clipC1CNarration02;
+                break;
+            case 3:
+                _nextInstruction = _C1C_Narrator_03;
+                _nextClip = clipC1CNarration03;
+                break;
         }
         
         StateNameController.SwitchPanel(_nextInstruction);

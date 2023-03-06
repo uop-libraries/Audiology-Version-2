@@ -61,35 +61,13 @@ public class CaseOneHistory : MonoBehaviour
     [SerializeField] private AudioClip clipCase1HistoryFeedback7;
     
     private int _counter;
-    private int _nextPanel;
     private bool _isFirstTime = true;
     private bool _isFirstTime1 = true;
     
     public void StartCase1History()
     {
         _counter = 0;
-        _nextPanel = 0;
         InitializePanel();
-    }
-    
-    private void Update()
-    {
-        // Todo Disable after testing ----------------------( START )
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            _nextPanel++;
-            GoToInstruction(_nextPanel);
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            _nextPanel--;
-            GoToInstruction(_nextPanel);
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene(1);
-        }
-        // Todo Disable after testing --------------------------( END )
     }
     
     private void InitializePanel()

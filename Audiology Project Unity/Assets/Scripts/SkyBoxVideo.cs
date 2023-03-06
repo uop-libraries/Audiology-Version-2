@@ -16,6 +16,8 @@ public class SkyBoxVideo : MonoBehaviour
     [SerializeField] public Material videoSkyBox;
     [SerializeField] public GameObject continueButton;
     [SerializeField] private GameObject _canvasCursor;
+
+    [SerializeField] BackgroundScript _backgroundScript;
     
     public void StartVideo()
     {
@@ -34,6 +36,7 @@ public class SkyBoxVideo : MonoBehaviour
     
     public void ChangeToVideoSkyBox(int index)
     {
+        _backgroundScript.SetBackgroundToInactive();
         StateNameController.IsVideoPlaying = true;
         RenderSettings.skybox = videoSkyBox;
         _canvasCursor.SetActive(false);

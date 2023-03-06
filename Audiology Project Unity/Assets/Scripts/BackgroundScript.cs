@@ -73,4 +73,12 @@ public class BackgroundScript : MonoBehaviour
     {
         return _docImagesList;
     }
+    
+    
+     // Set all UI and background images inactive
+     public void SetBackgroundToInactive() {
+        StateNameController.CurrentActivePanel.SetActive(false);
+        DeactivateDocImages();
+        ActivateBackground(false);
+    }
 }

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class CaseOneCounseling : MonoBehaviour {
     private GameObject _nextNarration;
@@ -63,8 +65,11 @@ public class CaseOneCounseling : MonoBehaviour {
     [SerializeField] private AudioClip clipC1CNarration01;
     [SerializeField] private AudioClip clipC1CNarration02;
     [SerializeField] private AudioClip clipC1CNarration03;
+    
+    private int _counter;
 
     public void StartCase1Counseling() {
+        _counter = 0;
         InitializePanel();
     }
 
@@ -124,8 +129,111 @@ public class CaseOneCounseling : MonoBehaviour {
         }
     }
 
-    public void GoToInstruction(int panel) { }
+    public void GoToInstruction(int panelNumber) {
+              Debug.Log("Instruction Panel: " + panelNumber);
+        switch (panelNumber) {
+            case 1:
+                _nextInstruction = _C1C_Instruction_01;
+                // StartCoroutine(ActionAfterAudioStop(null, clipCase1HistoryInstruction1));
+                break;
+            case 2:
+                _nextInstruction = _C1C_Instruction_02;
+                GoToInstructionNumber(panelNumber);
+                break;
+            case 3:
+                _nextInstruction = _C1C_Instruction_03;
+                break;
+            case 4:
+                _nextInstruction = _C1C_Instruction_04;
+                GoToInstructionNumber(panelNumber);
+                break;
+            case 5:
+                _nextInstruction = _C1C_Instruction_05;
+                break;
+            case 6:
+                _nextInstruction = _C1C_Instruction_06;
+                GoToInstructionNumber(panelNumber);
+                break;
+            case 7:
+                _nextInstruction = _C1C_Instruction_07;
+                GoToInstructionNumber(panelNumber);
+                break;
+            case 8:
+                _nextInstruction = _C1C_Instruction_08;
+                break;
+            case 9:
+                _nextInstruction = _C1C_Instruction_09;
+                break;
+            case 10:
+                _nextInstruction = _C1C_Instruction_10;
+                GoToInstructionNumber(panelNumber);
+                break;
+            case 11:
+                _nextInstruction = _C1C_Instruction_11;
+                GoToInstructionNumber(panelNumber);
+                break;
+            case 12:
+                _nextInstruction = _C1C_Instruction_12;
+                GoToInstructionNumber(panelNumber);
+                break;
+       
+        }
+        StateNameController.SwitchPanel(_nextInstruction);
+        BackgroundScript.ActivateBackground(true);
+        ChangeFeedbackBackground(false);
+    }
 
+    private void GoToInstructionNumber(int instructionNumber) {
+        _counter = 0;
+        var child1 = _nextInstruction.transform.GetChild(1).gameObject;
+        var child2 = _nextInstruction.transform.GetChild(2).gameObject;
+
+        //Todo Debug
+        child2.SetActive(false);
+        //Todo Debug
+
+        foreach (Transform child in child1.transform) {
+            if (child.gameObject.GetComponent<Image>().color == Color.grey) {
+                if (instructionNumber == 7) {
+                    child.gameObject.SetActive(false);
+                }
+
+                _counter++;
+            }
+        }
+
+        if (_counter == 2 && instructionNumber == 2 ||
+            _counter == 1 && instructionNumber == 4 ||
+            _counter == 6 && instructionNumber == 6 ||
+            _counter == 7 && instructionNumber == 7 ||
+            _counter == 3 && instructionNumber == 10 ||
+            _counter == 2 && instructionNumber == 11 ||
+            _counter == 1 && instructionNumber == 12 ||
+            _counter == 1 && instructionNumber == 13 ||
+            _counter == 1 && instructionNumber == 14) {
+            child2.SetActive(true);
+        }
+    }
+    
+    public void ChangeFeedbackBackground(bool isFeedback) {
+        BackgroundScript.DeactivateBackground();
+        BackgroundScript.DeactivateDocImages();
+        //
+        // if (isFeedback) {
+        //     if (_nextFeedback != _Feedback04 && _nextFeedback != _Feedback04_1) {
+        //         BackgroundScript.GetBackground()[1].gameObject.SetActive(true);
+        //         BackgroundScript.GetDocImages()[1].gameObject.SetActive(true);
+        //     }
+        //     else {
+        //         BackgroundScript.GetBackground()[2].gameObject.SetActive(true);
+        //         BackgroundScript.GetDocImages()[2].gameObject.SetActive(true);
+        //     }
+        // }
+        // else {
+        //     BackgroundScript.GetBackground()[0].gameObject.SetActive(true);
+        //     BackgroundScript.GetDocImages()[0].gameObject.SetActive(true);
+        // }
+    }
 
 
 

@@ -410,7 +410,8 @@ public class CaseOneHistory : MonoBehaviour  {
             GoToInstruction(14);
         }
     }
-
+    
+    // Control the doctor images behavior
     void ChangeFeedbackBackground(bool isFeedback) {
         BackgroundScript.DeactivateBackground();
         BackgroundScript.DeactivateDocImages();

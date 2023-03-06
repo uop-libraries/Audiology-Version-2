@@ -229,24 +229,28 @@ public class CaseOneCounseling : MonoBehaviour {
         }
     }
     
+    // Control the doctor images behavior
     public void ChangeFeedbackBackground(bool isFeedback) {
         BackgroundScript.DeactivateBackground();
         BackgroundScript.DeactivateDocImages();
-        //
-        // if (isFeedback) {
-        //     if (_nextFeedback != _Feedback04 && _nextFeedback != _Feedback04_1) {
-        //         BackgroundScript.GetBackground()[1].gameObject.SetActive(true);
-        //         BackgroundScript.GetDocImages()[1].gameObject.SetActive(true);
-        //     }
-        //     else {
-        //         BackgroundScript.GetBackground()[2].gameObject.SetActive(true);
-        //         BackgroundScript.GetDocImages()[2].gameObject.SetActive(true);
-        //     }
-        // }
-        // else {
-        //     BackgroundScript.GetBackground()[0].gameObject.SetActive(true);
-        //     BackgroundScript.GetDocImages()[0].gameObject.SetActive(true);
-        // }
+        
+        if (isFeedback) {
+            BackgroundScript.GetBackground()[1].gameObject.SetActive(true);
+            BackgroundScript.GetDocImages()[1].gameObject.SetActive(true);
+            
+            // if (_nextFeedback != _Feedback04 && _nextFeedback != _Feedback04_1) {
+            //     BackgroundScript.GetBackground()[1].gameObject.SetActive(true);
+            //     BackgroundScript.GetDocImages()[1].gameObject.SetActive(true);
+            // }
+            // else {
+            //     BackgroundScript.GetBackground()[2].gameObject.SetActive(true);
+            //     BackgroundScript.GetDocImages()[2].gameObject.SetActive(true);
+            // }
+        }
+        else {
+            BackgroundScript.GetBackground()[0].gameObject.SetActive(true);
+            BackgroundScript.GetDocImages()[0].gameObject.SetActive(true);
+        }
     }
     
     public void GoToFeedBack(int value) {

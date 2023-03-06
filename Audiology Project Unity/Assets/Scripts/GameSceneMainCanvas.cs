@@ -53,6 +53,9 @@ public class GameSceneMainCanvas : MonoBehaviour {
                 if (_nextPanel < 4) {
                     caseOneCounselingScript.GoToNarratorPanel(_nextPanel);
                 }
+                else if (_nextPanel >= 5) {
+                    caseOneCounselingScript.GoToInstruction(_nextPanel);
+                }
             }
             Debug.Log("Panel number: " + _nextPanel);
         }
@@ -64,6 +67,9 @@ public class GameSceneMainCanvas : MonoBehaviour {
             else if (StateNameController.ClinicalCaseNumber == 3) {
                 if (_nextPanel < 4) {
                     caseOneCounselingScript.GoToNarratorPanel(_nextPanel);
+                }
+                else if (_nextPanel >= 5) {
+                    caseOneCounselingScript.GoToInstruction(_nextPanel);
                 }
             }
             Debug.Log("Panel number: " + _nextPanel);

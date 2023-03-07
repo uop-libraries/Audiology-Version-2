@@ -325,43 +325,42 @@ public class CaseOneCounseling : MonoBehaviour {
     public void GoToTopic(int panelNumber) {
         Debug.Log("Topic Panel: " + panelNumber);
         const Panel topicPanel = Panel.Topic;
+        AudioClip nextAudioClip = null;
 
-        switch (panelNumber) {
-            case 1:
-                _nextTopic = _C1C_Topic_01_1;
-                StartCoroutine(ActionAfterAudioStop(null, clipC1CInstruction01));
-                break;
-            case 2:
-                _nextTopic = _C1C_Topic_01_2;
-                break;
-            case 3:
-                _nextTopic = _C1C_Topic_02;
-                break;
-            case 4:
-                _nextTopic = _C1C_Topic_03;
-                GoToInstructionNumber(panelNumber);
-                break;
-            case 5:
-                _nextTopic = _C1C_Topic_04;
-                break;
-            case 6:
-                _nextTopic = _C1C_Topic_05_1;
-                GoToInstructionNumber(panelNumber);
-                break;
-            case 7:
-                _nextTopic = _C1C_Topic_05_2;
-                GoToInstructionNumber(panelNumber);
-                break;
-            case 8:
-                _nextTopic = _C1C_Topic_05_3;
-                break;
-            case 9:
-                _nextTopic = _C1C_Topic_05_4;
-                break;
-        }
-        StateNameController.SwitchPanel(_nextTopic);
-        BackgroundScript.ActivateBackground(true);
+        // Get current feedback panel
+        _nextTopic = panelNumber switch {
+            1 => _C1C_Topic_01_1,
+            2 => _C1C_Topic_01_2,
+            3 => _C1C_Topic_02,
+            4 => _C1C_Topic_03,
+            5 => _C1C_Topic_04,
+            6 => _C1C_Topic_05_1,
+            7 => _C1C_Topic_05_2,
+            8 => _C1C_Topic_05_3,
+            9 => _C1C_Topic_05_4,
+            _ => _nextFeedback,
+        };
+        var child2 = _nextTopic.transform.GetChild(1).gameObject;
+
+        // Get next audio feedback clip
+        nextAudioClip = panelNumber switch {
+            1 => clipC1CTopic01_1,
+            2 => clipC1CTopic01_2,
+            3 => clipC1CTopic02,
+            4 => clipC1CTopic03,
+            5 => clipC1CTopic04,
+            6 => clipC1CTopic05_1,
+            7 => clipC1CTopic05_2,
+            8 => clipC1CTopic05_3,
+            9 => clipC1CTopic05_4,
+            _ => nextAudioClip
+        };
+
         ChangeBackground(topicPanel);
+        StateNameController.SwitchPanel(_nextTopic);
+
+        // Play audio and control the button activation
+        StartCoroutine(ActionAfterAudioStop(child2, nextAudioClip));
     }
 
 

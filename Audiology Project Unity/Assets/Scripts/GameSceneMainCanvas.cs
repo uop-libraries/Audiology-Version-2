@@ -20,8 +20,9 @@ public class GameSceneMainCanvas : MonoBehaviour {
     private List<GameObject> _moduleTextList = new List<GameObject>();
     private List<GameObject> _ModulePanelList = new List<GameObject>();
 
-    [SerializeField] private CaseOneHistory caseOneHistoryScript;
-    [SerializeField] private CaseOneCounseling caseOneCounselingScript;
+    [SerializeField] BackgroundScript backgroundScript;
+    [SerializeField] CaseOneHistory caseOneHistoryScript;
+    [SerializeField] CaseOneCounseling caseOneCounselingScript;
 
     private GameObject _currentChildCaseScenario;
     private int _nextPanel;
@@ -35,6 +36,7 @@ public class GameSceneMainCanvas : MonoBehaviour {
         // Todo change this back after debug -----------------------------( END )
 
         _nextPanel = 1;
+        backgroundScript.BackgroundScriptStart();
         InitializeModuleText();
         InitializeClinicalCasePanel();
         GoToClinicalCase(StateNameController.ClinicalCaseNumber);

@@ -10,19 +10,22 @@ public class BackgroundScript : MonoBehaviour
     private static GameObject _background;
     
     // Start is called before the first frame update
-    void Start()
+     public void BackgroundScriptStart()
     {
         InitializeBackground();
         // Set Initial Doctor images
         InitializeDocImages();
     }
 
-    private static void InitializeBackground()
+    public static void InitializeBackground()
     {
         _background = GameObject.Find("Background");
         
+        // Blue background
         _backgroundList.Add(_background.transform.GetChild(0).gameObject);
+        // Red background
         _backgroundList.Add(_background.transform.GetChild(1).gameObject);
+        // Green background
         _backgroundList.Add(_background.transform.GetChild(2).gameObject);
     }
 

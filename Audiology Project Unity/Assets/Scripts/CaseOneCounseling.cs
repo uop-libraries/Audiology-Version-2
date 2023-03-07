@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 
 public class CaseOneCounseling : MonoBehaviour {
+    // PanelType _currentPanelType;
+
     GameObject _nextNarration;
     GameObject _nextInstruction;
     GameObject _nextFeedback;
@@ -97,6 +99,14 @@ public class CaseOneCounseling : MonoBehaviour {
 
     private int _counter;
 
+    public enum Panel {
+        Narrator,
+        Instruction,
+        Feedback,
+        Topic,
+        Explanation,
+    }
+
     public void StartCase1Counseling() {
         _counter = 0;
         InitializePanel();
@@ -121,25 +131,27 @@ public class CaseOneCounseling : MonoBehaviour {
 
     public void GoToNarratorPanel(int panelNum) {
         AudioClip _nextClip = null;
+        Panel narratorPanel = Panel.Narrator;
 
         switch (panelNum) {
             case 1:
-                _nextInstruction = _C1C_Narrator_01;
+                _nextNarration = _C1C_Narrator_01;
                 _nextClip = clipC1CNarration01;
                 break;
             case 2:
-                _nextInstruction = _C1C_Narrator_02;
+                _nextNarration = _C1C_Narrator_02;
                 _nextClip = clipC1CNarration02;
                 break;
             case 3:
-                _nextInstruction = _C1C_Narrator_03;
+                _nextNarration = _C1C_Narrator_03;
                 _nextClip = clipC1CNarration03;
                 break;
         }
 
-        StateNameController.SwitchPanel(_nextInstruction);
+        StateNameController.SwitchPanel(_nextNarration);
+        ChangeBackground(narratorPanel);
 
-        var child2 = _nextInstruction.transform.GetChild(1).gameObject;
+        var child2 = _nextNarration.transform.GetChild(1).gameObject;
         StartCoroutine(ActionAfterAudioStop(child2, _nextClip));
     }
 
@@ -160,6 +172,8 @@ public class CaseOneCounseling : MonoBehaviour {
 
     public void GoToInstruction(int panelNumber) {
         Debug.Log("Instruction Panel: " + panelNumber);
+        const Panel instructionPanel = Panel.Instruction;
+
         switch (panelNumber) {
             case 1:
                 _nextInstruction = _C1C_Instruction_01;
@@ -208,7 +222,7 @@ public class CaseOneCounseling : MonoBehaviour {
         }
         StateNameController.SwitchPanel(_nextInstruction);
         BackgroundScript.ActivateBackground(true);
-        ChangeFeedbackBackground(false);
+        ChangeBackground(instructionPanel);
     }
 
     private void GoToInstructionNumber(int instructionNumber) {
@@ -244,30 +258,34 @@ public class CaseOneCounseling : MonoBehaviour {
     }
 
     // Control the doctor images behavior
-    public void ChangeFeedbackBackground(bool isFeedback) {
+    public void ChangeBackground(Panel panel) {
         BackgroundScript.DeactivateBackground();
         BackgroundScript.DeactivateDocImages();
-
-        if (isFeedback) {
-            BackgroundScript.GetBackground()[1].gameObject.SetActive(true);
-            BackgroundScript.GetDocImages()[1].gameObject.SetActive(true);
-
-            // if (_nextFeedback != _Feedback04 && _nextFeedback != _Feedback04_1) {
-            //     BackgroundScript.GetBackground()[1].gameObject.SetActive(true);
-            //     BackgroundScript.GetDocImages()[1].gameObject.SetActive(true);
-            // }
-            // else {
-            //     BackgroundScript.GetBackground()[2].gameObject.SetActive(true);
-            //     BackgroundScript.GetDocImages()[2].gameObject.SetActive(true);
-            // }
+        
+        Debug.Log("Panel type: " + panel);
+        switch (panel) {
+            case Panel.Narrator:
+                BackgroundScript.GetBackground()[0].gameObject.SetActive(true);
+                BackgroundScript.GetDocImages()[3].gameObject.SetActive(true);
+                break;
+            case Panel.Instruction:
+                BackgroundScript.GetBackground()[0].gameObject.SetActive(true);
+                BackgroundScript.GetDocImages()[0].gameObject.SetActive(true);
+                break;
+            case Panel.Feedback:
+                BackgroundScript.GetBackground()[1].gameObject.SetActive(true);
+                BackgroundScript.GetDocImages()[1].gameObject.SetActive(true);
+                break;
+            case Panel.Topic:
+                BackgroundScript.GetBackground()[2].gameObject.SetActive(true);
+                BackgroundScript.GetDocImages()[2].gameObject.SetActive(true);
+                break;
         }
-        else {
-            BackgroundScript.GetBackground()[0].gameObject.SetActive(true);
-            BackgroundScript.GetDocImages()[0].gameObject.SetActive(true);
-        }
+
     }
 
     public void GoToFeedBack(int value) {
+        const Panel feedbackPanel = Panel.Feedback;
         AudioClip nextAudioClip = null;
 
         // Get current feedback panel
@@ -297,15 +315,17 @@ public class CaseOneCounseling : MonoBehaviour {
             _ => nextAudioClip
         };
 
-        ChangeFeedbackBackground(true);
+        ChangeBackground(feedbackPanel);
         StateNameController.SwitchPanel(_nextFeedback);
 
         // Play audio and control the button activation
         StartCoroutine(ActionAfterAudioStop(child2, nextAudioClip));
     }
-    
+
     public void GoToTopic(int panelNumber) {
         Debug.Log("Topic Panel: " + panelNumber);
+        const Panel topicPanel = Panel.Topic;
+
         switch (panelNumber) {
             case 1:
                 _nextTopic = _C1C_Topic_01_1;
@@ -341,7 +361,7 @@ public class CaseOneCounseling : MonoBehaviour {
         }
         StateNameController.SwitchPanel(_nextTopic);
         BackgroundScript.ActivateBackground(true);
-        ChangeFeedbackBackground(false);
+        ChangeBackground(topicPanel);
     }
 
 

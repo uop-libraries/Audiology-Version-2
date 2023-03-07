@@ -6,81 +6,94 @@ using UnityEngine.UI;
 
 
 public class CaseOneCounseling : MonoBehaviour {
-    private GameObject _nextNarration;
-    private GameObject _nextInstruction;
-    private GameObject _nextFeedback;
-    private GameObject _nextTopic;
-    private GameObject _nextExplanation;
+    GameObject _nextNarration;
+    GameObject _nextInstruction;
+    GameObject _nextFeedback;
+    GameObject _nextTopic;
+    GameObject _nextExplanation;
 
     [Header("Narrator Panel")]
-    [SerializeField] private GameObject _C1C_Narrator_01;
-    [SerializeField] private GameObject _C1C_Narrator_02;
-    [SerializeField] private GameObject _C1C_Narrator_03;
+    [SerializeField] GameObject _C1C_Narrator_01;
+    [SerializeField] GameObject _C1C_Narrator_02;
+    [SerializeField] GameObject _C1C_Narrator_03;
 
     [Header("Instruction Panel")]
-    [SerializeField] private GameObject _C1C_Instruction_01;
-    [SerializeField] private GameObject _C1C_Instruction_02;
-    [SerializeField] private GameObject _C1C_Instruction_03;
-    [SerializeField] private GameObject _C1C_Instruction_04;
-    [SerializeField] private GameObject _C1C_Instruction_05;
-    [SerializeField] private GameObject _C1C_Instruction_06;
-    [SerializeField] private GameObject _C1C_Instruction_07;
-    [SerializeField] private GameObject _C1C_Instruction_08;
-    [SerializeField] private GameObject _C1C_Instruction_09;
-    [SerializeField] private GameObject _C1C_Instruction_10;
-    [SerializeField] private GameObject _C1C_Instruction_11;
-    [SerializeField] private GameObject _C1C_Instruction_12;
+    [SerializeField] GameObject _C1C_Instruction_01;
+    [SerializeField] GameObject _C1C_Instruction_02;
+    [SerializeField] GameObject _C1C_Instruction_03;
+    [SerializeField] GameObject _C1C_Instruction_04;
+    [SerializeField] GameObject _C1C_Instruction_05;
+    [SerializeField] GameObject _C1C_Instruction_06;
+    [SerializeField] GameObject _C1C_Instruction_07;
+    [SerializeField] GameObject _C1C_Instruction_08;
+    [SerializeField] GameObject _C1C_Instruction_09;
+    [SerializeField] GameObject _C1C_Instruction_10;
+    [SerializeField] GameObject _C1C_Instruction_11;
+    [SerializeField] GameObject _C1C_Instruction_12;
 
     [Header("Feedback Panel")]
-    [SerializeField] private GameObject _C1C_Feedback_01;
-    [SerializeField] private GameObject _C1C_Feedback_02;
-    [SerializeField] private GameObject _C1C_Feedback_03;
-    [SerializeField] private GameObject _C1C_Feedback_04;
-    [SerializeField] private GameObject _C1C_Feedback_05;
-    [SerializeField] private GameObject _C1C_Feedback_06;
-    [SerializeField] private GameObject _C1C_Feedback_07;
-    [SerializeField] private GameObject _C1C_Feedback_08;
+    [SerializeField] GameObject _C1C_Feedback_01;
+    [SerializeField] GameObject _C1C_Feedback_02;
+    [SerializeField] GameObject _C1C_Feedback_03;
+    [SerializeField] GameObject _C1C_Feedback_04;
+    [SerializeField] GameObject _C1C_Feedback_05;
+    [SerializeField] GameObject _C1C_Feedback_06;
+    [SerializeField] GameObject _C1C_Feedback_07;
+    [SerializeField] GameObject _C1C_Feedback_08;
 
     [Header("Topic Panel")]
-    [SerializeField] private GameObject _C1C_Topic_01_1;
-    [SerializeField] private GameObject _C1C_Topic_01_2;
-    [SerializeField] private GameObject _C1C_Topic_02;
-    [SerializeField] private GameObject _C1C_Topic_03;
-    [SerializeField] private GameObject _C1C_Topic_04;
-    [SerializeField] private GameObject _C1C_Topic_05_1;
-    [SerializeField] private GameObject _C1C_Topic_05_2;
-    [SerializeField] private GameObject _C1C_Topic_05_3;
-    [SerializeField] private GameObject _C1C_Topic_05_4;
+    [SerializeField] GameObject _C1C_Topic_01_1;
+    [SerializeField] GameObject _C1C_Topic_01_2;
+    [SerializeField] GameObject _C1C_Topic_02;
+    [SerializeField] GameObject _C1C_Topic_03;
+    [SerializeField] GameObject _C1C_Topic_04;
+    [SerializeField] GameObject _C1C_Topic_05_1;
+    [SerializeField] GameObject _C1C_Topic_05_2;
+    [SerializeField] GameObject _C1C_Topic_05_3;
+    [SerializeField] GameObject _C1C_Topic_05_4;
 
     [Header("Explanation Panel")]
-    [SerializeField] private GameObject _C1C_Explanation_01_1;
-    [SerializeField] private GameObject _C1C_Explanation_01_2;
-    [SerializeField] private GameObject _C1C_Explanation_01_3;
-    [SerializeField] private GameObject _C1C_Explanation_02_1;
-    [SerializeField] private GameObject _C1C_Explanation_02_2;
-    [SerializeField] private GameObject _C1C_Explanation_02_3;
+    [SerializeField] GameObject _C1C_Explanation_01_1;
+    [SerializeField] GameObject _C1C_Explanation_01_2;
+    [SerializeField] GameObject _C1C_Explanation_01_3;
+    [SerializeField] GameObject _C1C_Explanation_02_1;
+    [SerializeField] GameObject _C1C_Explanation_02_2;
+    [SerializeField] GameObject _C1C_Explanation_02_3;
 
     [Header("AudioSource")]
     [SerializeField] private AudioSource audioSource;
 
     [Header("AudioClip")]
     // Narration audio clip
-    [SerializeField] private AudioClip clipC1CNarration01;
-    [SerializeField] private AudioClip clipC1CNarration02;
-    [SerializeField] private AudioClip clipC1CNarration03;
-
-    // Feedback audio clip
-    [SerializeField] private AudioClip clipC1CFeedback01;
-    [SerializeField] private AudioClip clipC1CFeedback02;
-    [SerializeField] private AudioClip clipC1CFeedback03;
-    [SerializeField] private AudioClip clipC1CFeedback04;
-    [SerializeField] private AudioClip clipC1CFeedback05;
-    [SerializeField] private AudioClip clipC1CFeedback06;
-    [SerializeField] private AudioClip clipC1CFeedback07;
-    [SerializeField] private AudioClip clipC1CFeedback08;
+    [SerializeField] AudioClip clipC1CNarration01;
+    [SerializeField] AudioClip clipC1CNarration02;
+    [SerializeField] AudioClip clipC1CNarration03;
 
     // Instruction audio clip
-    [SerializeField] private AudioClip clipC1CInstruction01;
+    [SerializeField] AudioClip clipC1CInstruction01;
+
+    // Feedback audio clip
+    [SerializeField] AudioClip clipC1CFeedback01;
+    [SerializeField] AudioClip clipC1CFeedback02;
+    [SerializeField] AudioClip clipC1CFeedback03;
+    [SerializeField] AudioClip clipC1CFeedback04;
+    [SerializeField] AudioClip clipC1CFeedback05;
+    [SerializeField] AudioClip clipC1CFeedback06;
+    [SerializeField] AudioClip clipC1CFeedback07;
+    [SerializeField] AudioClip clipC1CFeedback08;
+
+    // Topic audio clip
+    [SerializeField] AudioClip clipC1CTopic01_1;
+    [SerializeField] AudioClip clipC1CTopic01_2;
+    [SerializeField] AudioClip clipC1CTopic02;
+    [SerializeField] AudioClip clipC1CTopic03;
+    [SerializeField] AudioClip clipC1CTopic04;
+    [SerializeField] AudioClip clipC1CTopic05_1;
+    [SerializeField] AudioClip clipC1CTopic05_2;
+    [SerializeField] AudioClip clipC1CTopic05_3;
+    [SerializeField] AudioClip clipC1CTopic05_4;
+
+
 
     private int _counter;
 
@@ -289,6 +302,46 @@ public class CaseOneCounseling : MonoBehaviour {
 
         // Play audio and control the button activation
         StartCoroutine(ActionAfterAudioStop(child2, nextAudioClip));
+    }
+    
+    public void GoToTopic(int panelNumber) {
+        Debug.Log("Topic Panel: " + panelNumber);
+        switch (panelNumber) {
+            case 1:
+                _nextTopic = _C1C_Topic_01_1;
+                StartCoroutine(ActionAfterAudioStop(null, clipC1CInstruction01));
+                break;
+            case 2:
+                _nextTopic = _C1C_Topic_01_2;
+                break;
+            case 3:
+                _nextTopic = _C1C_Topic_02;
+                break;
+            case 4:
+                _nextTopic = _C1C_Topic_03;
+                GoToInstructionNumber(panelNumber);
+                break;
+            case 5:
+                _nextTopic = _C1C_Topic_04;
+                break;
+            case 6:
+                _nextTopic = _C1C_Topic_05_1;
+                GoToInstructionNumber(panelNumber);
+                break;
+            case 7:
+                _nextTopic = _C1C_Topic_05_2;
+                GoToInstructionNumber(panelNumber);
+                break;
+            case 8:
+                _nextTopic = _C1C_Topic_05_3;
+                break;
+            case 9:
+                _nextTopic = _C1C_Topic_05_4;
+                break;
+        }
+        StateNameController.SwitchPanel(_nextTopic);
+        BackgroundScript.ActivateBackground(true);
+        ChangeFeedbackBackground(false);
     }
 
 

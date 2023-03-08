@@ -55,12 +55,16 @@ public class GameSceneMainCanvas : MonoBehaviour {
                 if (_nextPanel < 4) {
                     caseOneCounselingScript.GoToNarratorPanel(_nextPanel);
                 }
-                else if (_nextPanel is >= 4 and < 6) {
+                else if (_nextPanel >= 4) {
                     caseOneCounselingScript.GoToInstruction(_nextPanel - 3);
                 }
-                else if (_nextPanel is >= 6 and < 8) {
-                    caseOneCounselingScript.GoToTopic(_nextPanel - 5);
-                }
+                // else if (_nextPanel is >= 6 and < 8) {
+                //     caseOneCounselingScript.GoToTopic(_nextPanel - 5);
+                // }
+                // else if (_nextPanel is >= 8 and < ) {
+                //     caseOneCounselingScript.GoToTopic(_nextPanel - 5);
+                // }
+                
             }
             Debug.Log("_nextPanel: " + _nextPanel);
         }
@@ -76,9 +80,9 @@ public class GameSceneMainCanvas : MonoBehaviour {
                 else if (_nextPanel is >= 4 and < 6) {
                     caseOneCounselingScript.GoToInstruction(_nextPanel - 3);
                 }
-                else if (_nextPanel is >= 6 and < 8) {
-                    caseOneCounselingScript.GoToTopic(_nextPanel - 5);
-                }
+                // else if (_nextPanel is >= 6 and < 8) {
+                //     caseOneCounselingScript.GoToTopic(_nextPanel - 5);
+                // }
             }
             Debug.Log("_nextPanel: " + _nextPanel);
         }

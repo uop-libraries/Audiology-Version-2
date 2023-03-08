@@ -187,18 +187,17 @@ public class CaseOneCounseling : MonoBehaviour {
                 break;
             case 4:
                 _nextInstruction = _C1C_Instruction_04;
-                GoToInstructionNumber(panelNumber);
                 break;
             case 5:
                 _nextInstruction = _C1C_Instruction_05;
                 break;
             case 6:
                 _nextInstruction = _C1C_Instruction_06;
-                GoToInstructionNumber(panelNumber);
+                // GoToInstructionNumber(panelNumber);
                 break;
             case 7:
                 _nextInstruction = _C1C_Instruction_07;
-                GoToInstructionNumber(panelNumber);
+                // GoToInstructionNumber(panelNumber);
                 break;
             case 8:
                 _nextInstruction = _C1C_Instruction_08;
@@ -208,15 +207,15 @@ public class CaseOneCounseling : MonoBehaviour {
                 break;
             case 10:
                 _nextInstruction = _C1C_Instruction_10;
-                GoToInstructionNumber(panelNumber);
+                // GoToInstructionNumber(panelNumber);
                 break;
             case 11:
                 _nextInstruction = _C1C_Instruction_11;
-                GoToInstructionNumber(panelNumber);
+                // GoToInstructionNumber(panelNumber);
                 break;
             case 12:
                 _nextInstruction = _C1C_Instruction_12;
-                GoToInstructionNumber(panelNumber);
+                // GoToInstructionNumber(panelNumber);
                 break;
 
         }

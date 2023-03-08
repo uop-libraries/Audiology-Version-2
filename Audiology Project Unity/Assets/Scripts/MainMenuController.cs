@@ -1,3 +1,4 @@
+// using Google.XR.Cardboard.Editor;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -5,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.XR;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -20,6 +22,8 @@ public class MainMenuController : MonoBehaviour
 
     private Button _case1CounselingButton;
     private Button _case2CounselingButton;
+
+    bool _isVRMode;
     
 
     // Start is called before the first frame update
@@ -48,6 +52,14 @@ public class MainMenuController : MonoBehaviour
         {
             SetCounselingButton();
         }
+        // if (_isVRMode) {
+        //     XRSettings.LoadDeviceByName("daydream");
+        //     XRSettings.enabled = true;
+        // }
+        // else {
+        //     XRSettings.LoadDeviceByName("");
+        //     XRSettings.enabled = false;
+        // }
     }
     
     // Keep counseling button lock until respective case history is complete
@@ -103,5 +115,9 @@ public class MainMenuController : MonoBehaviour
     public void QuitApp()
     {
         Application.Quit();
-    } 
+    }
+
+    // public void ToggleVRMode() {
+    //     _isVRMode = !_isVRMode;
+    // }
 }

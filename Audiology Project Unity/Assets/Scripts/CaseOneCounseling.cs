@@ -257,10 +257,14 @@ public class CaseOneCounseling : MonoBehaviour {
         }
     }
 
-    // Control the doctor images behavior
-    public void ChangeBackground(Panel panel) {
+    private void DeactivateBackground() {
         BackgroundScript.DeactivateBackground();
         BackgroundScript.DeactivateDocImages();
+        BackgroundScript.DeactivateDiagram();
+    }
+    // Control the doctor images behavior
+    public void ChangeBackground(Panel panel) {
+        DeactivateBackground();
         
         Debug.Log("Panel type: " + panel);
         switch (panel) {
@@ -278,7 +282,13 @@ public class CaseOneCounseling : MonoBehaviour {
                 break;
             case Panel.Topic:
                 BackgroundScript.GetBackground()[2].gameObject.SetActive(true);
-                BackgroundScript.GetDocImages()[2].gameObject.SetActive(true);
+                BackgroundScript.GetDocImages()[1].gameObject.SetActive(true);
+                
+                // Get Diagram for current topic
+                if (StateNameController.CurrentActivePanel == _C1C_Topic_01_1 ||
+                    StateNameController.CurrentActivePanel == _C1C_Topic_01_2) {
+                    BackgroundScript.GetDiagram()[0].gameObject.SetActive(true);
+                }
                 break;
         }
 
@@ -314,9 +324,9 @@ public class CaseOneCounseling : MonoBehaviour {
             8 => clipC1CFeedback08,
             _ => nextAudioClip
         };
-
-        ChangeBackground(feedbackPanel);
+        
         StateNameController.SwitchPanel(_nextFeedback);
+        ChangeBackground(feedbackPanel);
 
         // Play audio and control the button activation
         StartCoroutine(ActionAfterAudioStop(child2, nextAudioClip));
@@ -353,11 +363,11 @@ public class CaseOneCounseling : MonoBehaviour {
             7 => clipC1CTopic05_2,
             8 => clipC1CTopic05_3,
             9 => clipC1CTopic05_4,
-            _ => nextAudioClip
+            _ => nextAudioClip,
         };
-
-        ChangeBackground(topicPanel);
+        
         StateNameController.SwitchPanel(_nextTopic);
+        ChangeBackground(topicPanel);
 
         // Play audio and control the button activation
         StartCoroutine(ActionAfterAudioStop(child2, nextAudioClip));

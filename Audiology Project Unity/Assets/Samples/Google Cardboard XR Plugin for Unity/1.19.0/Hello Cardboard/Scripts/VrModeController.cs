@@ -172,6 +172,7 @@ public class VrModeController : MonoBehaviour
         Debug.Log("XR deinitialized.");
 
         _mainCamera.ResetAspect();
+        _mainCamera.transform.Rotate(82.674f, 75.848f,0f, Space.Self);
         _mainCamera.fieldOfView = _defaultFieldOfView;
     }
 }

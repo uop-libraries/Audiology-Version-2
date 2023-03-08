@@ -286,7 +286,8 @@ public class CaseOneCounseling : MonoBehaviour {
                 
                 // Get Diagram for current topic
                 if (StateNameController.CurrentActivePanel == _C1C_Topic_01_1 ||
-                    StateNameController.CurrentActivePanel == _C1C_Topic_01_2) {
+                    StateNameController.CurrentActivePanel == _C1C_Topic_01_2 ||
+                    StateNameController.CurrentActivePanel == _C1C_Topic_02) {
                     BackgroundScript.GetDiagram()[0].gameObject.SetActive(true);
                 }
                 break;

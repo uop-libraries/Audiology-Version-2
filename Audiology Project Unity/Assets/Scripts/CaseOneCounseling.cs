@@ -373,6 +373,37 @@ public class CaseOneCounseling : MonoBehaviour {
         StartCoroutine(ActionAfterAudioStop(child2, nextAudioClip));
     }
 
-
+    public void ReturnToFromVideo() {
+        // if (StateNameController.CurrentActivePanel == _Instruction02) {
+        //     GoToInstruction(2);
+        // }
+        // else if (StateNameController.CurrentActivePanel == _Instruction04) {
+        //     GoToInstruction(4);
+        // }
+        // else if (StateNameController.CurrentActivePanel == _Instruction06) {
+        //     GoToInstruction(6);
+        // }
+        // else if (StateNameController.CurrentActivePanel == _Instruction08) {
+        //     GoToInstruction(8);
+        // }
+        // else if (StateNameController.CurrentActivePanel == _Instruction09) {
+        //     GoToInstruction(9);
+        // }
+        // else if (StateNameController.CurrentActivePanel == _Instruction10) {
+        //     GoToInstruction(10);
+        // }
+        // else if (StateNameController.CurrentActivePanel == _Instruction11) {
+        //     GoToInstruction(11);
+        // }
+        // else if (StateNameController.CurrentActivePanel == _Instruction12) {
+        //     GoToInstruction(12);
+        // }
+        // else if (StateNameController.CurrentActivePanel == _Instruction13) {
+        //     GoToInstruction(13);
+        // }
+        // else if (StateNameController.CurrentActivePanel == _Instruction14) {
+        //     GoToInstruction(14);
+        // }
+    }
 
 }

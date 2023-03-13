@@ -153,5 +153,13 @@ public class GameSceneMainCanvas : MonoBehaviour {
         Application.Quit();
     }
 
+    public void ReturnToFromVideo() {
+        if (StateNameController.ClinicalCaseNumber == 1) {
+            caseOneHistoryScript.ReturnToFromVideo();
+        }
+        else if (StateNameController.ClinicalCaseNumber == 3) {
+            caseOneCounselingScript.ReturnToFromVideo();
+        }
+    }
 
 }

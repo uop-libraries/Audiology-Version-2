@@ -193,11 +193,10 @@ public class CaseOneCounseling : MonoBehaviour {
                 break;
             case 6:
                 _nextInstruction = _C1C_Instruction_06;
-                // GoToInstructionNumber(panelNumber);
                 break;
             case 7:
                 _nextInstruction = _C1C_Instruction_07;
-                // GoToInstructionNumber(panelNumber);
+                GoToInstructionNumber(panelNumber);
                 break;
             case 8:
                 _nextInstruction = _C1C_Instruction_08;
@@ -228,25 +227,20 @@ public class CaseOneCounseling : MonoBehaviour {
         _counter = 0;
         var child1 = _nextInstruction.transform.GetChild(1).gameObject;
         var child2 = _nextInstruction.transform.GetChild(2).gameObject;
-
-        //Todo Debug
+        
         child2.SetActive(false);
-        //Todo Debug
-
+        
         foreach (Transform child in child1.transform) {
             if (child.gameObject.GetComponent<Image>().color == Color.grey) {
-                if (instructionNumber == 7) {
-                    child.gameObject.SetActive(false);
-                }
+                // if (instructionNumber == 7) {
+                //     child.gameObject.SetActive(false);
+                // }
 
                 _counter++;
             }
         }
 
-        if (_counter == 2 && instructionNumber == 2 ||
-            _counter == 1 && instructionNumber == 4 ||
-            _counter == 6 && instructionNumber == 6 ||
-            _counter == 7 && instructionNumber == 7 ||
+        if (_counter == 2 && instructionNumber == 7 ||
             _counter == 3 && instructionNumber == 10 ||
             _counter == 2 && instructionNumber == 11 ||
             _counter == 1 && instructionNumber == 12 ||
@@ -374,9 +368,9 @@ public class CaseOneCounseling : MonoBehaviour {
     }
 
     public void ReturnToFromVideo() {
-        // if (StateNameController.CurrentActivePanel == _Instruction02) {
-        //     GoToInstruction(2);
-        // }
+        if (StateNameController.CurrentActivePanel == _C1C_Instruction_07) {
+            GoToInstruction(7);
+        }
         // else if (StateNameController.CurrentActivePanel == _Instruction04) {
         //     GoToInstruction(4);
         // }

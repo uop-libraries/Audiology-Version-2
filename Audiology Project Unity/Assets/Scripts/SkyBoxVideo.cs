@@ -10,6 +10,7 @@ public class SkyBoxVideo : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private VideoPlayer _videoPlayer;
     [SerializeField] private VideoClip[] Case1Clip;
+    [SerializeField] private VideoClip[] Case1CounselingClip;
     private int _videoClipIndex;
     
     [SerializeField] public Material mainSkyBox;

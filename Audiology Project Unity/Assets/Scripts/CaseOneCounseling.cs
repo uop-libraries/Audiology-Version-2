@@ -104,9 +104,15 @@ public class CaseOneCounseling : MonoBehaviour {
     [SerializeField] AudioClip clipC1CTopic07_1;
     [SerializeField] AudioClip clipC1CTopic07_2;
     [SerializeField] AudioClip clipC1CTopic07_3;
-
-
-
+    
+    // Explanation audio clip
+    [SerializeField] AudioClip clipC1CExplanation01_1;
+    [SerializeField] AudioClip clipC1CExplanation01_2;
+    [SerializeField] AudioClip clipC1CExplanation01_3;
+    [SerializeField] AudioClip clipC1CExplanation02_1;
+    [SerializeField] AudioClip clipC1CExplanation02_2;
+    [SerializeField] AudioClip clipC1CExplanation02_3;
+    
     private int _counter;
 
     public enum Panel {
@@ -251,11 +257,7 @@ public class CaseOneCounseling : MonoBehaviour {
         }
 
         if (_counter == 2 && instructionNumber == 7 ||
-            _counter == 3 && instructionNumber == 10 ||
-            _counter == 2 && instructionNumber == 11 ||
-            _counter == 1 && instructionNumber == 12 ||
-            _counter == 1 && instructionNumber == 13 ||
-            _counter == 1 && instructionNumber == 14) {
+            _counter == 2 && instructionNumber == 12) {
             child2.SetActive(true);
         }
     }
@@ -283,7 +285,7 @@ public class CaseOneCounseling : MonoBehaviour {
                 BackgroundScript.GetBackground()[1].gameObject.SetActive(true);
                 BackgroundScript.GetDocImages()[1].gameObject.SetActive(true);
                 break;
-            case Panel.Topic:
+            case Panel.Topic or Panel.Explanation:
                 BackgroundScript.GetBackground()[2].gameObject.SetActive(true);
                 BackgroundScript.GetDocImages()[1].gameObject.SetActive(true);
 
@@ -395,6 +397,43 @@ public class CaseOneCounseling : MonoBehaviour {
         // Play audio and control the button activation
         StartCoroutine(ActionAfterAudioStop(child2, nextAudioClip));
     }
+    
+    public void GoToExplanation(int value) {
+        const Panel explanationPanel = Panel.Explanation;
+        AudioClip nextAudioClip = null;
+
+        // Get current feedback panel
+        _nextExplanation = value switch {
+            1 => _C1C_Explanation_01_1,
+            2 => _C1C_Explanation_01_2,
+            3 => _C1C_Explanation_01_3,
+            4 => _C1C_Explanation_02_1,
+            5 => _C1C_Explanation_02_2,
+            6 => _C1C_Explanation_02_3,
+            _ => _nextFeedback,
+        };
+        var child2 = _nextFeedback.transform.GetChild(1).gameObject;
+
+        // Get next audio feedback clip
+        nextAudioClip = value switch {
+            1 => clipC1CFeedback01,
+            2 => clipC1CFeedback02,
+            3 => clipC1CFeedback03,
+            4 => clipC1CFeedback04,
+            5 => clipC1CFeedback05,
+            6 => clipC1CFeedback06,
+            7 => clipC1CFeedback07,
+            8 => clipC1CFeedback08,
+            _ => nextAudioClip
+        };
+
+        StateNameController.SwitchPanel(_nextExplanation);
+        BackgroundScript.ActivateBackground(true);
+        ChangeBackground(explanationPanel);
+
+        // Play audio and control the button activation
+        StartCoroutine(ActionAfterAudioStop(child2, nextAudioClip));
+    }
 
     public void ReturnToFromVideo() {
         if (StateNameController.CurrentActivePanel == _C1C_Instruction_07) {
@@ -406,27 +445,9 @@ public class CaseOneCounseling : MonoBehaviour {
         else if (StateNameController.CurrentActivePanel == _C1C_Topic_07_3) {
             GoToInstruction(12);
         }
-        // else if (StateNameController.CurrentActivePanel == _Instruction08) {
-        //     GoToInstruction(8);
-        // }
-        // else if (StateNameController.CurrentActivePanel == _Instruction09) {
-        //     GoToInstruction(9);
-        // }
-        // else if (StateNameController.CurrentActivePanel == _Instruction10) {
-        //     GoToInstruction(10);
-        // }
-        // else if (StateNameController.CurrentActivePanel == _Instruction11) {
-        //     GoToInstruction(11);
-        // }
-        // else if (StateNameController.CurrentActivePanel == _Instruction12) {
-        //     GoToInstruction(12);
-        // }
-        // else if (StateNameController.CurrentActivePanel == _Instruction13) {
-        //     GoToInstruction(13);
-        // }
-        // else if (StateNameController.CurrentActivePanel == _Instruction14) {
-        //     GoToInstruction(14);
-        // }
+        else if (StateNameController.CurrentActivePanel == _C1C_Explanation_02_3) {
+            GoToInstruction(12);
+        }
     }
 
 }

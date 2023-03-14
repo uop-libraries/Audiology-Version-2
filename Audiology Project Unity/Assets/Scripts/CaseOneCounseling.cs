@@ -337,6 +337,7 @@ public class CaseOneCounseling : MonoBehaviour {
         };
 
         StateNameController.SwitchPanel(_nextFeedback);
+        BackgroundScript.ActivateBackground(true);
         ChangeBackground(feedbackPanel);
 
         // Play audio and control the button activation
@@ -388,6 +389,7 @@ public class CaseOneCounseling : MonoBehaviour {
         };
 
         StateNameController.SwitchPanel(_nextTopic);
+        BackgroundScript.ActivateBackground(true);
         ChangeBackground(topicPanel);
 
         // Play audio and control the button activation
@@ -398,12 +400,12 @@ public class CaseOneCounseling : MonoBehaviour {
         if (StateNameController.CurrentActivePanel == _C1C_Instruction_07) {
             GoToInstruction(7);
         }
-        // else if (StateNameController.CurrentActivePanel == _Instruction04) {
-        //     GoToInstruction(4);
-        // }
-        // else if (StateNameController.CurrentActivePanel == _Instruction06) {
-        //     GoToInstruction(6);
-        // }
+        else if (StateNameController.CurrentActivePanel == _C1C_Topic_07_2) {
+            GoToTopic(14);
+        }
+        else if (StateNameController.CurrentActivePanel == _C1C_Topic_07_3) {
+            GoToInstruction(12);
+        }
         // else if (StateNameController.CurrentActivePanel == _Instruction08) {
         //     GoToInstruction(8);
         // }

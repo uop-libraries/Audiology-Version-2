@@ -148,6 +148,18 @@ public class GameSceneMainCanvas : MonoBehaviour {
         SceneManager.LoadScene(1);
     }
 
+    public void Case1CounselingDone() {
+        Debug.Log("Case1CounselingDone");
+        StateNameController.IsCase1CounselingDone = true;
+        SceneManager.LoadScene(1);
+    }
+    
+    public void Case2CounselingDone() {
+        Debug.Log("Case2CounselingDone");
+        StateNameController.IsCase2CounselingDone = true;
+        SceneManager.LoadScene(1);
+    }
+    
     // OnClick() event for quit button
     public void QuitApp() {
         Application.Quit();

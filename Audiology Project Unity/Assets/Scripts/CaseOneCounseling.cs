@@ -53,7 +53,12 @@ public class CaseOneCounseling : MonoBehaviour {
     [SerializeField] GameObject _C1C_Topic_05_2;
     [SerializeField] GameObject _C1C_Topic_05_3;
     [SerializeField] GameObject _C1C_Topic_05_4;
-
+    [SerializeField] GameObject _C1C_Topic_06_1;
+    [SerializeField] GameObject _C1C_Topic_06_2;
+    [SerializeField] GameObject _C1C_Topic_07_1;
+    [SerializeField] GameObject _C1C_Topic_07_2;
+    [SerializeField] GameObject _C1C_Topic_07_3;
+    
     [Header("Explanation Panel")]
     [SerializeField] GameObject _C1C_Explanation_01_1;
     [SerializeField] GameObject _C1C_Explanation_01_2;
@@ -94,6 +99,11 @@ public class CaseOneCounseling : MonoBehaviour {
     [SerializeField] AudioClip clipC1CTopic05_2;
     [SerializeField] AudioClip clipC1CTopic05_3;
     [SerializeField] AudioClip clipC1CTopic05_4;
+    [SerializeField] AudioClip clipC1CTopic06_1;
+    [SerializeField] AudioClip clipC1CTopic06_2;
+    [SerializeField] AudioClip clipC1CTopic07_1;
+    [SerializeField] AudioClip clipC1CTopic07_2;
+    [SerializeField] AudioClip clipC1CTopic07_3;
 
 
 
@@ -349,6 +359,11 @@ public class CaseOneCounseling : MonoBehaviour {
             7 => _C1C_Topic_05_2,
             8 => _C1C_Topic_05_3,
             9 => _C1C_Topic_05_4,
+            10 => _C1C_Topic_06_1,
+            11 => _C1C_Topic_06_2,
+            12 => _C1C_Topic_07_1,
+            13 => _C1C_Topic_07_2,
+            14 => _C1C_Topic_07_3,
             _ => _nextFeedback,
         };
         var child2 = _nextTopic.transform.GetChild(1).gameObject;
@@ -364,6 +379,11 @@ public class CaseOneCounseling : MonoBehaviour {
             7 => clipC1CTopic05_2,
             8 => clipC1CTopic05_3,
             9 => clipC1CTopic05_4,
+            10 => clipC1CTopic06_1,
+            11 => clipC1CTopic06_2,
+            12 => clipC1CTopic07_1,
+            13 => clipC1CTopic07_2,
+            14 => clipC1CTopic07_3,
             _ => nextAudioClip,
         };
 

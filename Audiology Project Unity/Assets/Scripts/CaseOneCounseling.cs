@@ -227,9 +227,9 @@ public class CaseOneCounseling : MonoBehaviour {
         _counter = 0;
         var child1 = _nextInstruction.transform.GetChild(1).gameObject;
         var child2 = _nextInstruction.transform.GetChild(2).gameObject;
-        
+
         child2.SetActive(false);
-        
+
         foreach (Transform child in child1.transform) {
             if (child.gameObject.GetComponent<Image>().color == Color.grey) {
                 // if (instructionNumber == 7) {
@@ -255,10 +255,10 @@ public class CaseOneCounseling : MonoBehaviour {
         BackgroundScript.DeactivateDocImages();
         BackgroundScript.DeactivateDiagram();
     }
-    // Control the doctor images behavior
+    // Control the doctor images and other diagram behavior
     public void ChangeBackground(Panel panel) {
         DeactivateBackground();
-        
+
         Debug.Log("Panel type: " + panel);
         switch (panel) {
             case Panel.Narrator:
@@ -276,12 +276,19 @@ public class CaseOneCounseling : MonoBehaviour {
             case Panel.Topic:
                 BackgroundScript.GetBackground()[2].gameObject.SetActive(true);
                 BackgroundScript.GetDocImages()[1].gameObject.SetActive(true);
-                
-                // Get Diagram for current topic
+
+                // Get Audio gram Diagram for current topic
                 if (StateNameController.CurrentActivePanel == _C1C_Topic_01_1 ||
                     StateNameController.CurrentActivePanel == _C1C_Topic_01_2 ||
                     StateNameController.CurrentActivePanel == _C1C_Topic_02) {
                     BackgroundScript.GetDiagram()[0].gameObject.SetActive(true);
+                }
+                // Get Hearing Aid diagram for current topic
+                else if (StateNameController.CurrentActivePanel == _C1C_Topic_05_1 ||
+                    StateNameController.CurrentActivePanel == _C1C_Topic_05_2 ||
+                    StateNameController.CurrentActivePanel == _C1C_Topic_05_3 ||
+                    StateNameController.CurrentActivePanel == _C1C_Topic_05_4) {
+                    BackgroundScript.GetDiagram()[1].gameObject.SetActive(true);
                 }
                 break;
         }
@@ -318,7 +325,7 @@ public class CaseOneCounseling : MonoBehaviour {
             8 => clipC1CFeedback08,
             _ => nextAudioClip
         };
-        
+
         StateNameController.SwitchPanel(_nextFeedback);
         ChangeBackground(feedbackPanel);
 
@@ -359,7 +366,7 @@ public class CaseOneCounseling : MonoBehaviour {
             9 => clipC1CTopic05_4,
             _ => nextAudioClip,
         };
-        
+
         StateNameController.SwitchPanel(_nextTopic);
         ChangeBackground(topicPanel);
 

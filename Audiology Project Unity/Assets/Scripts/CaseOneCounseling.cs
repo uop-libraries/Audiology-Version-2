@@ -222,15 +222,13 @@ public class CaseOneCounseling : MonoBehaviour {
                 break;
             case 10:
                 _nextInstruction = _C1C_Instruction_10;
-                // GoToInstructionNumber(panelNumber);
                 break;
             case 11:
                 _nextInstruction = _C1C_Instruction_11;
-                // GoToInstructionNumber(panelNumber);
                 break;
             case 12:
                 _nextInstruction = _C1C_Instruction_12;
-                // GoToInstructionNumber(panelNumber);
+                GoToInstructionNumber(panelNumber);
                 break;
 
         }
@@ -412,18 +410,16 @@ public class CaseOneCounseling : MonoBehaviour {
             6 => _C1C_Explanation_02_3,
             _ => _nextFeedback,
         };
-        var child2 = _nextFeedback.transform.GetChild(1).gameObject;
+        var child2 = _nextExplanation.transform.GetChild(1).gameObject;
 
         // Get next audio feedback clip
         nextAudioClip = value switch {
-            1 => clipC1CFeedback01,
-            2 => clipC1CFeedback02,
-            3 => clipC1CFeedback03,
-            4 => clipC1CFeedback04,
-            5 => clipC1CFeedback05,
-            6 => clipC1CFeedback06,
-            7 => clipC1CFeedback07,
-            8 => clipC1CFeedback08,
+            1 => clipC1CExplanation01_1,
+            2 => clipC1CExplanation01_2,
+            3 => clipC1CExplanation01_3,
+            4 => clipC1CExplanation02_1,
+            5 => clipC1CExplanation02_2,
+            6 => clipC1CExplanation02_3,
             _ => nextAudioClip
         };
 

@@ -13,6 +13,7 @@ public class CaseOneCounseling : MonoBehaviour {
     GameObject _nextFeedback;
     GameObject _nextTopic;
     GameObject _nextExplanation;
+    [SerializeField] GameSceneMainCanvas _gameSceneMainCanvasScript;
 
     [Header("Narrator Panel")]
     [SerializeField] GameObject _C1C_Narrator_01;
@@ -441,8 +442,8 @@ public class CaseOneCounseling : MonoBehaviour {
         else if (StateNameController.CurrentActivePanel == _C1C_Topic_07_3) {
             GoToInstruction(12);
         }
-        else if (StateNameController.CurrentActivePanel == _C1C_Explanation_02_3) {
-            GoToInstruction(12);
+        else if (StateNameController.CurrentActivePanel == _C1C_Instruction_12) {
+            _gameSceneMainCanvasScript.Case1CounselingDone();
         }
     }
 

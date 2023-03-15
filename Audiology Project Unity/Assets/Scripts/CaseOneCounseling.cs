@@ -443,6 +443,7 @@ public class CaseOneCounseling : MonoBehaviour {
             GoToInstruction(12);
         }
         else if (StateNameController.CurrentActivePanel == _C1C_Instruction_12) {
+            GoToInstruction(12);
             _gameSceneMainCanvasScript.Case1CounselingDone();
         }
     }

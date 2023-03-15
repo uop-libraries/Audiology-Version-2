@@ -23,11 +23,12 @@ public class GameSceneMainCanvas : MonoBehaviour {
     [SerializeField] BackgroundScript backgroundScript;
     [SerializeField] CaseOneHistory caseOneHistoryScript;
     [SerializeField] CaseOneCounseling caseOneCounselingScript;
+    [SerializeField] MainMenuController _mainMenuControllerScript;
 
     private GameObject _currentChildCaseScenario;
     private int _nextPanel;
 
-    private void Start() {
+    public void Startgame() {
         // Todo change this back after debug ----------------------------( START )
         if (_testingMode) {
             StateNameController.ClinicalCaseNumber = _testingCaseNumber;
@@ -39,6 +40,7 @@ public class GameSceneMainCanvas : MonoBehaviour {
         backgroundScript.BackgroundScriptStart();
         InitializeModuleText();
         InitializeClinicalCasePanel();
+        Debug.Log("StateNameController.ClinicalCaseNumber: " + StateNameController.ClinicalCaseNumber);
         GoToClinicalCase(StateNameController.ClinicalCaseNumber);
 
     }
@@ -86,8 +88,9 @@ public class GameSceneMainCanvas : MonoBehaviour {
             }
             Debug.Log("_nextPanel: " + _nextPanel);
         }
-        if (Input.GetKeyDown(KeyCode.R)) {
-            SceneManager.LoadScene(1);
+        if (Input.GetKeyDown(KeyCode.M)) {
+            // SceneManager.LoadScene(0);
+            _mainMenuControllerScript.ReturnToMainMenu();
         }
         // Todo Disable after testing --------------------------( END )
     }
@@ -139,25 +142,29 @@ public class GameSceneMainCanvas : MonoBehaviour {
     public void Case1Done() {
         Debug.Log("Case1HistoryDone");
         StateNameController.IsCase1HistoryDone = true;
-        SceneManager.LoadScene(1);
+        // SceneManager.LoadScene(1);
+        _mainMenuControllerScript.ReturnToMainMenu();
     }
 
     public void Case2Done() {
         Debug.Log("Case2HistoryDone");
         StateNameController.IsCase2HistoryDone = true;
-        SceneManager.LoadScene(1);
+        // SceneManager.LoadScene(1);
+        _mainMenuControllerScript.ReturnToMainMenu();
     }
 
     public void Case1CounselingDone() {
         Debug.Log("Case1CounselingDone");
         StateNameController.IsCase1CounselingDone = true;
-        SceneManager.LoadScene(1);
+        // SceneManager.LoadScene(1);
+        _mainMenuControllerScript.ReturnToMainMenu();
     }
     
     public void Case2CounselingDone() {
         Debug.Log("Case2CounselingDone");
         StateNameController.IsCase2CounselingDone = true;
-        SceneManager.LoadScene(1);
+        // SceneManager.LoadScene(1);
+        _mainMenuControllerScript.ReturnToMainMenu();
     }
     
     // OnClick() event for quit button

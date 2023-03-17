@@ -22,6 +22,7 @@ public class GameSceneMainCanvas : MonoBehaviour {
 
     [SerializeField] BackgroundScript backgroundScript;
     [SerializeField] CaseOneHistory caseOneHistoryScript;
+    [SerializeField] CaseTwoHistory caseTwoHistoryScript;
     [SerializeField] CaseOneCounseling caseOneCounselingScript;
     [SerializeField] MainMenuController _mainMenuControllerScript;
 
@@ -125,6 +126,9 @@ public class GameSceneMainCanvas : MonoBehaviour {
 
             if (caseNumber == 1) {
                 caseOneHistoryScript.StartCase1History();
+            }
+            if (caseNumber == 2) {
+                caseTwoHistoryScript.StartCase2History();
             }
             if (caseNumber == 3) {
                 caseOneCounselingScript.StartCase1Counseling();

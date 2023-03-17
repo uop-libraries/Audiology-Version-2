@@ -10,6 +10,7 @@ public class SkyBoxVideo : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] VideoPlayer _videoPlayer;
     [SerializeField] VideoClip[] Case1Clip;
+    [SerializeField] VideoClip[] Case2Clip;
     [SerializeField] VideoClip[] Case1CounselingClip;
     int _videoClipIndex;
     
@@ -48,6 +49,9 @@ public class SkyBoxVideo : MonoBehaviour
         {
             if (StateNameController.ClinicalCaseNumber == 1) {
                 _videoPlayer.clip = Case1Clip[index];
+            }
+            else if (StateNameController.ClinicalCaseNumber == 2) {
+                _videoPlayer.clip = Case2Clip[index];
             }
             else if (StateNameController.ClinicalCaseNumber == 3) {
                 _videoPlayer.clip = Case1CounselingClip[index];

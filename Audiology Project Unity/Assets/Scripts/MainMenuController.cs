@@ -1,5 +1,6 @@
 // using Google.XR.Cardboard.Editor;
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,6 +14,12 @@ public class MainMenuController : MonoBehaviour {
     [SerializeField] GameObject MainMenuObject;
     [SerializeField] GameObject MainCanvasObject;
     [SerializeField] GameSceneMainCanvas GameSceneMainCanvasScript;
+    
+    // Main Menu 
+    GameObject _mainMenuPanelGameObject;
+    
+    // Main Canvas
+    GameObject _mainCanvas;
     
     GameObject _case1HistoryObject;
     GameObject _case2HistoryObject;
@@ -36,6 +43,21 @@ public class MainMenuController : MonoBehaviour {
 
     bool _isVRMode;
 
+    void Awake() {
+        _mainCanvas = GameObject.Find("Main_Canvas");
+        _mainMenuPanelGameObject = GameObject.Find("MainMenuPanel");
+        
+        // Make Main Menu active and disable main canvas
+        if (_mainCanvas && _mainMenuPanelGameObject) {
+            _mainCanvas.SetActive(false);
+            _mainMenuPanelGameObject.SetActive(true);
+            
+            // Make all game objects in main menu active
+            foreach (Transform child in _mainMenuPanelGameObject.transform) {
+                child.gameObject.SetActive(true);
+            }
+        }
+    }
 
     // Start is called before the first frame update
     void Start() {

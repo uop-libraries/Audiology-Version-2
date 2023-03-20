@@ -37,7 +37,7 @@ public class GameSceneMainCanvas : MonoBehaviour {
         }
         // Todo change this back after debug -----------------------------( END )
 
-        _nextPanel = 1;
+        _nextPanel = 0;
         backgroundScript.BackgroundScriptStart();
         InitializeModuleText();
         InitializeClinicalCasePanel();
@@ -53,6 +53,9 @@ public class GameSceneMainCanvas : MonoBehaviour {
             _nextPanel++;
             if (StateNameController.ClinicalCaseNumber == 1) {
                 caseOneHistoryScript.GoToInstruction(_nextPanel);
+            }
+            else if (StateNameController.ClinicalCaseNumber == 2) {
+                caseTwoHistoryScript.GoToInstruction(_nextPanel);
             }
             else if (StateNameController.ClinicalCaseNumber == 3) {
                 if (_nextPanel < 4) {
@@ -75,6 +78,9 @@ public class GameSceneMainCanvas : MonoBehaviour {
             _nextPanel--;
             if (StateNameController.ClinicalCaseNumber == 1) {
                 caseOneHistoryScript.GoToInstruction(_nextPanel);
+            }
+            else if (StateNameController.ClinicalCaseNumber == 2) {
+                caseTwoHistoryScript.GoToInstruction(_nextPanel);
             }
             else if (StateNameController.ClinicalCaseNumber == 3) {
                 if (_nextPanel < 4) {

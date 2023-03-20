@@ -131,18 +131,21 @@ public class CaseTwoHistory : MonoBehaviour {
                 GoToInstructionNumber(panelNumber);
                 break;
             case 5:
-                _nextInstruction = c2HInstruction05;
+                // _nextInstruction = c2HInstruction05;
+                GoToInstruction05();
                 break;
             case 6:
                 _nextInstruction = c2HInstruction06;
                 GoToInstructionNumber(panelNumber);
                 break;
             case 7:
-                _nextInstruction = c2HInstruction07;
-                GoToInstructionNumber(panelNumber);
+                // _nextInstruction = c2HInstruction07;
+                GoToInstruction07();
                 break;
             case 8:
-                GoToInstruction08();
+                _nextInstruction = c2HInstruction08;
+                GoToInstructionNumber(panelNumber);
+                // GoToInstruction08();
                 break;
             case 9:
                 GoToInstruction09();
@@ -216,11 +219,85 @@ public class CaseTwoHistory : MonoBehaviour {
         StartCoroutine(ActionAfterAudioStop(child2, nextAudioClip));
 
     }
-
-    // Instruction for hearing abilities option
-    private void GoToInstruction08() {
+    
+        // Instruction for hearing abilities option
+    private void GoToInstruction05() {
         _counter = 0;
-        _nextInstruction = c2HInstruction08;
+        _nextInstruction = c2HInstruction05;
+        var child1 = _nextInstruction.transform.GetChild(1).gameObject;
+        var child2 = _nextInstruction.transform.GetChild(2).gameObject;
+
+        child2.SetActive(false);
+
+        // if (_isFirstTime) {
+        //     foreach (Transform child in child1.transform) {
+        //         child.gameObject.SetActive(false);
+        //     }
+        // }
+        //
+        // _isFirstTime = false;
+
+        foreach (Transform child in child1.transform) {
+            // if (child.gameObject.name is "Option_A" or "Option_B" or "Option_C") {
+            //     child.gameObject.SetActive(true);
+            // }
+
+            if (child.gameObject.GetComponent<Image>().color == Color.grey) {
+                if (child.gameObject.name is "Option_A" or "Option_B") {
+                    child.gameObject.SetActive(false);
+                }
+
+                // child.gameObject.SetActive(false);
+                if (child.gameObject.activeSelf == false) {
+                    _counter++;
+                }
+            }
+
+            if (_counter == 2) {
+                child2.SetActive(true);
+            }
+
+            // switch (_counter) {
+            //     case 1: {
+            //         if (child.gameObject.name == "Option_D") {
+            //             child.gameObject.SetActive(true);
+            //         }
+            //
+            //         break;
+            //     }
+            //     case 2: {
+            //         if (child.gameObject.name == "Option_E") {
+            //             child.gameObject.SetActive(true);
+            //         }
+            //
+            //         break;
+            //     }
+            //     case 3: {
+            //         if (child.gameObject.name == "Option_F") {
+            //             child.gameObject.SetActive(true);
+            //         }
+            //
+            //         break;
+            //     }
+            //     case 4: {
+            //         if (child.gameObject.name == "Option_G") {
+            //             child.gameObject.SetActive(true);
+            //         }
+            //
+            //         break;
+            //     }
+            //     case 7:
+            //         child2.SetActive(true);
+            //         _isFirstTime = true;
+            //         break;
+            // }
+        }
+        _counter = 0;
+    }
+    // Instruction for hearing abilities option
+    private void GoToInstruction07() {
+        _counter = 0;
+        _nextInstruction = c2HInstruction07;
         var child1 = _nextInstruction.transform.GetChild(1).gameObject;
         var child2 = _nextInstruction.transform.GetChild(2).gameObject;
 
@@ -275,7 +352,21 @@ public class CaseTwoHistory : MonoBehaviour {
 
                     break;
                 }
-                case 7:
+                case 5: {
+                    if (child.gameObject.name == "Option_H") {
+                        child.gameObject.SetActive(true);
+                    }
+
+                    break;
+                }
+                case 6: {
+                    if (child.gameObject.name == "Option_I") {
+                        child.gameObject.SetActive(true);
+                    }
+
+                    break;
+                }
+                case 9:
                     child2.SetActive(true);
                     _isFirstTime = true;
                     break;
@@ -394,6 +485,9 @@ public class CaseTwoHistory : MonoBehaviour {
         }
         else if (StateNameController.CurrentActivePanel == c2HInstruction06) {
             GoToInstruction(6);
+        }
+        else if (StateNameController.CurrentActivePanel == c2HInstruction07) {
+            GoToInstruction(7);
         }
         else if (StateNameController.CurrentActivePanel == c2HInstruction08) {
             GoToInstruction(8);

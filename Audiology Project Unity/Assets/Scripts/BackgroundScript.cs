@@ -31,7 +31,7 @@ public class BackgroundScript : MonoBehaviour {
         // child 2 is green background
         foreach (Transform child in _background.transform) {    
             _backgroundList.Add(child.gameObject);
-            Debug.Log("background is: " + child.gameObject);
+            // Debug.Log("background is: " + child.gameObject);
         }
         // foreach (Transform child in _backgroundObject.transform) {    
         //     _backgroundList.Add(child.gameObject);

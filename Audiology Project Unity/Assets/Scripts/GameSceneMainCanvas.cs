@@ -41,7 +41,7 @@ public class GameSceneMainCanvas : MonoBehaviour {
         backgroundScript.BackgroundScriptStart();
         InitializeModuleText();
         InitializeClinicalCasePanel();
-        Debug.Log("StateNameController.ClinicalCaseNumber: " + StateNameController.ClinicalCaseNumber);
+        // Debug.Log("StateNameController.ClinicalCaseNumber: " + StateNameController.ClinicalCaseNumber);
         GoToClinicalCase(StateNameController.ClinicalCaseNumber);
 
     }
@@ -137,8 +137,8 @@ public class GameSceneMainCanvas : MonoBehaviour {
         }
         catch (Exception e) {
             Console.WriteLine(e);
-            Debug.LogErrorFormat("ERROR: Need to go to GameManager and enable Testing Mode including specific case # or " +
-                "Play in Main Menu Scene");
+            // Debug.LogErrorFormat("ERROR: Need to go to GameManager and enable Testing Mode including specific case # or " +
+            //     "Play in Main Menu Scene");
             throw;
         }
     }

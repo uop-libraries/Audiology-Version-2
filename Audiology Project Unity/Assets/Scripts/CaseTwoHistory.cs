@@ -220,7 +220,6 @@ public class CaseTwoHistory : MonoBehaviour {
 
     }
     
-        // Instruction for hearing abilities option
     private void GoToInstruction05() {
         _counter = 0;
         _nextInstruction = c2HInstruction05;
@@ -229,25 +228,12 @@ public class CaseTwoHistory : MonoBehaviour {
 
         child2.SetActive(false);
 
-        // if (_isFirstTime) {
-        //     foreach (Transform child in child1.transform) {
-        //         child.gameObject.SetActive(false);
-        //     }
-        // }
-        //
-        // _isFirstTime = false;
-
         foreach (Transform child in child1.transform) {
-            // if (child.gameObject.name is "Option_A" or "Option_B" or "Option_C") {
-            //     child.gameObject.SetActive(true);
-            // }
-
             if (child.gameObject.GetComponent<Image>().color == Color.grey) {
                 if (child.gameObject.name is "Option_A" or "Option_B") {
                     child.gameObject.SetActive(false);
                 }
-
-                // child.gameObject.SetActive(false);
+                
                 if (child.gameObject.activeSelf == false) {
                     _counter++;
                 }
@@ -256,44 +242,10 @@ public class CaseTwoHistory : MonoBehaviour {
             if (_counter == 2) {
                 child2.SetActive(true);
             }
-
-            // switch (_counter) {
-            //     case 1: {
-            //         if (child.gameObject.name == "Option_D") {
-            //             child.gameObject.SetActive(true);
-            //         }
-            //
-            //         break;
-            //     }
-            //     case 2: {
-            //         if (child.gameObject.name == "Option_E") {
-            //             child.gameObject.SetActive(true);
-            //         }
-            //
-            //         break;
-            //     }
-            //     case 3: {
-            //         if (child.gameObject.name == "Option_F") {
-            //             child.gameObject.SetActive(true);
-            //         }
-            //
-            //         break;
-            //     }
-            //     case 4: {
-            //         if (child.gameObject.name == "Option_G") {
-            //             child.gameObject.SetActive(true);
-            //         }
-            //
-            //         break;
-            //     }
-            //     case 7:
-            //         child2.SetActive(true);
-            //         _isFirstTime = true;
-            //         break;
-            // }
         }
         _counter = 0;
     }
+    
     // Instruction for hearing abilities option
     private void GoToInstruction07() {
         _counter = 0;
@@ -455,7 +407,7 @@ public class CaseTwoHistory : MonoBehaviour {
 
         foreach (Transform child in child1.transform) {
             if (child.gameObject.GetComponent<Image>().color == Color.grey) {
-                if (instructionNumber == 7) {
+                if (instructionNumber == 8) {
                     child.gameObject.SetActive(false);
                 }
 
@@ -466,7 +418,7 @@ public class CaseTwoHistory : MonoBehaviour {
         if (_counter == 2 && instructionNumber == 2 ||
             _counter == 1 && instructionNumber == 4 ||
             _counter == 7 && instructionNumber == 6 ||
-            _counter == 7 && instructionNumber == 7 ||
+            _counter == 6 && instructionNumber == 8 ||
             _counter == 3 && instructionNumber == 10 ||
             _counter == 2 && instructionNumber == 11 ||
             _counter == 1 && instructionNumber == 12 ||

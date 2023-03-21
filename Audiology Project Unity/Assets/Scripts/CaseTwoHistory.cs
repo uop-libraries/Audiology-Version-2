@@ -241,6 +241,7 @@ public class CaseTwoHistory : MonoBehaviour {
 
             if (_counter == 2) {
                 child2.SetActive(true);
+                child.gameObject.SetActive(false);
             }
         }
         _counter = 0;

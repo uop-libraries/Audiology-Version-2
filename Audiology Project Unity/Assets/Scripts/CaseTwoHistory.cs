@@ -419,7 +419,7 @@ public class CaseTwoHistory : MonoBehaviour {
             _counter == 1 && instructionNumber == 4 ||
             _counter == 7 && instructionNumber == 6 ||
             _counter == 6 && instructionNumber == 8 ||
-            _counter == 3 && instructionNumber == 10 ||
+            _counter == 1 && instructionNumber == 10 ||
             _counter == 2 && instructionNumber == 11 ||
             _counter == 1 && instructionNumber == 12 ||
             _counter == 1 && instructionNumber == 13 ||

@@ -41,6 +41,8 @@ public class MainMenuController : MonoBehaviour {
     Button _case1CounselingButton;
     Button _case2CounselingButton;
 
+    [SerializeField] bool _DebugMode;
+
     bool _isVRMode;
 
     void Awake() {
@@ -61,6 +63,9 @@ public class MainMenuController : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        if (_DebugMode) {
+            Debug.Log("=============DEBUG MODE=============");
+        }
         _case1HistoryObject = GameObject.Find("Case_1_Button");
         _case2HistoryObject = GameObject.Find("Case_2_Button");
         _case1CounselingObject = GameObject.Find("Case_1_Counseling_Button");
@@ -89,7 +94,9 @@ public class MainMenuController : MonoBehaviour {
     void Update() {
         if (_case1HistoryObject != null && _case2HistoryObject != null &&
             _case1CounselingObject != null && _case2CounselingObject != null) {
-            SetCounselingButton();
+            if (!_DebugMode) {
+                SetCounselingButton();
+            }
         }
         // if (_isVRMode) {
         //     XRSettings.LoadDeviceByName("daydream");

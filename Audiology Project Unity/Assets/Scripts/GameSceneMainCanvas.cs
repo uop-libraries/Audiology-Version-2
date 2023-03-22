@@ -14,8 +14,8 @@ public class GameSceneMainCanvas : MonoBehaviour {
     [SerializeField] private GameObject _case2History;
     [SerializeField] private GameObject _case2Counseling;
     [SerializeField] private GameObject _ModuleText;
-    [SerializeField] private bool _testingMode;
-    [SerializeField] private int _testingCaseNumber;
+    // [SerializeField] private bool _testingMode;
+    // [SerializeField] private int _testingCaseNumber;
 
     private List<GameObject> _moduleTextList = new List<GameObject>();
     private List<GameObject> _ModulePanelList = new List<GameObject>();
@@ -31,12 +31,12 @@ public class GameSceneMainCanvas : MonoBehaviour {
     private int _nextPanel;
 
     public void Startgame() {
-        // Todo change this back after debug ----------------------------( START )
-        if (_testingMode) {
-            StateNameController.ClinicalCaseNumber = _testingCaseNumber;
-            Debug.LogWarningFormat("Testing Mode is Enable");
-        }
-        // Todo change this back after debug -----------------------------( END )
+        // // Todo change this back after debug ----------------------------( START )
+        // if (_testingMode) {
+        //     StateNameController.ClinicalCaseNumber = _testingCaseNumber;
+        //     Debug.LogWarningFormat("Testing Mode is Enable");
+        // }
+        // // Todo change this back after debug -----------------------------( END )
 
         _nextPanel = 0;
         backgroundScript.BackgroundScriptStart();

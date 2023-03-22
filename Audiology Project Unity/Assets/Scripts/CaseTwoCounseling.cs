@@ -152,7 +152,7 @@ public class CaseTwoCounseling : MonoBehaviour {
         // Initial first panel so it is not null
         StateNameController.CurrentActivePanel = _C2C_Narrator_01;
 
-        var currentPanel = "Case1_counseling";
+        var currentPanel = "Case2_counseling";
         var parent = GameObject.Find(currentPanel);
 
         Debug.Log("parent: " + parent);

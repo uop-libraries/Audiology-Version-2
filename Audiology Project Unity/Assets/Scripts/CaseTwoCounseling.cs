@@ -5,9 +5,8 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 
-public class CaseTwoCounseling : MonoBehaviour
-{
-   // PanelType _currentPanelType;
+public class CaseTwoCounseling : MonoBehaviour {
+    // PanelType _currentPanelType;
 
     GameObject _nextNarration;
     GameObject _nextInstruction;
@@ -23,61 +22,70 @@ public class CaseTwoCounseling : MonoBehaviour
     [SerializeField] GameObject _C2C_Narrator_03;
 
     [Header("Instruction Panel")]
-    [SerializeField] GameObject _C1C_Instruction_01;
-    [SerializeField] GameObject _C1C_Instruction_02;
-    [SerializeField] GameObject _C1C_Instruction_03;
-    [SerializeField] GameObject _C1C_Instruction_04;
-    [SerializeField] GameObject _C1C_Instruction_05;
-    [SerializeField] GameObject _C1C_Instruction_06;
-    [SerializeField] GameObject _C1C_Instruction_07;
-    [SerializeField] GameObject _C1C_Instruction_08;
-    [SerializeField] GameObject _C1C_Instruction_09;
-    [SerializeField] GameObject _C1C_Instruction_10;
-    [SerializeField] GameObject _C1C_Instruction_11;
-    [SerializeField] GameObject _C1C_Instruction_12;
+    [SerializeField] GameObject _C2C_Instruction_01;
+    [SerializeField] GameObject _C2C_Instruction_02;
+    [SerializeField] GameObject _C2C_Instruction_03;
+    [SerializeField] GameObject _C2C_Instruction_04;
+    [SerializeField] GameObject _C2C_Instruction_05;
+    [SerializeField] GameObject _C2C_Instruction_06;
+    [SerializeField] GameObject _C2C_Instruction_07;
+    [SerializeField] GameObject _C2C_Instruction_08;
+    [SerializeField] GameObject _C2C_Instruction_09;
+    [SerializeField] GameObject _C2C_Instruction_10;
+    [SerializeField] GameObject _C2C_Instruction_11;
+    [SerializeField] GameObject _C2C_Instruction_12;
+    [SerializeField] GameObject _C2C_Instruction_13;
 
     [Header("Feedback Panel")]
-    [SerializeField] GameObject _C1C_Feedback_01;
-    [SerializeField] GameObject _C1C_Feedback_02;
-    [SerializeField] GameObject _C1C_Feedback_03;
-    [SerializeField] GameObject _C1C_Feedback_04;
-    [SerializeField] GameObject _C1C_Feedback_05;
-    [SerializeField] GameObject _C1C_Feedback_06;
-    [SerializeField] GameObject _C1C_Feedback_07;
-    [SerializeField] GameObject _C1C_Feedback_08;
+    [SerializeField] GameObject _C2C_Feedback_01;
+    [SerializeField] GameObject _C2C_Feedback_02;
+    [SerializeField] GameObject _C2C_Feedback_03;
+    [SerializeField] GameObject _C2C_Feedback_04;
+    [SerializeField] GameObject _C2C_Feedback_05;
+    [SerializeField] GameObject _C2C_Feedback_06;
+    [SerializeField] GameObject _C2C_Feedback_07;
+    [SerializeField] GameObject _C2C_Feedback_08;
+    [SerializeField] GameObject _C2C_Feedback_09;
 
+    [FormerlySerializedAs("_C1C_Topic_01_1")]
     [Header("Topic Panel")]
-    [SerializeField] GameObject _C1C_Topic_01_1;
-    [SerializeField] GameObject _C1C_Topic_01_2;
-    [SerializeField] GameObject _C1C_Topic_02;
-    [SerializeField] GameObject _C1C_Topic_03;
-    [SerializeField] GameObject _C1C_Topic_04;
-    [SerializeField] GameObject _C1C_Topic_05_1;
-    [SerializeField] GameObject _C1C_Topic_05_2;
-    [SerializeField] GameObject _C1C_Topic_05_3;
-    [SerializeField] GameObject _C1C_Topic_05_4;
-    [SerializeField] GameObject _C1C_Topic_06_1;
-    [SerializeField] GameObject _C1C_Topic_06_2;
-    [SerializeField] GameObject _C1C_Topic_07_1;
-    [SerializeField] GameObject _C1C_Topic_07_2;
-    [SerializeField] GameObject _C1C_Topic_07_3;
-    
-    [Header("Explanation Panel")]
-    [SerializeField] GameObject _C1C_Explanation_01_1;
-    [SerializeField] GameObject _C1C_Explanation_01_2;
-    [SerializeField] GameObject _C1C_Explanation_01_3;
-    [SerializeField] GameObject _C1C_Explanation_02_1;
-    [SerializeField] GameObject _C1C_Explanation_02_2;
-    [SerializeField] GameObject _C1C_Explanation_02_3;
+    [SerializeField] GameObject _C2C_Topic_01_1;
+    [SerializeField] GameObject _C2C_Topic_01_2;
+    [SerializeField] GameObject _C2C_Topic_02;
+    [SerializeField] GameObject _C2C_Topic_03;
+    [SerializeField] GameObject _C2C_Topic_04;
+    [SerializeField] GameObject _C2C_Topic_05;
+    [SerializeField] GameObject _C2C_Topic_06_1;
+    [SerializeField] GameObject _C2C_Topic_06_2;
+    [SerializeField] GameObject _C2C_Topic_06_3;
+    [SerializeField] GameObject _C2C_Topic_06_4;
+    [SerializeField] GameObject _C2C_Topic_07_1;
+    [SerializeField] GameObject _C2C_Topic_07_2;
+    [SerializeField] GameObject _C2C_Topic_08_1;
+    [SerializeField] GameObject _C2C_Topic_08_2;
+    [SerializeField] GameObject _C2C_Topic_09;
+    [SerializeField] GameObject _C2C_Topic_10;
 
+    [Header("Explanation Panel")]
+    [SerializeField] GameObject _C2C_Explanation_01;
+    [SerializeField] GameObject _C2C_Explanation_01_1_1;
+    [SerializeField] GameObject _C2C_Explanation_01_1_2;
+    [SerializeField] GameObject _C2C_Explanation_01_2_1;
+    [SerializeField] GameObject _C2C_Explanation_01_3_1;
+    [SerializeField] GameObject _C2C_Explanation_01_3_2;
+    [SerializeField] GameObject _C2C_Explanation_01_4_1;
+    [SerializeField] GameObject _C2C_Explanation_01_4_2;
+    [SerializeField] GameObject _C2C_Explanation_02_1;
+    [SerializeField] GameObject _C2C_Explanation_02_2;
+    [SerializeField] GameObject _C2C_Explanation_02_3;
     [Header("AudioSource")]
     [SerializeField] private AudioSource audioSource;
 
     [Header("AudioClip")]
     // Narration audio clip
-    [SerializeField] AudioClip clipC1CNarration01;
-    [SerializeField] AudioClip clipC1CNarration02;
-    [SerializeField] AudioClip clipC1CNarration03;
+    [SerializeField] AudioClip clipC2CNarration01;
+    [SerializeField] AudioClip clipC2CNarration02;
+    [SerializeField] AudioClip clipC2CNarration03;
 
     // Instruction audio clip
     [SerializeField] AudioClip clipC1CInstruction01;
@@ -107,7 +115,7 @@ public class CaseTwoCounseling : MonoBehaviour
     [SerializeField] AudioClip clipC1CTopic07_1;
     [SerializeField] AudioClip clipC1CTopic07_2;
     [SerializeField] AudioClip clipC1CTopic07_3;
-    
+
     // Explanation audio clip
     [SerializeField] AudioClip clipC1CExplanation01_1;
     [SerializeField] AudioClip clipC1CExplanation01_2;
@@ -115,7 +123,7 @@ public class CaseTwoCounseling : MonoBehaviour
     [SerializeField] AudioClip clipC1CExplanation02_1;
     [SerializeField] AudioClip clipC1CExplanation02_2;
     [SerializeField] AudioClip clipC1CExplanation02_3;
-    
+
     private int _counter;
 
     public enum Panel {
@@ -155,15 +163,15 @@ public class CaseTwoCounseling : MonoBehaviour
         switch (panelNum) {
             case 1:
                 _nextNarration = _C2C_Narrator_01;
-                _nextClip = clipC1CNarration01;
+                _nextClip = clipC2CNarration01;
                 break;
             case 2:
                 _nextNarration = _C2C_Narrator_02;
-                _nextClip = clipC1CNarration02;
+                _nextClip = clipC2CNarration02;
                 break;
             case 3:
                 _nextNarration = _C2C_Narrator_03;
-                _nextClip = clipC1CNarration03;
+                _nextClip = clipC2CNarration03;
                 break;
         }
 
@@ -195,42 +203,42 @@ public class CaseTwoCounseling : MonoBehaviour
 
         switch (panelNumber) {
             case 1:
-                _nextInstruction = _C1C_Instruction_01;
+                _nextInstruction = _C2C_Instruction_01;
                 StartCoroutine(ActionAfterAudioStop(null, clipC1CInstruction01));
                 break;
             case 2:
-                _nextInstruction = _C1C_Instruction_02;
+                _nextInstruction = _C2C_Instruction_02;
                 break;
             case 3:
-                _nextInstruction = _C1C_Instruction_03;
+                _nextInstruction = _C2C_Instruction_03;
                 break;
             case 4:
-                _nextInstruction = _C1C_Instruction_04;
+                _nextInstruction = _C2C_Instruction_04;
                 break;
             case 5:
-                _nextInstruction = _C1C_Instruction_05;
+                _nextInstruction = _C2C_Instruction_05;
                 break;
             case 6:
-                _nextInstruction = _C1C_Instruction_06;
+                _nextInstruction = _C2C_Instruction_06;
                 break;
             case 7:
-                _nextInstruction = _C1C_Instruction_07;
+                _nextInstruction = _C2C_Instruction_07;
                 GoToInstructionNumber(panelNumber);
                 break;
             case 8:
-                _nextInstruction = _C1C_Instruction_08;
+                _nextInstruction = _C2C_Instruction_08;
                 break;
             case 9:
-                _nextInstruction = _C1C_Instruction_09;
+                _nextInstruction = _C2C_Instruction_09;
                 break;
             case 10:
-                _nextInstruction = _C1C_Instruction_10;
+                _nextInstruction = _C2C_Instruction_10;
                 break;
             case 11:
-                _nextInstruction = _C1C_Instruction_11;
+                _nextInstruction = _C2C_Instruction_11;
                 break;
             case 12:
-                _nextInstruction = _C1C_Instruction_12;
+                _nextInstruction = _C2C_Instruction_12;
                 GoToInstructionNumber(panelNumber);
                 break;
 
@@ -291,16 +299,16 @@ public class CaseTwoCounseling : MonoBehaviour
                 BackgroundScript.GetDocImages()[1].gameObject.SetActive(true);
 
                 // Get Audio gram Diagram for current topic
-                if (StateNameController.CurrentActivePanel == _C1C_Topic_01_1 ||
-                    StateNameController.CurrentActivePanel == _C1C_Topic_01_2 ||
-                    StateNameController.CurrentActivePanel == _C1C_Topic_02) {
+                if (StateNameController.CurrentActivePanel == _C2C_Topic_01_1 ||
+                    StateNameController.CurrentActivePanel == _C2C_Topic_01_2 ||
+                    StateNameController.CurrentActivePanel == _C2C_Topic_02) {
                     BackgroundScript.GetDiagram()[0].gameObject.SetActive(true);
                 }
                 // Get Hearing Aid diagram for current topic
-                else if (StateNameController.CurrentActivePanel == _C1C_Topic_05_1 ||
-                    StateNameController.CurrentActivePanel == _C1C_Topic_05_2 ||
-                    StateNameController.CurrentActivePanel == _C1C_Topic_05_3 ||
-                    StateNameController.CurrentActivePanel == _C1C_Topic_05_4) {
+                else if (StateNameController.CurrentActivePanel == _C2C_Topic_06_1 ||
+                    StateNameController.CurrentActivePanel == _C2C_Topic_06_2 ||
+                    StateNameController.CurrentActivePanel == _C2C_Topic_06_3 ||
+                    StateNameController.CurrentActivePanel == _C2C_Topic_06_4) {
                     BackgroundScript.GetDiagram()[1].gameObject.SetActive(true);
                 }
                 break;
@@ -314,14 +322,14 @@ public class CaseTwoCounseling : MonoBehaviour
 
         // Get current feedback panel
         _nextFeedback = value switch {
-            1 => _C1C_Feedback_01,
-            2 => _C1C_Feedback_02,
-            3 => _C1C_Feedback_03,
-            4 => _C1C_Feedback_04,
-            5 => _C1C_Feedback_05,
-            6 => _C1C_Feedback_06,
-            7 => _C1C_Feedback_07,
-            8 => _C1C_Feedback_08,
+            1 => _C2C_Feedback_01,
+            2 => _C2C_Feedback_02,
+            3 => _C2C_Feedback_03,
+            4 => _C2C_Feedback_04,
+            5 => _C2C_Feedback_05,
+            6 => _C2C_Feedback_06,
+            7 => _C2C_Feedback_07,
+            8 => _C2C_Feedback_08,
             _ => _nextFeedback,
         };
         var child2 = _nextFeedback.transform.GetChild(1).gameObject;
@@ -354,20 +362,20 @@ public class CaseTwoCounseling : MonoBehaviour
 
         // Get current feedback panel
         _nextTopic = panelNumber switch {
-            1 => _C1C_Topic_01_1,
-            2 => _C1C_Topic_01_2,
-            3 => _C1C_Topic_02,
-            4 => _C1C_Topic_03,
-            5 => _C1C_Topic_04,
-            6 => _C1C_Topic_05_1,
-            7 => _C1C_Topic_05_2,
-            8 => _C1C_Topic_05_3,
-            9 => _C1C_Topic_05_4,
-            10 => _C1C_Topic_06_1,
-            11 => _C1C_Topic_06_2,
-            12 => _C1C_Topic_07_1,
-            13 => _C1C_Topic_07_2,
-            14 => _C1C_Topic_07_3,
+            1 => _C2C_Topic_01_1,
+            2 => _C2C_Topic_01_2,
+            3 => _C2C_Topic_02,
+            4 => _C2C_Topic_03,
+            5 => _C2C_Topic_04,
+            6 => _C2C_Topic_06_1,
+            7 => _C2C_Topic_06_2,
+            8 => _C2C_Topic_06_3,
+            9 => _C2C_Topic_06_4,
+            10 => _C2C_Topic_07_1,
+            11 => _C2C_Topic_07_2,
+            12 => _C2C_Topic_08_1,
+            13 => _C2C_Topic_08_2,
+            14 => _C2C_Topic_09,
             _ => _nextFeedback,
         };
         var child2 = _nextTopic.transform.GetChild(1).gameObject;
@@ -398,19 +406,19 @@ public class CaseTwoCounseling : MonoBehaviour
         // Play audio and control the button activation
         StartCoroutine(ActionAfterAudioStop(child2, nextAudioClip));
     }
-    
+
     public void GoToExplanation(int value) {
         const Panel explanationPanel = Panel.Explanation;
         AudioClip nextAudioClip = null;
 
         // Get current feedback panel
         _nextExplanation = value switch {
-            1 => _C1C_Explanation_01_1,
-            2 => _C1C_Explanation_01_2,
-            3 => _C1C_Explanation_01_3,
-            4 => _C1C_Explanation_02_1,
-            5 => _C1C_Explanation_02_2,
-            6 => _C1C_Explanation_02_3,
+            1 => _C2C_Explanation_01_1_1,
+            2 => _C2C_Explanation_01_1_2,
+            3 => _C2C_Explanation_01_2_1,
+            4 => _C2C_Explanation_01_3_1,
+            5 => _C2C_Explanation_01_3_2,
+            6 => _C2C_Explanation_01_4_1,
             _ => _nextFeedback,
         };
         var child2 = _nextExplanation.transform.GetChild(1).gameObject;
@@ -435,16 +443,16 @@ public class CaseTwoCounseling : MonoBehaviour
     }
 
     public void ReturnToFromVideo() {
-        if (StateNameController.CurrentActivePanel == _C1C_Instruction_07) {
+        if (StateNameController.CurrentActivePanel == _C2C_Instruction_07) {
             GoToInstruction(7);
         }
-        else if (StateNameController.CurrentActivePanel == _C1C_Topic_07_2) {
+        else if (StateNameController.CurrentActivePanel == _C2C_Topic_08_2) {
             GoToTopic(14);
         }
-        else if (StateNameController.CurrentActivePanel == _C1C_Topic_07_3) {
+        else if (StateNameController.CurrentActivePanel == _C2C_Topic_09) {
             GoToInstruction(12);
         }
-        else if (StateNameController.CurrentActivePanel == _C1C_Instruction_12) {
+        else if (StateNameController.CurrentActivePanel == _C2C_Instruction_12) {
             GoToInstruction(12);
             _gameSceneMainCanvasScript.Case1CounselingDone();
         }

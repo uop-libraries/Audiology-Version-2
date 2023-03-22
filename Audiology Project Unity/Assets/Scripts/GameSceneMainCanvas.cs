@@ -24,6 +24,7 @@ public class GameSceneMainCanvas : MonoBehaviour {
     [SerializeField] CaseOneHistory caseOneHistoryScript;
     [SerializeField] CaseTwoHistory caseTwoHistoryScript;
     [SerializeField] CaseOneCounseling caseOneCounselingScript;
+    [SerializeField] CaseTwoCounseling caseTwoCounselingScript;
     [SerializeField] MainMenuController _mainMenuControllerScript;
 
     private GameObject _currentChildCaseScenario;
@@ -72,6 +73,14 @@ public class GameSceneMainCanvas : MonoBehaviour {
                 // }
                 
             }
+            else if (StateNameController.ClinicalCaseNumber == 4) {
+                if (_nextPanel < 4) {
+                    caseTwoCounselingScript.GoToNarratorPanel(_nextPanel);
+                }
+                else if (_nextPanel >= 4) {
+                    caseTwoCounselingScript.GoToInstruction(_nextPanel - 3);
+                }
+            }
             Debug.Log("_nextPanel: " + _nextPanel);
         }
         if (Input.GetKeyDown(KeyCode.B)) {
@@ -92,6 +101,14 @@ public class GameSceneMainCanvas : MonoBehaviour {
                 // else if (_nextPanel is >= 6 and < 8) {
                 //     caseOneCounselingScript.GoToTopic(_nextPanel - 5);
                 // }
+            }
+            else if (StateNameController.ClinicalCaseNumber == 4) {
+                if (_nextPanel < 4) {
+                    caseTwoCounselingScript.GoToNarratorPanel(_nextPanel);
+                }
+                else if (_nextPanel >= 4) {
+                    caseTwoCounselingScript.GoToInstruction(_nextPanel - 3);
+                }
             }
             Debug.Log("_nextPanel: " + _nextPanel);
         }
@@ -138,6 +155,9 @@ public class GameSceneMainCanvas : MonoBehaviour {
             }
             if (caseNumber == 3) {
                 caseOneCounselingScript.StartCase1Counseling();
+            }
+            if (caseNumber == 4) {
+                caseTwoCounselingScript.StartCase2Counseling();
             }
             // TODO Add script start here ================================
         }

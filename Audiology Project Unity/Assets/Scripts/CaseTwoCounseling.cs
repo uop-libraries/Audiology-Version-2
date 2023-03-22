@@ -78,6 +78,7 @@ public class CaseTwoCounseling : MonoBehaviour {
     [SerializeField] GameObject _C2C_Explanation_02_1;
     [SerializeField] GameObject _C2C_Explanation_02_2;
     [SerializeField] GameObject _C2C_Explanation_02_3;
+
     [Header("AudioSource")]
     [SerializeField] private AudioSource audioSource;
 
@@ -88,42 +89,50 @@ public class CaseTwoCounseling : MonoBehaviour {
     [SerializeField] AudioClip clipC2CNarration03;
 
     // Instruction audio clip
-    [SerializeField] AudioClip clipC1CInstruction01;
+    [FormerlySerializedAs("clipC1CInstruction01")] [SerializeField]
+    AudioClip clipC2CInstruction01;
 
     // Feedback audio clip
-    [SerializeField] AudioClip clipC1CFeedback01;
-    [SerializeField] AudioClip clipC1CFeedback02;
-    [SerializeField] AudioClip clipC1CFeedback03;
-    [SerializeField] AudioClip clipC1CFeedback04;
-    [SerializeField] AudioClip clipC1CFeedback05;
-    [SerializeField] AudioClip clipC1CFeedback06;
-    [SerializeField] AudioClip clipC1CFeedback07;
-    [SerializeField] AudioClip clipC1CFeedback08;
+    [SerializeField] AudioClip clipC2CFeedback01;
+    [SerializeField] AudioClip clipC2CFeedback02;
+    [SerializeField] AudioClip clipC2CFeedback03;
+    [SerializeField] AudioClip clipC2CFeedback04;
+    [SerializeField] AudioClip clipC2CFeedback05;
+    [SerializeField] AudioClip clipC2CFeedback06;
+    [SerializeField] AudioClip clipC2CFeedback07;
+    [SerializeField] AudioClip clipC2CFeedback08;
+    [SerializeField] AudioClip clipC2CFeedback09;
 
     // Topic audio clip
-    [SerializeField] AudioClip clipC1CTopic01_1;
-    [SerializeField] AudioClip clipC1CTopic01_2;
-    [SerializeField] AudioClip clipC1CTopic02;
-    [SerializeField] AudioClip clipC1CTopic03;
-    [SerializeField] AudioClip clipC1CTopic04;
-    [SerializeField] AudioClip clipC1CTopic05_1;
-    [SerializeField] AudioClip clipC1CTopic05_2;
-    [SerializeField] AudioClip clipC1CTopic05_3;
-    [SerializeField] AudioClip clipC1CTopic05_4;
-    [SerializeField] AudioClip clipC1CTopic06_1;
-    [SerializeField] AudioClip clipC1CTopic06_2;
-    [SerializeField] AudioClip clipC1CTopic07_1;
-    [SerializeField] AudioClip clipC1CTopic07_2;
-    [SerializeField] AudioClip clipC1CTopic07_3;
+    [SerializeField] AudioClip clipC2CTopic01_1;
+    [SerializeField] AudioClip clipC2CTopic01_2;
+    [SerializeField] AudioClip clipC2CTopic02;
+    [SerializeField] AudioClip clipC2CTopic03;
+    [SerializeField] AudioClip clipC2CTopic04;
+    [SerializeField] AudioClip clipC2CTopic05;
+    [SerializeField] AudioClip clipC2CTopic06_1;
+    [SerializeField] AudioClip clipC2CTopic06_2;
+    [SerializeField] AudioClip clipC2CTopic06_3;
+    [SerializeField] AudioClip clipC2CTopic06_4;
+    [SerializeField] AudioClip clipC2CTopic07_1;
+    [SerializeField] AudioClip clipC2CTopic07_2;
+    [SerializeField] AudioClip clipC2CTopic08_1;
+    [SerializeField] AudioClip clipC2CTopic08_2;
+    [SerializeField] AudioClip clipC2CTopic09;
+    [SerializeField] AudioClip clipC2CTopic10;
 
     // Explanation audio clip
-    [SerializeField] AudioClip clipC1CExplanation01_1;
-    [SerializeField] AudioClip clipC1CExplanation01_2;
-    [SerializeField] AudioClip clipC1CExplanation01_3;
-    [SerializeField] AudioClip clipC1CExplanation02_1;
-    [SerializeField] AudioClip clipC1CExplanation02_2;
-    [SerializeField] AudioClip clipC1CExplanation02_3;
-
+    AudioClip clipC2CExplanation01 = null;
+    [SerializeField] AudioClip clipC2CExplanation01_1_1;
+    [SerializeField] AudioClip clipC2CExplanation01_1_2;
+    [SerializeField] AudioClip clipC2CExplanation01_2_1;
+    [SerializeField] AudioClip clipC2CExplanation01_3_1;
+    [SerializeField] AudioClip clipC2CExplanation01_3_2;
+    [SerializeField] AudioClip clipC2CExplanation01_4_1;
+    [SerializeField] AudioClip clipC2CExplanation01_4_2;
+    [SerializeField] AudioClip clipC2CExplanation02_1;
+    [SerializeField] AudioClip clipC2CExplanation02_2;
+    [SerializeField] AudioClip clipC2CExplanation02_3;
     private int _counter;
 
     public enum Panel {
@@ -134,7 +143,7 @@ public class CaseTwoCounseling : MonoBehaviour {
         Explanation,
     }
 
-    public void StartCase1Counseling() {
+    public void StartCase2Counseling() {
         _counter = 0;
         InitializePanel();
     }
@@ -204,7 +213,7 @@ public class CaseTwoCounseling : MonoBehaviour {
         switch (panelNumber) {
             case 1:
                 _nextInstruction = _C2C_Instruction_01;
-                StartCoroutine(ActionAfterAudioStop(null, clipC1CInstruction01));
+                StartCoroutine(ActionAfterAudioStop(null, clipC2CInstruction01));
                 break;
             case 2:
                 _nextInstruction = _C2C_Instruction_02;
@@ -336,14 +345,14 @@ public class CaseTwoCounseling : MonoBehaviour {
 
         // Get next audio feedback clip
         nextAudioClip = value switch {
-            1 => clipC1CFeedback01,
-            2 => clipC1CFeedback02,
-            3 => clipC1CFeedback03,
-            4 => clipC1CFeedback04,
-            5 => clipC1CFeedback05,
-            6 => clipC1CFeedback06,
-            7 => clipC1CFeedback07,
-            8 => clipC1CFeedback08,
+            1 => clipC2CFeedback01,
+            2 => clipC2CFeedback02,
+            3 => clipC2CFeedback03,
+            4 => clipC2CFeedback04,
+            5 => clipC2CFeedback05,
+            6 => clipC2CFeedback06,
+            7 => clipC2CFeedback07,
+            8 => clipC2CFeedback08,
             _ => nextAudioClip
         };
 
@@ -382,20 +391,20 @@ public class CaseTwoCounseling : MonoBehaviour {
 
         // Get next audio feedback clip
         nextAudioClip = panelNumber switch {
-            1 => clipC1CTopic01_1,
-            2 => clipC1CTopic01_2,
-            3 => clipC1CTopic02,
-            4 => clipC1CTopic03,
-            5 => clipC1CTopic04,
-            6 => clipC1CTopic05_1,
-            7 => clipC1CTopic05_2,
-            8 => clipC1CTopic05_3,
-            9 => clipC1CTopic05_4,
-            10 => clipC1CTopic06_1,
-            11 => clipC1CTopic06_2,
-            12 => clipC1CTopic07_1,
-            13 => clipC1CTopic07_2,
-            14 => clipC1CTopic07_3,
+            1 => clipC2CTopic01_1,
+            2 => clipC2CTopic01_2,
+            3 => clipC2CTopic02,
+            4 => clipC2CTopic03,
+            5 => clipC2CTopic04,
+            6 => clipC2CTopic06_1,
+            7 => clipC2CTopic06_2,
+            8 => clipC2CTopic06_3,
+            9 => clipC2CTopic06_4,
+            10 => clipC2CTopic07_1,
+            11 => clipC2CTopic07_2,
+            12 => clipC2CTopic08_1,
+            13 => clipC2CTopic08_2,
+            14 => clipC2CTopic09,
             _ => nextAudioClip,
         };
 
@@ -425,12 +434,12 @@ public class CaseTwoCounseling : MonoBehaviour {
 
         // Get next audio feedback clip
         nextAudioClip = value switch {
-            1 => clipC1CExplanation01_1,
-            2 => clipC1CExplanation01_2,
-            3 => clipC1CExplanation01_3,
-            4 => clipC1CExplanation02_1,
-            5 => clipC1CExplanation02_2,
-            6 => clipC1CExplanation02_3,
+            1 => clipC2CExplanation01_1_1,
+            2 => clipC2CExplanation01_1_2,
+            3 => clipC2CExplanation01_2_1,
+            4 => clipC2CExplanation01_3_1,
+            5 => clipC2CExplanation01_3_2,
+            6 => clipC2CExplanation01_4_1,
             _ => nextAudioClip
         };
 

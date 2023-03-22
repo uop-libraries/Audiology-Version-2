@@ -12,6 +12,7 @@ public class SkyBoxVideo : MonoBehaviour
     [SerializeField] VideoClip[] Case1Clip;
     [SerializeField] VideoClip[] Case2Clip;
     [SerializeField] VideoClip[] Case1CounselingClip;
+    [SerializeField] VideoClip[] Case2CounselingClip;
     int _videoClipIndex;
     
     [SerializeField] public Material mainSkyBox;
@@ -55,6 +56,9 @@ public class SkyBoxVideo : MonoBehaviour
             }
             else if (StateNameController.ClinicalCaseNumber == 3) {
                 _videoPlayer.clip = Case1CounselingClip[index];
+            }
+            else if (StateNameController.ClinicalCaseNumber == 4) {
+                _videoPlayer.clip = Case2CounselingClip[index];
             }
             
             StartVideo();

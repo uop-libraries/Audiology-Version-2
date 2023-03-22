@@ -226,6 +226,7 @@ public class CaseTwoCounseling : MonoBehaviour {
                 break;
             case 5:
                 _nextInstruction = _C2C_Instruction_05;
+                GoToInstructionNumber(panelNumber);
                 break;
             case 6:
                 _nextInstruction = _C2C_Instruction_06;
@@ -274,7 +275,8 @@ public class CaseTwoCounseling : MonoBehaviour {
             }
         }
 
-        if (_counter == 2 && instructionNumber == 7 ||
+        if (_counter == 2 && instructionNumber == 5 ||
+            _counter == 2 && instructionNumber == 7 ||
             _counter == 2 && instructionNumber == 12) {
             child2.SetActive(true);
         }

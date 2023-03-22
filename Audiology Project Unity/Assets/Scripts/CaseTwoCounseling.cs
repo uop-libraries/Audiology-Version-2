@@ -311,7 +311,7 @@ public class CaseTwoCounseling : MonoBehaviour {
                 if (StateNameController.CurrentActivePanel == _C2C_Topic_01_1 ||
                     StateNameController.CurrentActivePanel == _C2C_Topic_01_2 ||
                     StateNameController.CurrentActivePanel == _C2C_Topic_02) {
-                    BackgroundScript.GetDiagram()[0].gameObject.SetActive(true);
+                    BackgroundScript.GetDiagram()[2].gameObject.SetActive(true);
                 }
                 // Get Hearing Aid diagram for current topic
                 else if (StateNameController.CurrentActivePanel == _C2C_Topic_06_1 ||

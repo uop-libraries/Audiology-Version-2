@@ -307,7 +307,7 @@ public class CaseTwoCounseling : MonoBehaviour {
                 break;
             case Panel.Topic or Panel.Explanation:
                 BackgroundScript.GetBackground()[2].gameObject.SetActive(true);
-                BackgroundScript.GetDocImages()[1].gameObject.SetActive(true);
+                BackgroundScript.GetDocImages()[3].gameObject.SetActive(true);
 
                 // Get Audio gram Diagram for current topic
                 if (StateNameController.CurrentActivePanel == _C2C_Topic_01_1 ||

@@ -276,7 +276,7 @@ public class CaseTwoCounseling : MonoBehaviour {
         }
 
         if (_counter == 2 && instructionNumber == 5 ||
-            _counter == 2 && instructionNumber == 7 ||
+            _counter == 4 && instructionNumber == 7 ||
             _counter == 2 && instructionNumber == 12) {
             child2.SetActive(true);
         }

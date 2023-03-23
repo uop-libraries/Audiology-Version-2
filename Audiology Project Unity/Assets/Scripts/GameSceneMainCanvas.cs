@@ -206,11 +206,14 @@ public class GameSceneMainCanvas : MonoBehaviour {
         if (StateNameController.ClinicalCaseNumber == 1) {
             caseOneHistoryScript.ReturnToFromVideo();
         }
-        if (StateNameController.ClinicalCaseNumber == 2) {
+        else if (StateNameController.ClinicalCaseNumber == 2) {
             caseTwoHistoryScript.ReturnToFromVideo();
         }
         else if (StateNameController.ClinicalCaseNumber == 3) {
             caseOneCounselingScript.ReturnToFromVideo();
+        }
+        else if (StateNameController.ClinicalCaseNumber == 4) {
+            caseTwoCounselingScript.ReturnToFromVideo();
         }
     }
 

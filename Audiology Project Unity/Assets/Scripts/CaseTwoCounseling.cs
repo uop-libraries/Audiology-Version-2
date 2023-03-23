@@ -341,6 +341,7 @@ public class CaseTwoCounseling : MonoBehaviour {
             6 => _C2C_Feedback_06,
             7 => _C2C_Feedback_07,
             8 => _C2C_Feedback_08,
+            9 => _C2C_Feedback_09,
             _ => _nextFeedback,
         };
         var child2 = _nextFeedback.transform.GetChild(1).gameObject;
@@ -355,6 +356,7 @@ public class CaseTwoCounseling : MonoBehaviour {
             6 => clipC2CFeedback06,
             7 => clipC2CFeedback07,
             8 => clipC2CFeedback08,
+            9 => clipC2CFeedback09,
             _ => nextAudioClip
         };
 

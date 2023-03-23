@@ -267,17 +267,13 @@ public class CaseTwoCounseling : MonoBehaviour {
 
         foreach (Transform child in child1.transform) {
             if (child.gameObject.GetComponent<Image>().color == Color.grey) {
-                // if (instructionNumber == 7) {
-                //     child.gameObject.SetActive(false);
-                // }
-
                 _counter++;
             }
         }
 
         if (_counter == 2 && instructionNumber == 5 ||
             _counter == 4 && instructionNumber == 7 ||
-            _counter == 2 && instructionNumber == 12) {
+            _counter == 1 && instructionNumber == 12) {
             child2.SetActive(true);
         }
     }
@@ -469,8 +465,12 @@ public class CaseTwoCounseling : MonoBehaviour {
         }
         else if (StateNameController.CurrentActivePanel == _C2C_Instruction_12) {
             GoToInstruction(12);
-            _gameSceneMainCanvasScript.Case1CounselingDone();
+            // _gameSceneMainCanvasScript.Case1CounselingDone();
         }
+        // else if (StateNameController.CurrentActivePanel == _C2C_Instruction_12) {
+        //     GoToInstruction(12);
+        //     _gameSceneMainCanvasScript.Case1CounselingDone();
+        // }
     }
 
 }

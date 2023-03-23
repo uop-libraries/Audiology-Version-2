@@ -251,6 +251,10 @@ public class CaseTwoCounseling : MonoBehaviour {
                 _nextInstruction = _C2C_Instruction_12;
                 GoToInstructionNumber(panelNumber);
                 break;
+            case 13:
+                _nextInstruction = _C2C_Instruction_13;
+                GoToInstructionNumber(panelNumber);
+                break;
 
         }
         StateNameController.SwitchPanel(_nextInstruction);
@@ -275,6 +279,7 @@ public class CaseTwoCounseling : MonoBehaviour {
             _counter == 4 && instructionNumber == 7 ||
             _counter == 1 && instructionNumber == 12) {
             child2.SetActive(true);
+            _counter++;
         }
     }
 
@@ -386,8 +391,10 @@ public class CaseTwoCounseling : MonoBehaviour {
             13 => _C2C_Topic_08_1,
             14 => _C2C_Topic_08_2,
             15 => _C2C_Topic_09,
+            16 => _C2C_Topic_10,
             _ => _nextFeedback,
         };
+        
         var child2 = _nextTopic.transform.GetChild(1).gameObject;
 
         // Get next audio feedback clip
@@ -407,6 +414,7 @@ public class CaseTwoCounseling : MonoBehaviour {
             13 => clipC2CTopic08_1,
             14 => clipC2CTopic08_2,
             15 => clipC2CTopic09,
+            16 => clipC2CTopic10,
             _ => nextAudioClip,
         };
 
@@ -454,6 +462,7 @@ public class CaseTwoCounseling : MonoBehaviour {
     }
 
     public void ReturnToFromVideo() {
+        
         if (StateNameController.CurrentActivePanel == _C2C_Instruction_07) {
             GoToInstruction(7);
         }
@@ -464,9 +473,16 @@ public class CaseTwoCounseling : MonoBehaviour {
             GoToInstruction(12);
         }
         else if (StateNameController.CurrentActivePanel == _C2C_Instruction_12) {
-            GoToInstruction(12);
-            // _gameSceneMainCanvasScript.Case1CounselingDone();
+            GoToTopic(16);
         }
+        else if (StateNameController.CurrentActivePanel == _C2C_Topic_10) {
+            GoToInstruction(13);
+        }
+ 
+            
+            
+            // _gameSceneMainCanvasScript.Case1CounselingDone();
+        // }
         // else if (StateNameController.CurrentActivePanel == _C2C_Instruction_12) {
         //     GoToInstruction(12);
         //     _gameSceneMainCanvasScript.Case1CounselingDone();

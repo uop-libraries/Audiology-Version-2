@@ -282,6 +282,7 @@ public class CaseTwoCounseling : MonoBehaviour {
         if (_counter == 2 && instructionNumber == 5 ||
             _counter == 4 && instructionNumber == 7 ||
             _counter == 1 && instructionNumber == 12 ||
+            _counter == 2 && instructionNumber == 13 ||
             _counter == 4 && instructionNumber == 14) {
             child2.SetActive(true);
         }
@@ -489,6 +490,10 @@ public class CaseTwoCounseling : MonoBehaviour {
         }
         else if (StateNameController.CurrentActivePanel == _C2C_Topic_10) {
             GoToInstruction(13);
+        } 
+        else if (StateNameController.CurrentActivePanel == _C2C_Instruction_13) {
+            GoToInstruction(13);
+            _gameSceneMainCanvasScript.Case2CounselingDone();
         }
         else if (StateNameController.CurrentActivePanel == _C2C_Instruction_14) {
             GoToInstruction(14);

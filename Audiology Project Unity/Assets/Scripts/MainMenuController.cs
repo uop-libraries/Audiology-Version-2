@@ -25,6 +25,8 @@ public class MainMenuController : MonoBehaviour {
     GameObject _case2HistoryObject;
     GameObject _case1CounselingObject;
     GameObject _case2CounselingObject;
+    
+    GameObject _ConfirmationPage;
 
     TextMeshProUGUI _case1HistoryText;
     TextMeshProUGUI _case2HistoryText;
@@ -44,10 +46,13 @@ public class MainMenuController : MonoBehaviour {
     [SerializeField] bool _DebugMode;
 
     bool _isVRMode;
+    bool _isInMenu;
 
     void Awake() {
+        _isInMenu = false;
         _mainCanvas = GameObject.Find("Main_Canvas");
         _mainMenuPanelGameObject = GameObject.Find("MainMenuPanel");
+        _ConfirmationPage = GameObject.Find("ConfirmationPage");
         
         // Make Main Menu active and disable main canvas
         if (_mainCanvas && _mainMenuPanelGameObject) {
@@ -66,6 +71,7 @@ public class MainMenuController : MonoBehaviour {
         if (_DebugMode) {
             Debug.Log("=============DEBUG MODE=============");
         }
+        _ConfirmationPage.SetActive(false);
         _case1HistoryObject = GameObject.Find("Case_1_Button");
         _case2HistoryObject = GameObject.Find("Case_2_Button");
         _case1CounselingObject = GameObject.Find("Case_1_Counseling_Button");
@@ -97,6 +103,10 @@ public class MainMenuController : MonoBehaviour {
             if (!_DebugMode) {
                 SetCounselingButton();
             }
+        }
+
+        if (_isInMenu) {
+            
         }
         // if (_isVRMode) {
         //     XRSettings.LoadDeviceByName("daydream");
@@ -155,6 +165,21 @@ public class MainMenuController : MonoBehaviour {
     public void ReturnToMainMenu() {
         MainMenuObject.SetActive(!MainMenuObject.activeSelf);
         MainCanvasObject.SetActive(!MainCanvasObject.activeSelf);
+    }
+
+    public void OpenMainMenu() {
+        if (!MainMenuObject.activeSelf) {
+            MainMenuObject.SetActive(true);
+            _isInMenu = true;
+        }
+    }
+
+    public void OpenConfirmationPage() {
+        _ConfirmationPage.SetActive(!_ConfirmationPage.activeSelf);
+
+        foreach (Transform child in _ConfirmationPage.transform) {
+            child.gameObject.SetActive(!child.gameObject.activeSelf);
+        }
     }
 
     // Case 1 and 2 button used this function in OnClick() event

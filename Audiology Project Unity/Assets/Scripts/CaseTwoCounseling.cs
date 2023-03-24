@@ -490,6 +490,9 @@ public class CaseTwoCounseling : MonoBehaviour {
         else if (StateNameController.CurrentActivePanel == _C2C_Topic_10) {
             GoToInstruction(13);
         }
+        else if (StateNameController.CurrentActivePanel == _C2C_Instruction_14) {
+            GoToInstruction(14);
+        }
  
             
             

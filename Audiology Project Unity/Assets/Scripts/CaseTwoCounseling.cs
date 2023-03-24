@@ -35,7 +35,8 @@ public class CaseTwoCounseling : MonoBehaviour {
     [SerializeField] GameObject _C2C_Instruction_11;
     [SerializeField] GameObject _C2C_Instruction_12;
     [SerializeField] GameObject _C2C_Instruction_13;
-
+    [SerializeField] GameObject _C2C_Instruction_14;
+    
     [Header("Feedback Panel")]
     [SerializeField] GameObject _C2C_Feedback_01;
     [SerializeField] GameObject _C2C_Feedback_02;
@@ -67,7 +68,6 @@ public class CaseTwoCounseling : MonoBehaviour {
     [SerializeField] GameObject _C2C_Topic_10;
 
     [Header("Explanation Panel")]
-    [SerializeField] GameObject _C2C_Explanation_01;
     [SerializeField] GameObject _C2C_Explanation_01_1_1;
     [SerializeField] GameObject _C2C_Explanation_01_1_2;
     [SerializeField] GameObject _C2C_Explanation_01_2_1;
@@ -255,6 +255,10 @@ public class CaseTwoCounseling : MonoBehaviour {
                 _nextInstruction = _C2C_Instruction_13;
                 GoToInstructionNumber(panelNumber);
                 break;
+            case 14:
+                _nextInstruction = _C2C_Instruction_14;
+                GoToInstructionNumber(panelNumber);
+                break;
 
         }
         StateNameController.SwitchPanel(_nextInstruction);
@@ -277,9 +281,9 @@ public class CaseTwoCounseling : MonoBehaviour {
 
         if (_counter == 2 && instructionNumber == 5 ||
             _counter == 4 && instructionNumber == 7 ||
-            _counter == 1 && instructionNumber == 12) {
+            _counter == 1 && instructionNumber == 12 ||
+            _counter == 4 && instructionNumber == 14) {
             child2.SetActive(true);
-            _counter++;
         }
     }
 

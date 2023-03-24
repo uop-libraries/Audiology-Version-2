@@ -442,6 +442,10 @@ public class CaseTwoCounseling : MonoBehaviour {
             4 => _C2C_Explanation_01_3_1,
             5 => _C2C_Explanation_01_3_2,
             6 => _C2C_Explanation_01_4_1,
+            7 => _C2C_Explanation_01_4_2,
+            8 => _C2C_Explanation_02_1,
+            9 => _C2C_Explanation_02_2,
+            10 => _C2C_Explanation_02_3,
             _ => _nextFeedback,
         };
         var child2 = _nextExplanation.transform.GetChild(1).gameObject;
@@ -454,6 +458,10 @@ public class CaseTwoCounseling : MonoBehaviour {
             4 => clipC2CExplanation01_3_1,
             5 => clipC2CExplanation01_3_2,
             6 => clipC2CExplanation01_4_1,
+            7 => clipC2CExplanation01_4_2,
+            8 => clipC2CExplanation02_1,
+            9 => clipC2CExplanation02_2,
+            10 => clipC2CExplanation02_3,
             _ => nextAudioClip
         };
 

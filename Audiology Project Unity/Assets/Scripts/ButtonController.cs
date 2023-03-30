@@ -15,6 +15,7 @@ public class ButtonController : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] public float gazeTime = .6f;
     [SerializeField] public float delayTime = .8f;
+    bool _desktopVersion = true;
     bool _gazedStatus;
     
     
@@ -63,7 +64,9 @@ public class ButtonController : MonoBehaviour
         if (_gazedStatus && _newButton.interactable)
         {  
             _animatorButton.StopPlayback();
-            _delayTimer += Time.deltaTime;
+            if (!_desktopVersion) {
+                _delayTimer += Time.deltaTime;
+            }
             
             // cursorTimer.value = gazedTimer / TotalTime;
             Hovering();

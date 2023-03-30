@@ -794,10 +794,6 @@ PrefabInstance:
       propertyPath: m_TargetDisplay
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5499798015490743183, guid: 92a6120fa3ddd214996b4b815790011b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5798693258270832138, guid: 92a6120fa3ddd214996b4b815790011b, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
@@ -5558,14 +5554,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 60.74
       objectReference: {fileID: 0}
-    - target: {fileID: 918908928108258906, guid: 60f5962ba8ee3cd459c3107f648e4f58, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1224080771573318075, guid: 60f5962ba8ee3cd459c3107f648e4f58, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2044686733683289062, guid: 60f5962ba8ee3cd459c3107f648e4f58, type: 3}
       propertyPath: m_LocalScale.x
       value: 3.29
@@ -5589,30 +5577,6 @@ PrefabInstance:
     - target: {fileID: 2044686733683289062, guid: 60f5962ba8ee3cd459c3107f648e4f58, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3225040580371243591, guid: 60f5962ba8ee3cd459c3107f648e4f58, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3225040580722523869, guid: 60f5962ba8ee3cd459c3107f648e4f58, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3225040581782680198, guid: 60f5962ba8ee3cd459c3107f648e4f58, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3225040581803378439, guid: 60f5962ba8ee3cd459c3107f648e4f58, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3225040581869257259, guid: 60f5962ba8ee3cd459c3107f648e4f58, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3225040581880733779, guid: 60f5962ba8ee3cd459c3107f648e4f58, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6088642142176704986, guid: 60f5962ba8ee3cd459c3107f648e4f58, type: 3}
       propertyPath: m_LocalPosition.y

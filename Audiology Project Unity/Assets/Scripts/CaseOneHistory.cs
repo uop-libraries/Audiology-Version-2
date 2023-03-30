@@ -115,6 +115,7 @@ public class CaseOneHistory : MonoBehaviour  {
 
     public void GoToInstruction(int panelNumber) {
         Debug.Log("Instruction Panel: " + panelNumber);
+        audioSource.Stop();
         switch (panelNumber) {
             case 1:
                 _nextInstruction = _Instruction01;

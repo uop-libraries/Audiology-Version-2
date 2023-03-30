@@ -114,6 +114,7 @@ public class CaseTwoHistory : MonoBehaviour {
 
     public void GoToInstruction(int panelNumber) {
         Debug.Log("Instruction Panel: " + panelNumber);
+        audioSource.Stop();
         switch (panelNumber) {
             case 1:
                 _nextInstruction = c2HInstruction01;

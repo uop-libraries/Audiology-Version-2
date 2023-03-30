@@ -208,6 +208,7 @@ public class CaseTwoCounseling : MonoBehaviour {
 
     public void GoToInstruction(int panelNumber) {
         Debug.Log("Instruction Panel: " + panelNumber);
+        audioSource.Stop();
         const Panel instructionPanel = Panel.Instruction;
 
         switch (panelNumber) {

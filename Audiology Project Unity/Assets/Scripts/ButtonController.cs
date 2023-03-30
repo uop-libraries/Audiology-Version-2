@@ -39,7 +39,7 @@ public class ButtonController : MonoBehaviour
     public AudioClip clickClip;
     
     // public UnityEvent GVRClick;
-    
+
     void Start()
     {
         _continueButton = GameObject.Find("ContinueButton");
@@ -49,6 +49,7 @@ public class ButtonController : MonoBehaviour
         _image = GetComponent<Image>();
         _uiGradient = GetComponent<UIGradient>();
         _newButton = GetComponent<Button>();
+
     }
     
     void Update()
@@ -99,6 +100,18 @@ public class ButtonController : MonoBehaviour
             // _newButton.interactable = false;
             ChangeColor();
         }
+    }
+
+    public void OnButtonClick() {
+        if (!_desktopVersion)
+            return;
+        if (enableButtonSound == true && soundSource != null)
+        {
+            soundSource.PlayOneShot(clickClip);
+        }
+        _isClick = true;
+        StateNameController.IsClick = true;
+        Debug.Log("button is being press");
     }
     
     private void ChangeColor()

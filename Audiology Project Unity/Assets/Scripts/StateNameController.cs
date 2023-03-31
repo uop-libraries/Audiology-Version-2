@@ -20,6 +20,8 @@ public class StateNameController : MonoBehaviour
     public static bool IsCase1CounselingDone { get; set; }
 
     public static bool IsCase2CounselingDone { get; set; }
+    
+    public static bool IsDesktopVersion { get; set; }
 
     public static void SwitchPanel(GameObject next)
     {

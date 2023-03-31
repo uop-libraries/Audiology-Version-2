@@ -22,6 +22,9 @@ public class SkyBoxVideo : MonoBehaviour
 
     [SerializeField] BackgroundScript _backgroundScript;
     
+    // Set this variable to false if change to mobile version
+    // bool _isDesktopVersion = true;
+    
     public void StartVideo()
     {
         if (_videoPlayer.waitForFirstFrame) {
@@ -45,7 +48,11 @@ public class SkyBoxVideo : MonoBehaviour
         _backgroundScript.SetBackgroundToInactive();
         StateNameController.IsVideoPlaying = true;
         RenderSettings.skybox = videoSkyBox;
-        _canvasCursor.SetActive(false);
+        
+        if (!StateNameController.IsDesktopVersion) {
+            _canvasCursor.SetActive(false);
+        }
+        
         if (_videoPlayer.isPlaying == false)
         {
             if (StateNameController.ClinicalCaseNumber == 1) {

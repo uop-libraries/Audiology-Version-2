@@ -115,6 +115,7 @@ public class CaseOneCounseling : MonoBehaviour {
     [SerializeField] AudioClip clipC1CExplanation02_3;
     
     private int _counter;
+    int audioPlayCounter;
 
     public enum Panel {
         Narrator,
@@ -188,6 +189,9 @@ public class CaseOneCounseling : MonoBehaviour {
     }
 
     public void GoToInstruction(int panelNumber) {
+        if (panelNumber == 1) {
+            audioPlayCounter++;
+        }
         Debug.Log("Instruction Panel: " + panelNumber);
         audioSource.Stop();
         const Panel instructionPanel = Panel.Instruction;
@@ -195,7 +199,9 @@ public class CaseOneCounseling : MonoBehaviour {
         switch (panelNumber) {
             case 1:
                 _nextInstruction = _C1C_Instruction_01;
-                StartCoroutine(ActionAfterAudioStop(null, clipC1CInstruction01));
+                if (audioPlayCounter < 2) {
+                    StartCoroutine(ActionAfterAudioStop(null, clipC1CInstruction01));
+                }
                 break;
             case 2:
                 _nextInstruction = _C1C_Instruction_02;

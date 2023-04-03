@@ -14,8 +14,7 @@ public class CaseTwoCounseling : MonoBehaviour {
     GameObject _nextTopic;
     GameObject _nextExplanation;
     [SerializeField] GameSceneMainCanvas _gameSceneMainCanvasScript;
-
-
+    
     [Header("Narrator Panel")]
     [SerializeField] GameObject _C2C_Narrator_01;
     [SerializeField] GameObject _C2C_Narrator_02;
@@ -133,8 +132,9 @@ public class CaseTwoCounseling : MonoBehaviour {
     [SerializeField] AudioClip clipC2CExplanation02_1;
     [SerializeField] AudioClip clipC2CExplanation02_2;
     [SerializeField] AudioClip clipC2CExplanation02_3;
+    
     private int _counter;
-
+    int audioPlayCounter;
     public enum Panel {
         Narrator,
         Instruction,
@@ -207,6 +207,9 @@ public class CaseTwoCounseling : MonoBehaviour {
     }
 
     public void GoToInstruction(int panelNumber) {
+        if (panelNumber == 1) {
+            audioPlayCounter++;
+        }
         Debug.Log("Instruction Panel: " + panelNumber);
         audioSource.Stop();
         const Panel instructionPanel = Panel.Instruction;
@@ -214,7 +217,9 @@ public class CaseTwoCounseling : MonoBehaviour {
         switch (panelNumber) {
             case 1:
                 _nextInstruction = _C2C_Instruction_01;
-                StartCoroutine(ActionAfterAudioStop(null, clipC2CInstruction01));
+                if (audioPlayCounter < 2) {
+                    StartCoroutine(ActionAfterAudioStop(null, clipC2CInstruction01));
+                }
                 break;
             case 2:
                 _nextInstruction = _C2C_Instruction_02;

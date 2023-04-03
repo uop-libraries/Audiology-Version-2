@@ -65,6 +65,7 @@ public class CaseTwoHistory : MonoBehaviour {
     [SerializeField] AudioClip clipC2HFeedback09;
 
     private int _counter;
+    int audioPlayCounter;
     private bool _isFirstTime = true;
     private bool _isFirstTime1 = true;
 
@@ -113,12 +114,17 @@ public class CaseTwoHistory : MonoBehaviour {
     }
 
     public void GoToInstruction(int panelNumber) {
+        if (panelNumber == 1) {
+            audioPlayCounter++;
+        }
         Debug.Log("Instruction Panel: " + panelNumber);
         audioSource.Stop();
         switch (panelNumber) {
             case 1:
                 _nextInstruction = c2HInstruction01;
-                StartCoroutine(ActionAfterAudioStop(null, clipC2HInstruction1));
+                if (audioPlayCounter < 2) {
+                    StartCoroutine(ActionAfterAudioStop(null, clipC2HInstruction1));
+                }
                 break;
             case 2:
                 _nextInstruction = c2HInstruction02;

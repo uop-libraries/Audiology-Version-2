@@ -30,10 +30,5 @@ public class StateNameController : MonoBehaviour
         CurrentActivePanel = next;
         CurrentActivePanel.SetActive(true);
     }
-
-    // void Start() {
-    //     // ===== Set this to true for Desktop Version =====
-    //     IsDesktopVersion = true;
-    // }
 }
 

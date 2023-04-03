@@ -60,16 +60,14 @@ public class ButtonController : MonoBehaviour
         {
             return;
         }
-
-        //Todo 
-        // if (_gazedStatus)
+        
         // Hovering 
         if (_gazedStatus && _newButton.interactable)
         {  
             _animatorButton.StopPlayback();
             if (!StateNameController.IsDesktopVersion) {
                 _delayTimer += Time.deltaTime;
-                Debug.Log("Is Desktop Version" + StateNameController.IsDesktopVersion );
+                // Debug.Log("Is Desktop Version" + StateNameController.IsDesktopVersion );
             }
             
             // cursorTimer.value = gazedTimer / TotalTime;
@@ -84,37 +82,46 @@ public class ButtonController : MonoBehaviour
         // Selecting 
         if (_gazedTimer > gazeTime)
         {
-            if (enableButtonSound == true && soundSource != null)
-            {
-                soundSource.PlayOneShot(clickClip);
-            }
-            _gazedTimer = 0;
-            _delayTimer = 0;
-            // cursorTimer.value = 0;
-            _isClick = true;
-            StateNameController.IsClick = true;
-            // GVRClick.Invoke();
-            _gazedStatus = false;
+            // if (enableButtonSound == true && soundSource != null)
+            // {
+            //     soundSource.PlayOneShot(clickClip);
+            // }
+            // _gazedTimer = 0;
+            // _delayTimer = 0;
+            // // cursorTimer.value = 0;
+            // _isClick = true;
+            // StateNameController.IsClick = true;
+            // // GVRClick.Invoke();
+            // _gazedStatus = false;
+            OnButtonClick();
         }
         
         // Already selected and is not continuous button
-        if (_isClick && !_continueButton)
-        {
-            // _newButton.interactable = false;
-            ChangeColor();
-        }
+        // if (_isClick && !_continueButton)
+        // {
+        //     // _newButton.interactable = false;
+        //     ChangeColor();
+        // }
     }
 
     public void OnButtonClick() {
         if (!StateNameController.IsDesktopVersion)
             return;
+        
         if (enableButtonSound == true && soundSource != null)
         {
             soundSource.PlayOneShot(clickClip);
         }
-        _isClick = true;
         StateNameController.IsClick = true;
-        Debug.Log("button is being press");
+        if (!_continueButton)
+        {
+            ChangeColor();
+        }
+        _isClick = true;
+        _gazedTimer = 0;
+        _delayTimer = 0;
+        _gazedStatus = false;
+        // Debug.Log("button is being press");
     }
     
     private void ChangeColor()

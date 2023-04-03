@@ -371,7 +371,8 @@ public class CaseOneHistory : MonoBehaviour  {
                 _counter++;
             }
         }
-
+        
+        Debug.Log("_Counter:" + _counter);
         if (_counter == 2 && instructionNumber == 2 ||
             _counter == 1 && instructionNumber == 4 ||
             _counter == 6 && instructionNumber == 6 ||

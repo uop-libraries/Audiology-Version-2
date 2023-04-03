@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,5 +30,10 @@ public class StateNameController : MonoBehaviour
         CurrentActivePanel = next;
         CurrentActivePanel.SetActive(true);
     }
+
+    // void Start() {
+    //     // ===== Set this to true for Desktop Version =====
+    //     IsDesktopVersion = true;
+    // }
 }
 

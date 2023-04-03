@@ -76,7 +76,9 @@ public class SkyBoxVideo : MonoBehaviour
     {
         StateNameController.IsVideoPlaying = false;
         continueButton.SetActive(true);
-        _canvasCursor.SetActive(true);
+        if (!StateNameController.IsDesktopVersion) {
+            _canvasCursor.SetActive(true);
+        }
     }
     
     // Use in teh Continue button

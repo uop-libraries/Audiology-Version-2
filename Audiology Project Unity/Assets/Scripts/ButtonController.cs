@@ -69,6 +69,7 @@ public class ButtonController : MonoBehaviour
             _animatorButton.StopPlayback();
             if (!StateNameController.IsDesktopVersion) {
                 _delayTimer += Time.deltaTime;
+                Debug.Log("Is Desktop Version" + StateNameController.IsDesktopVersion );
             }
             
             // cursorTimer.value = gazedTimer / TotalTime;

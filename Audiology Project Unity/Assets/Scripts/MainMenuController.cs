@@ -49,6 +49,7 @@ public class MainMenuController : MonoBehaviour {
     bool _isInMenu;
 
     void Awake() {
+        StateNameController.IsDesktopVersion = true;
         _isInMenu = false;
         _mainCanvas = GameObject.Find("Main_Canvas");
         _mainMenuPanelGameObject = GameObject.Find("MainMenuPanel");

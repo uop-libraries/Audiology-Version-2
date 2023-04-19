@@ -14,6 +14,8 @@ public class MainMenuController : MonoBehaviour {
     [SerializeField] GameObject MainMenuObject;
     [SerializeField] GameObject MainCanvasObject;
     [SerializeField] GameSceneMainCanvas GameSceneMainCanvasScript;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip IntroAudioClip;
     
     // Main Menu 
     GameObject _mainMenuPanelGameObject;
@@ -47,6 +49,7 @@ public class MainMenuController : MonoBehaviour {
 
     bool _isVRMode;
     bool _isInMenu;
+    bool _isPlay;
 
     void Awake() {
         // Desktop Version when variable is true==================
@@ -68,6 +71,8 @@ public class MainMenuController : MonoBehaviour {
                 child.gameObject.SetActive(true);
             }
         }
+        
+
     }
 
     // Start is called before the first frame update
@@ -98,6 +103,9 @@ public class MainMenuController : MonoBehaviour {
             _case1CounselingButton = _case1CounselingObject.GetComponent<Button>();
             _case2CounselingButton = _case2CounselingObject.GetComponent<Button>();
         }
+        _isPlay = false;
+        // audioSource.clip = IntroAudioClip;
+        // audioSource.Play();
     }
 
     // Update is called once per frame
@@ -107,6 +115,11 @@ public class MainMenuController : MonoBehaviour {
             if (!_DebugMode) {
                 SetCounselingButton();
             }
+        }
+        if (_mainMenuPanelGameObject.activeSelf && !_isPlay) {
+            audioSource.clip = IntroAudioClip;
+            audioSource.Play();
+            _isPlay = true;
         }
 
         if (_isInMenu) {
@@ -169,6 +182,7 @@ public class MainMenuController : MonoBehaviour {
     public void ReturnToMainMenu() {
         MainMenuObject.SetActive(!MainMenuObject.activeSelf);
         MainCanvasObject.SetActive(!MainCanvasObject.activeSelf);
+        _isPlay = false;
     }
 
     public void OpenMainMenu() {

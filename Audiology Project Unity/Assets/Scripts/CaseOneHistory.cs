@@ -51,6 +51,8 @@ public class CaseOneHistory : MonoBehaviour  {
     
     [Header("AudioClip")]
     [SerializeField] private AudioClip clipCase1HistoryNarrator;
+    [SerializeField] private AudioClip clipCase1HistoryNarrator2;
+
     
     // Instruction audio clip
     [SerializeField] private AudioClip clipCase1HistoryInstruction1;
@@ -115,8 +117,11 @@ public class CaseOneHistory : MonoBehaviour  {
     }
 
     public void GoToInstruction(int panelNumber) {
-        if (panelNumber == 1) {
+        if (panelNumber is 1 or 15) {
             audioPlayCounter++;
+        }
+        else {
+            audioPlayCounter = 0;
         }
         
         Debug.Log("Instruction Panel: " + panelNumber);
@@ -178,7 +183,7 @@ public class CaseOneHistory : MonoBehaviour  {
                 break;
             case 15:
                 _nextInstruction = _Instruction15;
-                GoToInstructionNumber(panelNumber);
+                GoToInstruction15();
                 break;
         }
         StateNameController.SwitchPanel(_nextInstruction);
@@ -359,6 +364,21 @@ public class CaseOneHistory : MonoBehaviour  {
         }
         _counter = 0;
     }
+    
+     private void GoToInstruction15() {
+         _nextInstruction = _Instruction15;
+        var child1 = _nextInstruction.transform.GetChild(1).gameObject;
+        var child2 = _nextInstruction.transform.GetChild(2).gameObject;
+
+        child2.SetActive(false);
+        
+        if (audioPlayCounter < 2) {
+            StartCoroutine(ActionAfterAudioStop(child1, clipCase1HistoryNarrator2));
+        }
+        else {
+            child1.SetActive(true);
+        }
+     }
 
     private void GoToInstructionNumber(int instructionNumber) {
         _counter = 0;

@@ -140,7 +140,7 @@ public class MainMenuController : MonoBehaviour {
         if (!StateNameController.IsCase1HistoryDone) {
             _case1CounselingAnimator.enabled = false;
             _case1CounselingButton.interactable = false;
-            _case1CounselingText.text = "Case 1 Counseling (Lock)";
+            _case1CounselingText.text = "Case 1 Counseling (Locked)";
         }
         else {
             _case1CounselingAnimator.enabled = true;
@@ -157,7 +157,7 @@ public class MainMenuController : MonoBehaviour {
         if (!StateNameController.IsCase2HistoryDone) {
             _case2CounselingAnimator.enabled = false;
             _case2CounselingButton.interactable = false;
-            _case2CounselingText.text = "Case 2 Counseling (Lock)";
+            _case2CounselingText.text = "Case 2 Counseling (Locked)";
         }
         else {
             _case2CounselingAnimator.enabled = true;

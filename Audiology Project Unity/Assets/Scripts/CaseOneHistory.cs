@@ -182,7 +182,6 @@ public class CaseOneHistory : MonoBehaviour  {
                 GoToInstructionNumber(panelNumber);
                 break;
             case 15:
-                _nextInstruction = _Instruction15;
                 GoToInstruction15();
                 break;
         }
@@ -228,7 +227,7 @@ public class CaseOneHistory : MonoBehaviour  {
         StartCoroutine(ActionAfterAudioStop(child2, nextAudioClip));
 
     }
-
+    
     // Instruction for hearing abilities option
     private void GoToInstruction08() {
         _counter = 0;
@@ -403,13 +402,15 @@ public class CaseOneHistory : MonoBehaviour  {
         if (_counter == 2 && instructionNumber == 2 ||
             _counter == 1 && instructionNumber == 4 ||
             _counter == 6 && instructionNumber == 6 ||
-            _counter == 7 && instructionNumber == 7 ||
             _counter == 3 && instructionNumber == 10 ||
             _counter == 2 && instructionNumber == 11 ||
             _counter == 1 && instructionNumber == 12 ||
             _counter == 1 && instructionNumber == 13 ||
             _counter == 1 && instructionNumber == 14) {
             child2.SetActive(true);
+        }
+        else if (_counter == 7 && instructionNumber == 7) {
+            GoToInstruction(15);
         }
     }
 

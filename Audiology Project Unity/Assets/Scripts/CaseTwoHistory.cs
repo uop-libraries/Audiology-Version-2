@@ -515,13 +515,15 @@ public class CaseTwoHistory : MonoBehaviour {
         if (_counter == 2 && instructionNumber == 2 ||
             _counter == 1 && instructionNumber == 4 ||
             _counter == 7 && instructionNumber == 6 ||
-            _counter == 6 && instructionNumber == 8 ||
             _counter == 1 && instructionNumber == 10 ||
             _counter == 2 && instructionNumber == 11 ||
             _counter == 1 && instructionNumber == 12 ||
             _counter == 1 && instructionNumber == 13 ||
             _counter == 1 && instructionNumber == 14) {
             child2.SetActive(true);
+        }
+        else if (_counter == 6 && instructionNumber == 8) {
+            GoToInstruction(15);
         }
     }
 

@@ -27,5 +27,10 @@ Unity version 2021.3.11f
   - XRRigPlayer	
       - Disable Canvas Cursor GameObject
       - Disable CUI Camera Controller
+ - ### Button Control Script
+    - // Create a condition statement to handle desktop version
+ - ### SkyBoxVideo Script
+    - // Create a condition statement to handle desktop version
+
 
  

@@ -53,7 +53,7 @@ public class MainMenuController : MonoBehaviour {
 
     void Awake() {
         // Desktop Version when variable is true==================
-        StateNameController.IsDesktopVersion = true;
+        StateNameController.IsDesktopVersion = false;
         // ======================================================
         
         _isInMenu = false;
@@ -116,12 +116,14 @@ public class MainMenuController : MonoBehaviour {
                 SetCounselingButton();
             }
         }
-        if (_mainMenuPanelGameObject.activeSelf && !_isPlay) {
-            audioSource.clip = IntroAudioClip;
-            audioSource.Play();
-            _isPlay = true;
+        if (_mainMenuPanelGameObject != null) {
+            if (_mainMenuPanelGameObject.activeSelf && !_isPlay) {
+                audioSource.clip = IntroAudioClip;
+                audioSource.Play();
+                _isPlay = true;
+            }
         }
-
+        
         if (_isInMenu) {
             
         }

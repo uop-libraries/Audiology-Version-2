@@ -1,5 +1,9 @@
 # Audiology-Version-2
 
+### Project Overview
+Our audiology project leverages the accessible Google Cardboard VR platform to create a patient simulation experience for audiology students.  Students interact with virtual patients experiencing audiological discomfort, diagnose their issues, and identify the best treatment options. This hands-on approach allows students to develop practical skills and empathy towards their future patients. 
+https://miro.com/app/board/uXjVOxO0kDs=/
+
 Unity version 2021.3.11f
 
 ## Converting to Desktop version

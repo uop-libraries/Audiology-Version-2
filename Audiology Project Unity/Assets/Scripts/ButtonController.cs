@@ -65,7 +65,7 @@ public class ButtonController : MonoBehaviour
         if (_gazedStatus && _newButton.interactable)
         {  
             _animatorButton.StopPlayback();
-            if (!StateNameController.IsDesktopVersion) {
+            if (StateNameController.IsDesktopVersion) {
                 _delayTimer += Time.deltaTime;
                 // Debug.Log("Is Desktop Version" + StateNameController.IsDesktopVersion );
             }
@@ -105,7 +105,7 @@ public class ButtonController : MonoBehaviour
     }
 
     public void OnButtonClick() {
-        if (!StateNameController.IsDesktopVersion)
+        if (StateNameController.IsDesktopVersion)
             return;
         
         if (enableButtonSound == true && soundSource != null)

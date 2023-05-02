@@ -1,40 +1,29 @@
 # Audiology-Version-2
 
 ### Project Overview
-Our audiology project leverages the accessible Google Cardboard VR platform to create a patient simulation experience for audiology students.  Students interact with virtual patients experiencing audiological discomfort, diagnose their issues, and identify the best treatment options. This hands-on approach allows students to develop practical skills and empathy towards their future patients. 
+The Audiology Interactive Learning Application is a cutting-edge digital project aimed at enhancing the learning experience for audiology students, professionals, and individuals interested in the field. This project focuses on developing an immersive, user-friendly, and engaging platform that covers various aspects of audiology, including hearing assessment, hearing aid and more.
 https://miro.com/app/board/uXjVOxO0kDs=/
 
-Unity version 2021.3.11f
-
-## Converting to Desktop version
-- ### Main Menu Controller Script
-  - Awake function
-      - Set StateNameController.IsDesktopVersion to true
-- ### Title Screen Scene  
-  -  Canvas
-      - Disable Curve UI Setting
-  -  XRRigPlayer
-      - Disable Canvas Cursor GameObject
-      - Disable CUI Camera Controller
-  - Event System
-      - Disable curved UI Input Module
-      - Enable Standalone Input Module
-
-- ### Game 1 Scene
-  - MainCanvas GameObject
-      - Disable Curve UI Settings
-  - MainMenuPanel 
-      - Disable Curve UI Settings
-  - Event System
-      - Disable curved UI Input Module
-      - Enable Standalone Input Module
-  - XRRigPlayer	
-      - Disable Canvas Cursor GameObject
-      - Disable CUI Camera Controller
- - ### Button Control Script
-    - // Create a condition statement to handle desktop version
- - ### SkyBoxVideo Script
-    - // Create a condition statement to handle desktop version
-
-
+### Purpose
+The Audiology Interactive Learning Platform aims to revolutionize audiology education and training, providing an innovative solution for learners at all stages of their professional journey. With its combination of immersive learning experiences, personalized pathways, and collaborative features, this platform will be a valuable resource for the audiology community.
  
+ ## Deliverables
+ 
+1. 360-degree videos: High-quality, immersive videos recorded for various audiology interactions, providing a realistic and engaging learning experience for users.
+
+2. Interaction Scenarios: A variety of interactive scenarios developed to cover key audiology concepts, techniques, and procedures, tailored to both VR and desktop platforms.
+
+3. VR Application: A fully-functional, user-friendly application designed for virtual reality headsets, including Google Cardboard, enabling users to engage with the audiology content in a fully immersive environment.
+
+4. Desktop Application: A complementary desktop version of the audiology application, designed for users who prefer a traditional computer-based learning experience or lack access to VR hardware.
+
+5. Application Packaging: The VR and desktop applications packaged and optimized for easy distribution, installation, and usage on the target platforms.
+
+6. User Documentation: Comprehensive guides, manuals, and tutorials to help users effectively navigate and utilize both the VR and desktop applications.
+
+7. Training Materials: A set of training resources for instructors and administrators to effectively integrate the applications into their curriculum and support student learning.
+
+ ## Helpful Links
+ 1. https://miro.com/app/board/uXjVOxO0kDs=/
+ 
+ 2. https://trello.com/b/1BZIAeBl/audiology

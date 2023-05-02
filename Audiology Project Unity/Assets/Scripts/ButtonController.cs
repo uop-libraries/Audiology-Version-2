@@ -13,7 +13,7 @@ using Slider = UnityEngine.UI.Slider;
 public class ButtonController : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] public float gazeTime = .6f;
+    [SerializeField] public float gazeTime = .8f;
     [SerializeField] public float delayTime = .8f;
     
     // Set this variable to true for desktop version

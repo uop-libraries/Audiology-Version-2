@@ -6,37 +6,19 @@ https://miro.com/app/board/uXjVOxO0kDs=/
 
 ### Purpose
 The Audiology Interactive Learning Platform aims to revolutionize audiology education and training, providing an innovative solution for learners at all stages of their professional journey. With its combination of immersive learning experiences, personalized pathways, and collaborative features, this platform will be a valuable resource for the audiology community.
-Unity version 2021.3.11f
-
-## Converting to Desktop version
-- ### Main Menu Controller Script
-  - Awake function
-      - Set StateNameController.IsDesktopVersion to true
-- ### Title Screen Scene  
-  -  Canvas
-      - Disable Curve UI Setting
-  -  XRRigPlayer
-      - Disable Canvas Cursor GameObject
-      - Disable CUI Camera Controller
-  - Event System
-      - Disable curved UI Input Module
-      - Enable Standalone Input Module
-
-- ### Game 1 Scene
-  - MainCanvas GameObject
-      - Disable Curve UI Settings
-  - MainMenuPanel 
-      - Disable Curve UI Settings
-  - Event System
-      - Disable curved UI Input Module
-      - Enable Standalone Input Module
-  - XRRigPlayer	
-      - Disable Canvas Cursor GameObject
-      - Disable CUI Camera Controller
- - ### Button Control Script
-    - // Create a condition statement to handle desktop version
- - ### SkyBoxVideo Script
-    - // Create a condition statement to handle desktop version
-
-
  
+ ## Deliverables
+ 
+360-degree videos: High-quality, immersive videos recorded for various audiology interactions, providing a realistic and engaging learning experience for users.
+
+Interaction Scenarios: A variety of interactive scenarios developed to cover key audiology concepts, techniques, and procedures, tailored to both VR and desktop platforms.
+
+VR Application: A fully-functional, user-friendly application designed for virtual reality headsets, including Google Cardboard, enabling users to engage with the audiology content in a fully immersive environment.
+
+Desktop Application: A complementary desktop version of the audiology application, designed for users who prefer a traditional computer-based learning experience or lack access to VR hardware.
+
+Application Packaging: The VR and desktop applications packaged and optimized for easy distribution, installation, and usage on the target platforms.
+
+User Documentation: Comprehensive guides, manuals, and tutorials to help users effectively navigate and utilize both the VR and desktop applications.
+
+Training Materials: A set of training resources for instructors and administrators to effectively integrate the applications into their curriculum and support student learning.

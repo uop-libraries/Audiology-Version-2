@@ -9,16 +9,16 @@ The Audiology Interactive Learning Platform aims to revolutionize audiology educ
  
  ## Deliverables
  
-360-degree videos: High-quality, immersive videos recorded for various audiology interactions, providing a realistic and engaging learning experience for users.
+1. 360-degree videos: High-quality, immersive videos recorded for various audiology interactions, providing a realistic and engaging learning experience for users.
 
-Interaction Scenarios: A variety of interactive scenarios developed to cover key audiology concepts, techniques, and procedures, tailored to both VR and desktop platforms.
+2. Interaction Scenarios: A variety of interactive scenarios developed to cover key audiology concepts, techniques, and procedures, tailored to both VR and desktop platforms.
 
-VR Application: A fully-functional, user-friendly application designed for virtual reality headsets, including Google Cardboard, enabling users to engage with the audiology content in a fully immersive environment.
+3. VR Application: A fully-functional, user-friendly application designed for virtual reality headsets, including Google Cardboard, enabling users to engage with the audiology content in a fully immersive environment.
 
-Desktop Application: A complementary desktop version of the audiology application, designed for users who prefer a traditional computer-based learning experience or lack access to VR hardware.
+4. Desktop Application: A complementary desktop version of the audiology application, designed for users who prefer a traditional computer-based learning experience or lack access to VR hardware.
 
-Application Packaging: The VR and desktop applications packaged and optimized for easy distribution, installation, and usage on the target platforms.
+5. Application Packaging: The VR and desktop applications packaged and optimized for easy distribution, installation, and usage on the target platforms.
 
-User Documentation: Comprehensive guides, manuals, and tutorials to help users effectively navigate and utilize both the VR and desktop applications.
+6. User Documentation: Comprehensive guides, manuals, and tutorials to help users effectively navigate and utilize both the VR and desktop applications.
 
-Training Materials: A set of training resources for instructors and administrators to effectively integrate the applications into their curriculum and support student learning.
+7. Training Materials: A set of training resources for instructors and administrators to effectively integrate the applications into their curriculum and support student learning.

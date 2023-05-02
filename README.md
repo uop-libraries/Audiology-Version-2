@@ -22,3 +22,8 @@ The Audiology Interactive Learning Platform aims to revolutionize audiology educ
 6. User Documentation: Comprehensive guides, manuals, and tutorials to help users effectively navigate and utilize both the VR and desktop applications.
 
 7. Training Materials: A set of training resources for instructors and administrators to effectively integrate the applications into their curriculum and support student learning.
+
+ ## Helpful Links
+ 1. https://miro.com/app/board/uXjVOxO0kDs=/
+ 
+ 2. https://trello.com/b/1BZIAeBl/audiology

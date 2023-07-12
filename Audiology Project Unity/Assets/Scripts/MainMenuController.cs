@@ -53,7 +53,11 @@ public class MainMenuController : MonoBehaviour {
 
     void Awake() {
         // Desktop Version when variable is true==================
-        StateNameController.IsDesktopVersion = false;
+        // StateNameController.IsDesktopVersion = false;
+        // ======================================================
+        
+        // Desktop Version when variable is true==================
+        StateNameController.IsDesktopVersion = true;
         // ======================================================
         
         _isInMenu = false;

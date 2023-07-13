@@ -22,6 +22,7 @@ public class MainMenuController : MonoBehaviour {
     
     // Main Canvas
     GameObject _mainCanvas;
+    GameObject _titleCanvas;
     
     GameObject _case1HistoryObject;
     GameObject _case2HistoryObject;
@@ -62,6 +63,7 @@ public class MainMenuController : MonoBehaviour {
         
         _isInMenu = false;
         _mainCanvas = GameObject.Find("Main_Canvas");
+        _titleCanvas = GameObject.Find("TitleCanvas");
         _mainMenuPanelGameObject = GameObject.Find("MainMenuPanel");
         _ConfirmationPage = GameObject.Find("ConfirmationPage");
         

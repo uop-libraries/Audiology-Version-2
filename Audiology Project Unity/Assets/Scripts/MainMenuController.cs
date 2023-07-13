@@ -23,11 +23,13 @@ public class MainMenuController : MonoBehaviour {
     // Main Canvas
     GameObject _mainCanvas;
     GameObject _titleCanvas;
+    private GameObject _BackgroundCanvas;
     
     GameObject _case1HistoryObject;
     GameObject _case2HistoryObject;
     GameObject _case1CounselingObject;
     GameObject _case2CounselingObject;
+    private GameObject _mainCubeObject;
     
     GameObject _ConfirmationPage;
 
@@ -64,8 +66,12 @@ public class MainMenuController : MonoBehaviour {
         _isInMenu = false;
         _mainCanvas = GameObject.Find("Main_Canvas");
         _titleCanvas = GameObject.Find("TitleCanvas");
+        _BackgroundCanvas = GameObject.Find("BackgroundCanvas");
+
+        _mainCubeObject = GameObject.Find("MainCube");
         _mainMenuPanelGameObject = GameObject.Find("MainMenuPanel");
         _ConfirmationPage = GameObject.Find("ConfirmationPage");
+        
         
         // Make Main Menu active and disable main canvas
         if (_mainCanvas && _mainMenuPanelGameObject) {
@@ -77,8 +83,6 @@ public class MainMenuController : MonoBehaviour {
                 child.gameObject.SetActive(true);
             }
         }
-        
-
     }
 
     // Start is called before the first frame update
@@ -184,12 +188,16 @@ public class MainMenuController : MonoBehaviour {
         Debug.Log("StateNameController.ClinicalCaseNumber: " + StateNameController.ClinicalCaseNumber);
         MainMenuObject.SetActive(!MainMenuObject.activeSelf);
         MainCanvasObject.SetActive(!MainCanvasObject.activeSelf);
+        _BackgroundCanvas.SetActive(!_BackgroundCanvas.activeSelf);
+        _mainCubeObject.SetActive(!_mainCubeObject.activeSelf);
         GameSceneMainCanvasScript.Startgame();
     }
 
     public void ReturnToMainMenu() {
         MainMenuObject.SetActive(!MainMenuObject.activeSelf);
         MainCanvasObject.SetActive(!MainCanvasObject.activeSelf);
+        _BackgroundCanvas.SetActive(!_BackgroundCanvas.activeSelf);
+        _mainCubeObject.SetActive(!_mainCubeObject.activeSelf);
         _isPlay = false;
     }
 

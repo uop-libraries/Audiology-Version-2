@@ -73,7 +73,11 @@ public class ButtonController : MonoBehaviour
             // cursorTimer.value = gazedTimer / TotalTime;
             Hovering();
         }
-
+        
+        // If isDesktop Version do not proceed to next step
+        if (StateNameController.IsDesktopVersion)
+            return;
+        
         if (_delayTimer > delayTime)
         {
             _gazedTimer += Time.deltaTime;
@@ -105,9 +109,7 @@ public class ButtonController : MonoBehaviour
     }
 
     public void OnButtonClick() {
-        if (StateNameController.IsDesktopVersion)
-            return;
-        
+        Debug.Log("Button is Click");
         if (enableButtonSound == true && soundSource != null)
         {
             soundSource.PlayOneShot(clickClip);

@@ -41,8 +41,7 @@ public class CaseTwoHistory : MonoBehaviour {
     [SerializeField] GameObject c2HFeedback06;
     [SerializeField] GameObject c2HFeedback07;
     [SerializeField] GameObject c2HFeedback08;
-    [SerializeField] GameObject c2HFeedback09;
-    
+
     [Header("AudioSource")]
     [SerializeField] AudioSource audioSource;
     
@@ -63,7 +62,6 @@ public class CaseTwoHistory : MonoBehaviour {
     [SerializeField] AudioClip clipC2HFeedback06;
     [SerializeField] AudioClip clipC2HFeedback07;
     [SerializeField] AudioClip clipC2HFeedback08;
-    [SerializeField] AudioClip clipC2HFeedback09;
 
     private int _counter;
     int audioPlayCounter;
@@ -205,7 +203,6 @@ public class CaseTwoHistory : MonoBehaviour {
             6 => c2HFeedback06,
             7 => c2HFeedback07,
             8 => c2HFeedback08,
-            9 => c2HFeedback09,
             _ => _nextFeedback
         };
         var child2 = _nextFeedback.transform.GetChild(1).gameObject;
@@ -220,7 +217,6 @@ public class CaseTwoHistory : MonoBehaviour {
             6 => clipC2HFeedback06,
             7 => clipC2HFeedback07,
             8 => clipC2HFeedback08,
-            9 => clipC2HFeedback09,
             _ => nextAudioClip
         };
 

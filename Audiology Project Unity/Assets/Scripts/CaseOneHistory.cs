@@ -356,8 +356,9 @@ public class CaseOneHistory : MonoBehaviour  {
                     break;
                 }
                 case 7:
-                    child2.SetActive(true);
+                    // child2.SetActive(true);
                     _isFirstTime1 = true;
+                    GoToInstruction(7);
                     break;
             }
         }

@@ -50,72 +50,72 @@ public class GameSceneMainCanvas : MonoBehaviour {
     private void Update() {
         // Todo Disable after testing ----------------------( START )
 
-        if (Input.GetKeyDown(KeyCode.N)) {
-            _nextPanel++;
-            if (StateNameController.ClinicalCaseNumber == 1) {
-                caseOneHistoryScript.GoToInstruction(_nextPanel);
-            }
-            else if (StateNameController.ClinicalCaseNumber == 2) {
-                caseTwoHistoryScript.GoToInstruction(_nextPanel);
-            }
-            else if (StateNameController.ClinicalCaseNumber == 3) {
-                if (_nextPanel < 4) {
-                    caseOneCounselingScript.GoToNarratorPanel(_nextPanel);
-                }
-                else if (_nextPanel >= 4) {
-                    caseOneCounselingScript.GoToInstruction(_nextPanel - 3);
-                }
-                // else if (_nextPanel is >= 6 and < 8) {
-                //     caseOneCounselingScript.GoToTopic(_nextPanel - 5);
-                // }
-                // else if (_nextPanel is >= 8 and < ) {
-                //     caseOneCounselingScript.GoToTopic(_nextPanel - 5);
-                // }
+        // if (Input.GetKeyDown(KeyCode.N)) {
+        //     _nextPanel++;
+        //     if (StateNameController.ClinicalCaseNumber == 1) {
+        //         caseOneHistoryScript.GoToInstruction(_nextPanel);
+        //     }
+        //     else if (StateNameController.ClinicalCaseNumber == 2) {
+        //         caseTwoHistoryScript.GoToInstruction(_nextPanel);
+        //     }
+        //     else if (StateNameController.ClinicalCaseNumber == 3) {
+        //         if (_nextPanel < 4) {
+        //             caseOneCounselingScript.GoToNarratorPanel(_nextPanel);
+        //         }
+        //         else if (_nextPanel >= 4) {
+        //             caseOneCounselingScript.GoToInstruction(_nextPanel - 3);
+        //         }
+        //         // else if (_nextPanel is >= 6 and < 8) {
+        //         //     caseOneCounselingScript.GoToTopic(_nextPanel - 5);
+        //         // }
+        //         // else if (_nextPanel is >= 8 and < ) {
+        //         //     caseOneCounselingScript.GoToTopic(_nextPanel - 5);
+        //         // }
                 
-            }
-            else if (StateNameController.ClinicalCaseNumber == 4) {
-                if (_nextPanel < 4) {
-                    caseTwoCounselingScript.GoToNarratorPanel(_nextPanel);
-                }
-                else if (_nextPanel >= 4) {
-                    caseTwoCounselingScript.GoToInstruction(_nextPanel - 3);
-                }
-            }
-            Debug.Log("_nextPanel: " + _nextPanel);
-        }
-        if (Input.GetKeyDown(KeyCode.B)) {
-            _nextPanel--;
-            if (StateNameController.ClinicalCaseNumber == 1) {
-                caseOneHistoryScript.GoToInstruction(_nextPanel);
-            }
-            else if (StateNameController.ClinicalCaseNumber == 2) {
-                caseTwoHistoryScript.GoToInstruction(_nextPanel);
-            }
-            else if (StateNameController.ClinicalCaseNumber == 3) {
-                if (_nextPanel < 4) {
-                    caseOneCounselingScript.GoToNarratorPanel(_nextPanel);
-                }
-                else if (_nextPanel is >= 4 and < 6) {
-                    caseOneCounselingScript.GoToInstruction(_nextPanel - 3);
-                }
-                // else if (_nextPanel is >= 6 and < 8) {
-                //     caseOneCounselingScript.GoToTopic(_nextPanel - 5);
-                // }
-            }
-            else if (StateNameController.ClinicalCaseNumber == 4) {
-                if (_nextPanel < 4) {
-                    caseTwoCounselingScript.GoToNarratorPanel(_nextPanel);
-                }
-                else if (_nextPanel >= 4) {
-                    caseTwoCounselingScript.GoToInstruction(_nextPanel - 3);
-                }
-            }
-            Debug.Log("_nextPanel: " + _nextPanel);
-        }
-        if (Input.GetKeyDown(KeyCode.M)) {
-            // SceneManager.LoadScene(0);
-            _mainMenuControllerScript.ReturnToMainMenu();
-        }
+        //     }
+        //     else if (StateNameController.ClinicalCaseNumber == 4) {
+        //         if (_nextPanel < 4) {
+        //             caseTwoCounselingScript.GoToNarratorPanel(_nextPanel);
+        //         }
+        //         else if (_nextPanel >= 4) {
+        //             caseTwoCounselingScript.GoToInstruction(_nextPanel - 3);
+        //         }
+        //     }
+        //     Debug.Log("_nextPanel: " + _nextPanel);
+        // }
+        // if (Input.GetKeyDown(KeyCode.B)) {
+        //     _nextPanel--;
+        //     if (StateNameController.ClinicalCaseNumber == 1) {
+        //         caseOneHistoryScript.GoToInstruction(_nextPanel);
+        //     }
+        //     else if (StateNameController.ClinicalCaseNumber == 2) {
+        //         caseTwoHistoryScript.GoToInstruction(_nextPanel);
+        //     }
+        //     else if (StateNameController.ClinicalCaseNumber == 3) {
+        //         if (_nextPanel < 4) {
+        //             caseOneCounselingScript.GoToNarratorPanel(_nextPanel);
+        //         }
+        //         else if (_nextPanel is >= 4 and < 6) {
+        //             caseOneCounselingScript.GoToInstruction(_nextPanel - 3);
+        //         }
+        //         // else if (_nextPanel is >= 6 and < 8) {
+        //         //     caseOneCounselingScript.GoToTopic(_nextPanel - 5);
+        //         // }
+        //     }
+        //     else if (StateNameController.ClinicalCaseNumber == 4) {
+        //         if (_nextPanel < 4) {
+        //             caseTwoCounselingScript.GoToNarratorPanel(_nextPanel);
+        //         }
+        //         else if (_nextPanel >= 4) {
+        //             caseTwoCounselingScript.GoToInstruction(_nextPanel - 3);
+        //         }
+        //     }
+        //     Debug.Log("_nextPanel: " + _nextPanel);
+        // }
+        // if (Input.GetKeyDown(KeyCode.M)) {
+        //     // SceneManager.LoadScene(0);
+        //     _mainMenuControllerScript.ReturnToMainMenu();
+        // }
         // Todo Disable after testing --------------------------( END )
     }
 

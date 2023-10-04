@@ -205,9 +205,31 @@ public class MainMenuController : MonoBehaviour {
 
     public void OpenMainMenu() {
         if (!MainMenuObject.activeSelf) {
-            MainMenuObject.SetActive(true);
-            _isInMenu = true;
+            // Make Main Menu active and disable main canvas
+            if (_mainCanvas && _mainMenuPanelGameObject) {
+                _mainCanvas.SetActive(false);
+                _mainMenuPanelGameObject.SetActive(true);
+                _backgroundCanvasGameObject.SetActive(true);
+            
+                // Make all game objects in main menu active
+                foreach (Transform child in _mainMenuPanelGameObject.transform) {
+                    child.gameObject.SetActive(true);
+                }
+            
+                // Make all game objects in Background canvas active
+                foreach (Transform child in _backgroundCanvasGameObject.transform) {
+                    child.gameObject.SetActive(true);
+                }
+                MainMenuObject.SetActive(true);
+                _isInMenu = true;
+            }
+            
         }
+    }
+    
+    public void WindowedMode()
+    {
+        Screen.fullScreen = !Screen.fullScreen;
     }
 
     public void OpenConfirmationPage() {

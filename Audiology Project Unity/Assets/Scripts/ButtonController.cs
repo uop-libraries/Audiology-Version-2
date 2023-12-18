@@ -37,6 +37,11 @@ public class ButtonController : MonoBehaviour
     private float _gazedTimer;
     private float _delayTimer;
     
+    // Used to resync main menu button animations
+    private GameObject _syncAnimationObject;
+    private Animator _syncAnimationAnimator;
+    private Image _syncAnimationImage;
+    
     public AudioSource soundSource;
     public AudioClip clickClip;
     
@@ -45,21 +50,30 @@ public class ButtonController : MonoBehaviour
     void Start()
     {
         _continueButton = GameObject.Find("ContinueButton");
+        _syncAnimationObject = GameObject.Find("Sync_Animation_Dummy");
+        if (_syncAnimationObject != null)
+        {
+            _syncAnimationAnimator = _syncAnimationObject.GetComponent<Animator>();
+            _syncAnimationImage = _syncAnimationObject.GetComponent<Image>();
+        }
         // cursorTimer.value = 0;
         _gazedStatus = false;
         _animatorButton = GetComponent<Animator>();
         _image = GetComponent<Image>();
         _uiGradient = GetComponent<UIGradient>();
         _newButton = GetComponent<Button>();
-
     }
     
     void Update()
     {
-        if (_newButton.interactable == false)
+        if (_newButton != null)
         {
-            return;
+            if (_newButton.interactable == false)
+            {
+                return;
+            }
         }
+        
         
         // Hovering 
         if (_gazedStatus && _newButton.interactable)
@@ -115,7 +129,7 @@ public class ButtonController : MonoBehaviour
             soundSource.PlayOneShot(clickClip);
         }
         StateNameController.IsClick = true;
-        if (!_continueButton)
+        if (!_continueButton && !CompareTag("MenuButton") && !CompareTag("MainMenuButton"))
         {
             ChangeColor();
         }
@@ -126,7 +140,7 @@ public class ButtonController : MonoBehaviour
         // Debug.Log("button is being press");
     }
     
-    private void ChangeColor()
+    public void ChangeColor()
     {
         _image.color = Color.grey;
         if (_uiGradient != null)
@@ -146,7 +160,17 @@ public class ButtonController : MonoBehaviour
         _gazedTimer = 0;
         _delayTimer = 0;
         // cursorTimer.value = 0;
-        _animatorButton.Play("HoverOffAnimation");
+        
+        // Allows main menu buttons to retain their flashing animation while
+        // other buttons (choices, control buttons, etc...) remain as normal
+        if (CompareTag("MainMenuButton"))
+        {
+            StartCoroutine("PlayHoverOff");    
+        }
+        else
+        {
+            _animatorButton.Play("HoverOffAnimation");
+        }
     }
     
     private void Hovering()
@@ -158,5 +182,17 @@ public class ButtonController : MonoBehaviour
     {
         _animatorButton.Play("HoverOnAnimation");
         yield return null;
+    }
+
+    IEnumerator PlayHoverOff()
+    {
+        // Finishes the hovering animation and then waits until the button animations are synced to start flashing again
+        // Has a fade effect into the flashing animation to smooth it out in case of any sudden changes
+        _animatorButton.Play("HoverOffAnimation");
+        AnimatorClipInfo[] animInfo = _animatorButton.GetCurrentAnimatorClipInfo(0);
+        float clipLength = animInfo[0].clip.length;
+        yield return new WaitForSeconds(clipLength);
+        yield return new WaitUntil(() => (_syncAnimationImage.color.a >= 0.95f));
+        _animatorButton.CrossFade("StartAnimation", 0.2f, 0, _syncAnimationAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime); 
     }
 }

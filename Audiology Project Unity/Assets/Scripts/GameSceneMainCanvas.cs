@@ -71,7 +71,7 @@ public class GameSceneMainCanvas : MonoBehaviour {
         //         // else if (_nextPanel is >= 8 and < ) {
         //         //     caseOneCounselingScript.GoToTopic(_nextPanel - 5);
         //         // }
-                
+        //         
         //     }
         //     else if (StateNameController.ClinicalCaseNumber == 4) {
         //         if (_nextPanel < 4) {
@@ -169,32 +169,37 @@ public class GameSceneMainCanvas : MonoBehaviour {
         }
     }
 
+    // Added an argument to ReturnToMainMenu that keeps track of which case just finished
     public void Case1Done() {
         Debug.Log("Case1HistoryDone");
         StateNameController.IsCase1HistoryDone = true;
         // SceneManager.LoadScene(1);
-        _mainMenuControllerScript.ReturnToMainMenu();
+        caseOneHistoryScript.SetComplete();
+        _mainMenuControllerScript.ReturnToMainMenu("Case_1");
     }
 
     public void Case2Done() {
         Debug.Log("Case2HistoryDone");
         StateNameController.IsCase2HistoryDone = true;
         // SceneManager.LoadScene(1);
-        _mainMenuControllerScript.ReturnToMainMenu();
+        caseTwoHistoryScript.SetComplete();
+        _mainMenuControllerScript.ReturnToMainMenu("Case_2");
     }
 
     public void Case1CounselingDone() {
         Debug.Log("Case1CounselingDone");
         StateNameController.IsCase1CounselingDone = true;
         // SceneManager.LoadScene(1);
-        _mainMenuControllerScript.ReturnToMainMenu();
+        caseOneCounselingScript.SetComplete();
+        _mainMenuControllerScript.ReturnToMainMenu("Case_1_Counseling");
     }
     
     public void Case2CounselingDone() {
         Debug.Log("Case2CounselingDone");
         StateNameController.IsCase2CounselingDone = true;
         // SceneManager.LoadScene(1);
-        _mainMenuControllerScript.ReturnToMainMenu();
+        caseTwoCounselingScript.SetComplete();
+        _mainMenuControllerScript.ReturnToMainMenu("Case_2_Counseling");
     }
     
     // OnClick() event for quit button

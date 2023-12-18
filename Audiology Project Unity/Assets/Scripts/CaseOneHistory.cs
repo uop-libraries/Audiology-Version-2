@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using Michsky.MUIP;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -47,7 +48,7 @@ public class CaseOneHistory : MonoBehaviour  {
     [SerializeField] private GameObject _Feedback07;
 
     [Header("AudioSource")]
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] public AudioSource audioSource;
     
     [Header("AudioClip")]
     [SerializeField] private AudioClip clipCase1HistoryNarrator;
@@ -67,10 +68,23 @@ public class CaseOneHistory : MonoBehaviour  {
     [SerializeField] private AudioClip clipCase1HistoryFeedback6;
     [SerializeField] private AudioClip clipCase1HistoryFeedback7;
 
+    // Array of each choice in Case One
+    // Allows for a total reset if the player chooses to play again after finishing the case
+    [Header("Choices")] 
+    [SerializeField] private Image[] choices;
+
     private int _counter;
     int audioPlayCounter = 0;
     private bool _isFirstTime = true;
     private bool _isFirstTime1 = true;
+
+    // Static info that is used to return to the case if the
+    // player has gone back to the main menu and returned to the case again
+    private static int _returnPanelNumber;
+    private static int _returnFeedbackNumber;
+    private static bool _hasGoneBack = false;
+    private static bool _wasOnFeedback = false;
+    private static bool _hasCompleted = false;
 
     public void StartCase1History() {
         _counter = 0;
@@ -88,10 +102,28 @@ public class CaseOneHistory : MonoBehaviour  {
             child.gameObject.SetActive(false);
         }
 
-        GoToFirstPanel();
+        // Simple logic to check if the player is just starting the case, returning to it, or restarting it
+        if (_hasCompleted)
+        {
+            _hasGoneBack = false;
+        }
+
+        if (!_hasGoneBack)
+        {
+            GoToFirstPanel();
+        }
+        else if (_hasGoneBack && _wasOnFeedback)
+        {
+            GoToFeedBack(_returnFeedbackNumber);
+        }
+        else if (_hasGoneBack && !_wasOnFeedback)
+        {
+            GoToInstruction(_returnPanelNumber);
+        }
     }
 
     private void GoToFirstPanel() {
+        ResetComplete();
         StateNameController.CurrentActivePanel = Narrator01;
         _nextInstruction = Narrator01;
         StateNameController.SwitchPanel(_nextInstruction);
@@ -116,7 +148,20 @@ public class CaseOneHistory : MonoBehaviour  {
         }
     }
 
-    public void GoToInstruction(int panelNumber) {
+    public void GoToInstruction(int panelNumber)
+    {
+
+        // Turns on "_hasGoneBack", meaning the player will now return
+        // to their last spot in the case if they go to the menu and come back
+        if (panelNumber >= 1)
+        {
+            _hasGoneBack = true;
+        }
+
+        // Getting current panel info for return states
+        _returnPanelNumber = panelNumber;
+        _wasOnFeedback = false;
+        
         if (panelNumber is 1 or 15) {
             audioPlayCounter++;
         }
@@ -190,7 +235,13 @@ public class CaseOneHistory : MonoBehaviour  {
         ChangeFeedbackBackground(false);
     }
 
-    public void GoToFeedBack(int value) {
+    public void GoToFeedBack(int value)
+    {
+
+        // Getting current panel info for return states
+        _wasOnFeedback = true;
+        _returnFeedbackNumber = value;
+        
         AudioClip nextAudioClip = null;
 
         // Get current feedback panel
@@ -469,4 +520,45 @@ public class CaseOneHistory : MonoBehaviour  {
             BackgroundScript.GetDocImages()[0].gameObject.SetActive(true);
         }
     }
+    
+    // Runs once the case has been completed
+    public void SetComplete()
+    {
+        // Set "_hasCompleted" to true, which will make it so ResetComplete() will run if the case is chosen again
+        _hasCompleted = true;
+        
+        // Gets the color to reset each button
+        byte R = 227;
+        byte G = 88;
+        byte B = 0;
+        byte A = 255;
+        
+        // Resets each button; makes it look like it was never pressed
+        foreach (var choice in choices)
+        {
+            UIGradient uiGrad = choice.gameObject.GetComponent<UIGradient>();
+            choice.color = new Color32(R, G, B, A);
+            uiGrad.enabled = true;
+        }
+        
+        // For loops to reset "scrolling"/"counter" choices
+        // AKA choice menus that reveal more choices after one has been pressed
+        for (int i = 0; i < 4; i++)
+        {
+            int offset = 46;
+            choices[offset + i].gameObject.SetActive(false);
+        }
+        for (int i = 0; i < 7; i++)
+        {
+            int offset = 51;
+            choices[offset + i].gameObject.SetActive(false);
+        }
+    }
+
+    // Turns off "_hasCompleted", allows the player to go through the case again
+    public void ResetComplete()
+    {
+        _hasCompleted = false;
+    }
+    
 }

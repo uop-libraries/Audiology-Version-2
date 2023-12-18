@@ -3,6 +3,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Michsky.MUIP;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -24,6 +25,11 @@ public class MainMenuController : MonoBehaviour {
     GameObject _mainCanvas;
     GameObject _titleCanvas;
     private GameObject _backgroundCanvasGameObject;
+
+    private CaseOneHistory _case1HistoryScript;
+    private CaseTwoHistory _case2HistoryScript;
+    private CaseOneCounseling _case1CounselingScript;
+    private CaseTwoCounseling _case2CounselingScript;
     
     GameObject _case1HistoryObject;
     GameObject _case2HistoryObject;
@@ -46,6 +52,7 @@ public class MainMenuController : MonoBehaviour {
     Button _case2HistoryButton;
     Button _case1CounselingButton;
     Button _case2CounselingButton;
+    
 
     [SerializeField] bool _DebugMode;
 
@@ -55,11 +62,11 @@ public class MainMenuController : MonoBehaviour {
 
     void Awake() {
         // Desktop Version when variable is true==================
-        // StateNameController.IsDesktopVersion = false;
+        StateNameController.IsDesktopVersion = false;
         // ======================================================
         
         // Desktop Version when variable is true==================
-        StateNameController.IsDesktopVersion = true;
+        // StateNameController.IsDesktopVersion = true;
         // ======================================================
         
         _isInMenu = false;
@@ -102,6 +109,11 @@ public class MainMenuController : MonoBehaviour {
 
         if (_case1HistoryObject != null && _case2HistoryObject != null &&
             _case1CounselingObject != null && _case2CounselingObject != null) {
+            _case1HistoryScript = GameSceneMainCanvasScript.gameObject.GetComponent<CaseOneHistory>();
+            _case2HistoryScript = GameSceneMainCanvasScript.gameObject.GetComponent<CaseTwoHistory>();
+            _case1CounselingScript = GameSceneMainCanvasScript.gameObject.GetComponent<CaseOneCounseling>();
+            _case2CounselingScript = GameSceneMainCanvasScript.gameObject.GetComponent<CaseTwoCounseling>();
+            
             _case1HistoryText = _case1HistoryObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
             _case2HistoryText = _case2HistoryObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
             _case1CounselingText = _case1CounselingObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
@@ -112,8 +124,8 @@ public class MainMenuController : MonoBehaviour {
             _case1CounselingAnimator = _case1CounselingObject.GetComponent<Animator>();
             _case2CounselingAnimator = _case2CounselingObject.GetComponent<Animator>();
 
-            _case1HistoryButton = _case1CounselingObject.GetComponent<Button>();
-            _case2HistoryButton = _case2CounselingObject.GetComponent<Button>();
+            _case1HistoryButton = _case1HistoryObject.GetComponent<Button>();
+            _case2HistoryButton = _case2HistoryObject.GetComponent<Button>();
             _case1CounselingButton = _case1CounselingObject.GetComponent<Button>();
             _case2CounselingButton = _case2CounselingObject.GetComponent<Button>();
         }
@@ -196,7 +208,38 @@ public class MainMenuController : MonoBehaviour {
         GameSceneMainCanvasScript.Startgame();
     }
 
-    public void ReturnToMainMenu() {
+    public void ReturnToMainMenu(string caseVersion)
+    {
+
+        // Gets which case is returning from GameSceneMainCanvas
+        // Only used when a case is completely finished
+        // Otherwise, use OpenMainMenu
+        GameObject caseObject;
+        switch (caseVersion)
+        {
+            case "Case_1":
+                caseObject = _case1HistoryObject;
+                break;
+            case "Case_2":
+                caseObject = _case2HistoryObject;
+                break;
+            case "Case_1_Counseling":
+                caseObject = _case1CounselingObject;
+                break;
+            case "Case_2_Counseling":
+                caseObject = _case2CounselingObject;
+                break;
+            default:
+                caseObject = null;
+                break;
+        }
+
+        // Sets the case to gray, showing it has been completed
+        if (caseObject != null)
+        {
+            caseObject.GetComponent<ButtonController>().ChangeColor();    
+        }
+        
         MainMenuObject.SetActive(!MainMenuObject.activeSelf);
         MainCanvasObject.SetActive(!MainCanvasObject.activeSelf);
         _backgroundCanvasGameObject.SetActive(!_backgroundCanvasGameObject.activeSelf);
@@ -220,6 +263,13 @@ public class MainMenuController : MonoBehaviour {
                 foreach (Transform child in _backgroundCanvasGameObject.transform) {
                     child.gameObject.SetActive(true);
                 }
+                
+                // Stops any remaining case audio
+                _case1HistoryScript.audioSource.Stop();
+                _case2HistoryScript.audioSource.Stop();
+                _case1CounselingScript.audioSource.Stop();
+                _case2CounselingScript.audioSource.Stop();
+                
                 MainMenuObject.SetActive(true);
                 _isInMenu = true;
             }
@@ -259,6 +309,7 @@ public class MainMenuController : MonoBehaviour {
 
     // OnClick() event for quit button
     public void QuitApp() {
+        Debug.Log("QUIT");
         Application.Quit();
     }
 

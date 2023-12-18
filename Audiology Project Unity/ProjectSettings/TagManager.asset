@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Feedback
   - Instruction
+  - MenuButton
+  - MainMenuButton
   layers:
   - Default
   - TransparentFX

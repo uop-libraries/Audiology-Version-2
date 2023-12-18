@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Michsky.MUIP;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -43,7 +44,7 @@ public class CaseTwoHistory : MonoBehaviour {
     [SerializeField] GameObject c2HFeedback08;
 
     [Header("AudioSource")]
-    [SerializeField] AudioSource audioSource;
+    [SerializeField] public AudioSource audioSource;
     
     // Note Some audio clip can be reuse from Case 1 History to save memory space
     [Header("AudioClip")]
@@ -63,10 +64,24 @@ public class CaseTwoHistory : MonoBehaviour {
     [SerializeField] AudioClip clipC2HFeedback07;
     [SerializeField] AudioClip clipC2HFeedback08;
 
+    // Array of each choice in Case Two
+    // Allows for a total reset if the player chooses to play again after finishing the case
+    [Header("Choices")] 
+    [SerializeField] private Image[] choices;
+    
     private int _counter;
     int audioPlayCounter;
     private bool _isFirstTime = true;
     private bool _isFirstTime1 = true;
+    
+    // Static info that is used to return to the case if the
+    // player has gone back to the main menu and returned to the case again
+    private static int _returnPanelNumber;
+    private static int _returnFeedbackNumber;
+    private static bool _hasGoneBack = false;
+    private static bool _wasOnFeedback = false;
+    
+    private static bool _hasCompleted = false;
 
     public void StartCase2History() {
         _counter = 0;
@@ -84,10 +99,28 @@ public class CaseTwoHistory : MonoBehaviour {
             child.gameObject.SetActive(false);
         }
 
-        GoToFirstPanel();
+        // Simple logic to check if the player is just starting the case, returning to it, or restarting it
+        if (_hasCompleted)
+        {
+            _hasGoneBack = false;
+        }
+        
+        if (!_hasGoneBack)
+        {
+            GoToFirstPanel();
+        }
+        else if (_hasGoneBack && _wasOnFeedback)
+        {
+            GoToFeedBack(_returnFeedbackNumber);
+        }
+        else if (_hasGoneBack && !_wasOnFeedback)
+        {
+            GoToInstruction(_returnPanelNumber);
+        }
     }
 
     private void GoToFirstPanel() {
+        ResetComplete();
         StateNameController.CurrentActivePanel = c2HNarrator01;
         _nextInstruction = c2HNarrator01;
         StateNameController.SwitchPanel(_nextInstruction);
@@ -113,6 +146,18 @@ public class CaseTwoHistory : MonoBehaviour {
     }
 
     public void GoToInstruction(int panelNumber) {
+        
+        // Turns on "_hasGoneBack", meaning the player will now return
+        // to their last spot in the case if they go to the menu and come back
+        if (panelNumber >= 1)
+        {
+            _hasGoneBack = true;
+        }
+
+        // Getting current panel info for return states
+        _returnPanelNumber = panelNumber;
+        _wasOnFeedback = false;
+        
         if (panelNumber is 1 or 15) {
             audioPlayCounter++;
         }
@@ -191,6 +236,11 @@ public class CaseTwoHistory : MonoBehaviour {
     }
 
     public void GoToFeedBack(int value) {
+        
+        // Getting current panel info for return states
+        _wasOnFeedback = true;
+        _returnFeedbackNumber = value;
+        
         AudioClip nextAudioClip = null;
 
         // Get current feedback panel
@@ -579,5 +629,50 @@ public class CaseTwoHistory : MonoBehaviour {
             BackgroundScript.GetBackground()[0].gameObject.SetActive(true);
             BackgroundScript.GetDocImages()[0].gameObject.SetActive(true);
         }
+    }
+    
+    // Runs once the case has been completed
+    public void SetComplete()
+    {
+        // Set "_hasCompleted" to true, which will make it so ResetComplete() will run if the case is chosen again
+        _hasCompleted = true;
+        
+        // Gets the color to reset each button
+        byte R = 227;
+        byte G = 88;
+        byte B = 0;
+        byte A = 255;
+        
+        // Resets each button; makes it look like it was never pressed
+        foreach (var choice in choices)
+        {
+            UIGradient uiGrad = choice.gameObject.GetComponent<UIGradient>();
+            choice.color = new Color32(R, G, B, A);
+            uiGrad.enabled = true;
+        }
+
+        // For loops to reset "scrolling"/"counter" choices
+        // AKA choice menus that reveal more choices after one has been pressed
+        for (int i = 0; i < 4; i++)
+        {
+            int offset = 33;
+            choices[offset + i].gameObject.SetActive(false);
+        }
+        for (int i = 0; i < 6; i++)
+        {
+            int offset = 40;
+            choices[offset + i].gameObject.SetActive(false);
+        }
+        for (int i = 0; i < 6; i++)
+        {
+            int offset = 53;
+            choices[offset + i].gameObject.SetActive(false);
+        }
+    }
+
+    // Turns off "_hasCompleted", allows the player to go through the case again
+    public void ResetComplete()
+    {
+        _hasCompleted = false;
     }
 }

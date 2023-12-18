@@ -21,12 +21,16 @@ public class SkyBoxVideo : MonoBehaviour
     [SerializeField] private GameObject _canvasCursor;
 
     [SerializeField] BackgroundScript _backgroundScript;
+
+    [SerializeField] private GameObject _backButton;
     
     // Set this variable to false if change to mobile version
     // bool _isDesktopVersion = true;
     
     public void StartVideo()
     {
+        _backButton.SetActive(false);
+        
         if (_videoPlayer.waitForFirstFrame) {
             _videoPlayer.Play();
             _videoPlayer.loopPointReached += ContinueButtonEnable;
@@ -86,6 +90,7 @@ public class SkyBoxVideo : MonoBehaviour
     {
         ChangeToMainSkyBox();
         continueButton.SetActive(false);
+        _backButton.SetActive(true);
     
         if (StateNameController.CurrentActivePanel.name == "Case1_h_Instruction_02_Demographic")
         {

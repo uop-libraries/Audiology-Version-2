@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Michsky.MUIP;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -79,7 +80,7 @@ public class CaseTwoCounseling : MonoBehaviour {
     [SerializeField] GameObject _C2C_Explanation_02_3;
 
     [Header("AudioSource")]
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] public AudioSource audioSource;
 
     [Header("AudioClip")]
     // Narration audio clip
@@ -132,9 +133,23 @@ public class CaseTwoCounseling : MonoBehaviour {
     [SerializeField] AudioClip clipC2CExplanation02_1;
     [SerializeField] AudioClip clipC2CExplanation02_2;
     [SerializeField] AudioClip clipC2CExplanation02_3;
+
+    // Array of each choice in Case Two
+    // Allows for a total reset if the player chooses to play again after finishing the case
+    [Header("Choices")] 
+    [SerializeField] private Image[] choices;
     
     private int _counter;
     int audioPlayCounter;
+    
+    // Static info that is used to return to the case if the
+    // player has gone back to the main menu and returned to the case again
+    private static Panel _returnToPanel;
+    private static int _returnPanelNumber;
+    private static bool _hasGoneBack = false;
+
+    private static bool _hasCompleted;
+    
     public enum Panel {
         Narrator,
         Instruction,
@@ -161,11 +176,43 @@ public class CaseTwoCounseling : MonoBehaviour {
         foreach (Transform child in parent.transform) {
             child.gameObject.SetActive(false);
         }
+        
+        // Simple logic to check if the player is just starting the case, returning to it, or restarting it
+        if (_hasCompleted)
+        {
+            _hasGoneBack = false;
+        }
 
-        GoToNarratorPanel(1);
+        if (_hasGoneBack)
+        {
+            switch (_returnToPanel)
+            {
+                case Panel.Instruction:
+                    GoToInstruction(_returnPanelNumber);
+                    break;
+                case Panel.Explanation:
+                    GoToExplanation(_returnPanelNumber);
+                    break;
+                case Panel.Feedback:
+                    GoToFeedBack(_returnPanelNumber);
+                    break;
+                case Panel.Topic:
+                    GoToTopic(_returnPanelNumber);
+                    break;
+            }
+        }
+        else
+        {
+            ResetComplete();
+            GoToNarratorPanel(1);
+        }
     }
 
     public void GoToNarratorPanel(int panelNum) {
+        
+        // Getting current panel info for return states
+        _returnToPanel = Panel.Narrator;
+        
         AudioClip _nextClip = null;
         Panel narratorPanel = Panel.Narrator;
 
@@ -207,6 +254,12 @@ public class CaseTwoCounseling : MonoBehaviour {
     }
 
     public void GoToInstruction(int panelNumber) {
+        
+        // Getting current panel info for return states
+        _returnToPanel = Panel.Instruction;
+        _returnPanelNumber = panelNumber;
+        _hasGoneBack = true;
+        
         if (panelNumber == 1) {
             audioPlayCounter++;
         }
@@ -340,6 +393,11 @@ public class CaseTwoCounseling : MonoBehaviour {
     }
 
     public void GoToFeedBack(int value) {
+        
+        // Getting current panel info for return states
+        _returnToPanel = Panel.Feedback;
+        _returnPanelNumber = value;
+        
         const Panel feedbackPanel = Panel.Feedback;
         AudioClip nextAudioClip = null;
 
@@ -381,6 +439,11 @@ public class CaseTwoCounseling : MonoBehaviour {
     }
 
     public void GoToTopic(int panelNumber) {
+        
+        // Getting current panel info for return states
+        _returnToPanel = Panel.Topic;
+        _returnPanelNumber = panelNumber;
+        
         Debug.Log("Topic Panel: " + panelNumber);
         const Panel topicPanel = Panel.Topic;
         AudioClip nextAudioClip = null;
@@ -438,6 +501,11 @@ public class CaseTwoCounseling : MonoBehaviour {
     }
 
     public void GoToExplanation(int value) {
+        
+        // Getting current panel info for return states
+        _returnToPanel = Panel.Explanation;
+        _returnPanelNumber = value;
+        
         const Panel explanationPanel = Panel.Explanation;
         AudioClip nextAudioClip = null;
 
@@ -513,6 +581,33 @@ public class CaseTwoCounseling : MonoBehaviour {
         //     GoToInstruction(12);
         //     _gameSceneMainCanvasScript.Case1CounselingDone();
         // }
+    }
+    
+    // Runs once the case has been completed
+    public void SetComplete()
+    {
+        // Set "_hasCompleted" to true, which will make it so ResetComplete() will run if the case is chosen again
+        _hasCompleted = true;
+        
+        // Gets the color to reset each button
+        byte R = 227;
+        byte G = 88;
+        byte B = 0;
+        byte A = 255;
+        
+        // Resets each button; makes it look like it was never pressed
+        foreach (var choice in choices)
+        {
+            UIGradient uiGrad = choice.gameObject.GetComponent<UIGradient>();
+            choice.color = new Color32(R, G, B, A);
+            uiGrad.enabled = true;
+        }
+    }
+
+    // Turns off "_hasCompleted", allows the player to go through the case again
+    public void ResetComplete()
+    {
+        _hasCompleted = false;
     }
 
 }
